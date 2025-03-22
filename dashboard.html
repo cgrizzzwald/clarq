@@ -1,60 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CLARQ Dashboard</title>
   <style>
+    :root {
+      --primary: #111827;
+      --secondary: #1f2937;
+      --accent: #3b82f6;
+      --text: #f9fafb;
+    }
     body {
-      font-family: sans-serif;
-      padding: 2rem;
-      background-color: #ffffff;
-      color: #333;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--primary);
+      color: var(--text);
     }
     header {
-      border-bottom: 2px solid #eee;
-      padding-bottom: 1rem;
-      margin-bottom: 2rem;
+      background-color: var(--secondary);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    h1 {
-      color: #222;
+    header h1 {
+      margin: 0;
+      font-size: 1.75rem;
     }
-    .risk-box {
-      background: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 1rem;
+    .container {
+      padding: 2rem;
+    }
+    .card {
+      background-color: var(--secondary);
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
       margin-bottom: 1.5rem;
     }
-    .timestamp {
-      font-size: 0.9em;
-      color: #888;
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      color: var(--accent);
+    }
+    .card p {
+      white-space: pre-line;
+      line-height: 1.6;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #94a3b8;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>📊 CLARQ Risk Dashboard</h1>
-    <p class="timestamp">Last updated: <em>Static demo</em></p>
+    <h1>⚡ CLARQ</h1>
+    <div>Supply Chain Risk AI</div>
   </header>
-
-  <div class="risk-box">
-    <h2>🌏 Geopolitical Risk</h2>
-    <p>China: High risk due to US-China tensions. Vietnam: Moderate. Indonesia: Low.</p>
+  <div class="container">
+    <div class="card">
+      <h2>Latest Risk Summary</h2>
+      <p id="risk-summary">Loading risk summary...</p>
+    </div>
   </div>
-
-  <div class="risk-box">
-    <h2>🚢 Logistics Risk</h2>
-    <p>China: High port congestion. Vietnam: Moderate. Indonesia: Infrastructure improving.</p>
-  </div>
-
-  <div class="risk-box">
-    <h2>🧠 AI Insight</h2>
-    <p>Companies should monitor policy updates and diversify suppliers over the next 30 days.</p>
-  </div>
-
   <footer>
-    <p><strong>Built with ❤️ by CLARQ.AI</strong></p>
+    &copy; 2025 CLARQ. Built with grit and AI.
   </footer>
+  <script>
+    fetch("/api/risks")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("risk-summary").innerText = data.categorized_risks || 'No risk summary found.';
+      })
+      .catch(err => {
+        document.getElementById("risk-summary").innerText = 'Failed to load risk summary.';
+      });
+  </script>
 </body>
 </html>
