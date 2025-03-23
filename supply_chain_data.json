@@ -1,0 +1,83 @@
+{
+    "news_headlines": [
+        {
+            "source": "Google News",
+            "headlines": [
+                {
+                    "headline": "Global Supply Chain Challenges for Mobile Accessories in 2024",
+                    "url": "https://www.linkedin.com/pulse/global-supply-chain-challenges-mobile-accessories-2024-adam-he-vscyf"
+                },
+                {
+                    "headline": "China\u2019s Role in Global Smartphone Supply Chains Remains Resilient",
+                    "url": "https://www.asiapacific.ca/publication/despite-de-risking-chinas-role-global-smartphone-supply"
+                },
+                {
+                    "headline": "U.S. Mobile Accessories Market Report 2024-2030: Protective",
+                    "url": "https://www.globenewswire.com/news-release/2024/09/23/2951563/28124/en/U-S-Mobile-Accessories-Market-Report-2024-2030-Protective-Cases-Power-Banks-Headphones-Earphones-Chargers-Screen-Protector-Size-Share-Trends-Analysis.html"
+                },
+                {
+                    "headline": "Supply chains Latest News & Headlines - The Business Times",
+                    "url": "https://www.businesstimes.com.sg/keywords/supply-chains"
+                },
+                {
+                    "headline": "mobile phone accessories: Latest News & Videos, Photos about mobile phone accessories  | The Economic Times - Page 1",
+                    "url": "https://economictimes.indiatimes.com/topic/mobile-phone-accessories"
+                }
+            ]
+        },
+        {
+            "source": "TechCrunch - Mobile",
+            "headlines": [
+                "Most Popular"
+            ]
+        },
+        {
+            "source": "Supply Chain Dive",
+            "headlines": [
+                "Top stories",
+                "The Latest"
+            ]
+        },
+        {
+            "source": "Business of Fashion",
+            "headlines": [
+                "The Revenge of Abstraction on Fashion\u2019s Catwalks",
+                "Dolce & Gabbana Looks to Beauty to Safeguard Independence",
+                "How Luggage Brand Monos Is Capturing Consumer Attention and Trust",
+                "How Luggage Brand Monos Is Capturing Consumer Attention and Trust",
+                "Behind the Rise of the \u2018It\u2019 Sweatshirt"
+            ]
+        },
+        {
+            "source": "SCMP - Supply Chain",
+            "error": "404 Client Error: Not Found for url: https://www.scmp.com/topics/supply-chains"
+        }
+    ],
+    "freight_rates": [
+        {
+            "source": "Xeneta",
+            "status": "Success",
+            "url": "https://www.xeneta.com/"
+        },
+        {
+            "source": "SeaRates",
+            "status": "Success",
+            "url": "https://www.searates.com/"
+        },
+        {
+            "source": "Drewry WCI",
+            "status": "Error: 429 Client Error:  for url: https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index",
+            "url": "https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index"
+        },
+        {
+            "source": "SCFI",
+            "status": "Success",
+            "url": "https://en.sse.net.cn/indices/scfinew.jsp"
+        },
+        {
+            "source": "IATA",
+            "status": "Success",
+            "url": "https://www.iata.org/en/publications/economics/"
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "company_name": "XYZ Manufacturing",
+    "sourcing_countries": ["China", "Vietnam", "Mexico"],
+    "industry": "Electronics",
+    "commodities": ["Semiconductors", "Copper", "Rare Earth Metals"],
+    "shipping_methods": ["Ocean Freight", "Air Freight"],
+    "risk_priorities": ["Geopolitical", "Regulatory", "Logistics", "Environmental"]
+}

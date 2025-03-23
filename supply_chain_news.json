@@ -1,0 +1,54 @@
+[
+    {
+        "source": "Google News",
+        "headlines": [
+            {
+                "headline": "https://www.linkedin.com/pulse/global-supply-chain-challenges-mobile-accessories-2024-adam-he-vscyf",
+                "url": "https://www.linkedin.com/pulse/global-supply-chain-challenges-mobile-accessories-2024-adam-he-vscyf"
+            },
+            {
+                "headline": "https://www.linkedin.com/pulse/global-supply-chain-trends-mobile-accessories-industry-adam-he-x18fc",
+                "url": "https://www.linkedin.com/pulse/global-supply-chain-trends-mobile-accessories-industry-adam-he-x18fc"
+            },
+            {
+                "headline": "https://www.scmr.com/article/analyzing-the-supply-chain-risks-behind-the-top-data-breaches-in-2024",
+                "url": "https://www.scmr.com/article/analyzing-the-supply-chain-risks-behind-the-top-data-breaches-in-2024"
+            },
+            {
+                "headline": "https://simcona.com/blog/supply-chain-challenges-in-the-electronics-industry",
+                "url": "https://simcona.com/blog/supply-chain-challenges-in-the-electronics-industry"
+            },
+            {
+                "headline": "https://www.lensunstore.com/news_blogs/future-challenges-of-the-us-mobile-phone-accessories-market-in-2024/",
+                "url": "https://www.lensunstore.com/news_blogs/future-challenges-of-the-us-mobile-phone-accessories-market-in-2024/"
+            }
+        ]
+    },
+    {
+        "source": "TechCrunch - Mobile",
+        "headlines": [
+            "Most Popular"
+        ]
+    },
+    {
+        "source": "Supply Chain Dive",
+        "headlines": [
+            "Top stories",
+            "The Latest"
+        ]
+    },
+    {
+        "source": "Business of Fashion",
+        "headlines": [
+            "Vanguart: How an Eight-Year-Old Startup Sells $200,000 Watches",
+            "Why BoF CROSSROADS 2025 is Exciting!",
+            "How Luggage Brand Monos Is Capturing Consumer Attention and Trust",
+            "How Luggage Brand Monos Is Capturing Consumer Attention and Trust",
+            "In a Market of Copycats, Handbag Innovators Stand Out"
+        ]
+    },
+    {
+        "source": "SCMP - Supply Chain",
+        "error": "404 Client Error: Not Found for url: https://www.scmp.com/topics/supply-chains"
+    }
+]

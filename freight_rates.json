@@ -1,0 +1,27 @@
+[
+    {
+        "source": "Xeneta",
+        "status": "Success",
+        "url": "https://www.xeneta.com/"
+    },
+    {
+        "source": "SeaRates",
+        "status": "Success",
+        "url": "https://www.searates.com/"
+    },
+    {
+        "source": "Drewry WCI",
+        "status": "Error: 429 Client Error:  for url: https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index",
+        "url": "https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/world-container-index"
+    },
+    {
+        "source": "SCFI",
+        "status": "Success",
+        "url": "https://en.sse.net.cn/indices/scfinew.jsp"
+    },
+    {
+        "source": "IATA",
+        "status": "Success",
+        "url": "https://www.iata.org/en/publications/economics/"
+    }
+]

@@ -1,0 +1,87 @@
+import requests
+from bs4 import BeautifulSoup
+import openai
+
+# Set your OpenAI API key (replace with your actual key)
+openai.api_key = "your_openai_api_key"
+
+# Define a news website to scrape
+url = "https://www.supplychaindive.com/"
+
+# Fetch the webpage
+try:
+    response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
+    response.raise_for_status()  # Raise an error if the request fails
+except requests.exceptions.RequestException as e:
+    print("Error fetching the webpage:", e)
+    exit()
+response = openai.ChatCompletion.create(
+    model="gpt-4",
+    messages=[{"role": "user", "content": f"Summarize supply chain risks from these news headlines: {headlines}"}]
+)
+
+summary = response.choices[0].message.content  # Updated syntax for OpenAI 1.0+
+# Parse the HTML
+soup = BeautifulSoup(response.text, "html.parser")
+
+# Extract the first 5 headlines
+headlines = [h.get_text(strip=True) for h in soup.find_all("h2")][:5]
+
+# Check if we got headlines
+if not headlines:
+    print("No headlines found. The website structure might have changed.")
+    exit()
+
+from bs4 import BeautifulSoup
+import openai
+
+# Set your OpenAI API key (replace with your actual key)
+openai.api_key = "your_openai_api_key"
+
+# Define a news website to scrape
+url = "https://www.supplychaindive.com/"
+
+# Fetch the webpage
+try:
+    webpage_response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
+    webpage_response.raise_for_status()  # Raise an error if the request fails
+except requests.exceptions.RequestException as e:
+    print("Error fetching the webpage:", e)
+    exit()
+
+# Parse the HTML
+soup = BeautifulSoup(webpage_response.text, "html.parser")
+
+# Extract the first 5 headlines
+headlines = [h.get_text(strip=True) for h in soup.find_all("h2")][:5]
+
+# Check if we got headlines
+if not headlines:
+    print("No headlines found. The website structure might have changed.")
+    exit()
+
+# Use GPT-4 to summarize the risks
+try:
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": f"Summarize supply chain risks from these news headlines: {headlines}"}]
+    )
+
+    summary = response.choices[0].message.content  # Corrected OpenAI response parsing
+
+    print("\n🚀 AI-Generated Supply Chain Risk Summary:\n", summary)
+
+except Exception as e:
+    print("Error with OpenAI API:", e)# Use GPT-4 to summarize the risks
+try:
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": f"Summarize supply chain risks from these news headlines: {headlines}"}]
+    )
+
+    summary = response.choices[0].message["content"]
+
+    print("\n🚀 AI-Generated Supply Chain Risk Summary:\n", summary)
+
+except Exception as e:
+    print("Error with OpenAI API:", e)
