@@ -24,5 +24,5 @@ def get_risk_data():
     except FileNotFoundError:
         return jsonify({"error": "Risk data not found. Run the analysis script first."}), 404
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=10000)
