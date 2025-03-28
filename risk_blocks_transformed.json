@@ -1,0 +1,55 @@
+[
+  {
+    "type": "risk",
+    "category": "Logistics",
+    "rating": 6,
+    "description": "Red Sea shipping disruptions are causing reroutes and port delays.",
+    "why_it_matters": "Potential delays in shipments from Asia to Europe and the US.",
+    "impact": "Delays in inventory arrival could impact sales cycles.",
+    "suggested_action": "Evaluate rerouting options and notify customers early.",
+    "headlines": [
+      {
+        "title": "Red Sea disruption affects global shipping",
+        "severity": 6
+      }
+    ],
+    "trend": [5, 6, 6, 6, 7]
+  },
+  {
+    "type": "risk",
+    "category": "Geopolitics",
+    "rating": 7,
+    "description": "Tensions rise with new proposed tariffs targeting electronics from China.",
+    "why_it_matters": "Could impact import costs and vendor relationships.",
+    "impact": "Higher costs or switching suppliers may become necessary.",
+    "suggested_action": "Review sourcing strategy and tariff exposure.",
+    "headlines": [
+      {
+        "title": "US proposes new tariffs on China tech",
+        "severity": 7
+      }
+    ],
+    "trend": [6, 7, 7, 7, 7]
+  },
+  {
+    "type": "summary",
+    "content": "China presents the highest overall risk but offers the largest manufacturing capacity and advanced technology. Vietnam and Indonesia present lower risks and are emerging as viable alternatives."
+  },
+  {
+    "type": "rumor",
+    "rumors": [
+      {
+        "source": "Factory contact",
+        "content": "Early signs of supplier consolidation in Taiwan.",
+        "severity": "Medium",
+        "suggested_action": "Monitor Taiwanese vendors and diversify sources."
+      },
+      {
+        "source": "Industry whisper",
+        "content": "Smartphone production cuts expected next quarter.",
+        "severity": "High",
+        "suggested_action": "Scale back accessory production plans temporarily."
+      }
+    ]
+  }
+]
