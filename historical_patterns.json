@@ -1,0 +1,41 @@
+{
+  "section_301_tariffs_2018": {
+    "tags": [
+      "tariffs",
+      "china",
+      "trump",
+      "batteries",
+      "leather",
+      "section 301",
+      "import risk"
+    ],
+    "summary": "The initial wave of Section 301 tariffs during the Trump administration unexpectedly impacted imports containing batteries and leather materials.",
+    "impact": "Companies reliant on Chinese manufacturing saw significant cost increases, particularly for goods with embedded batteries and leather components. These categories were not initially expected to be high risk.",
+    "reasoning": "The tariff list expanded quickly and included products classified under HS codes that overlapped with everyday consumer electronics and accessories.",
+    "suggested_action": "Closely monitor government sources and trade alerts for changes to tariff lists. Re-evaluate materials like lithium-ion batteries or leather in designs, and consider sourcing diversification (e.g., Vietnam, Taiwan).",
+    "sources": [
+      "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions",
+      "https://www.cnbc.com/2018/06/15/trump-china-tariffs-us-trade-war.html"
+    ]
+  },
+  "covid_supply_disruptions_china_2020": {
+    "tags": [
+      "covid",
+      "pandemic",
+      "china",
+      "lockdowns",
+      "pivot strategy",
+      "supply disruption",
+      "PPE",
+      "Safe-mate"
+    ],
+    "summary": "Widespread lockdowns across China in 2020\u2014including major manufacturing hubs like Shenzhen\u2014caused mass delays in production and shipment timelines. Unexpectedly, nimble companies who pivoted to pandemic-related products found new revenue streams.",
+    "impact": "Traditional supply chains were frozen for weeks. Delays in raw materials and shipping backlogs hit every industry. However, consumer demand for masks, sanitizers, and contactless gadgets surged.",
+    "reasoning": "Operations with in-country sourcing teams who could react fast launched PPE products like 'Safe-mate'\u2014a line of masks and touchless tools\u2014to meet surging demand while keeping factories running.",
+    "suggested_action": "Stay prepared for black swan events. Have backup product ideas that align with sudden behavioral shifts (health, safety, remote work, etc.). Build factory relationships that allow rapid pivoting.",
+    "sources": [
+      "https://www.wsj.com/articles/covid-19-lockdowns-impact-on-supply-chain-11601281213",
+      "https://www.nytimes.com/2020/04/17/business/economy/coronavirus-supply-chain.html"
+    ]
+  }
+}

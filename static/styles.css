@@ -1,100 +1,82 @@
+
 body {
-  background-color: #1c1f26;
-  color: #ffffff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #1e1e1e;
+  color: white;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
 
-header {
-  background-color: #1c1f26;
-  padding: 20px;
-  text-align: center;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 28px;
-}
-
 .container {
-  max-width: 1000px;
+  max-width: 940px;
   margin: 20px auto;
   padding: 0 20px;
 }
 
-.card {
-  background-color: #213a3b;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  padding: 20px;
-}
-
-.card-content {
-  padding-right: 160px;
-}
-
-.card-sidekick {
-  position: absolute;
-  right: 30px;
-  top: 40px;
-  width: 140px;
-  background-color: #1c1f26;
-  border-left: 3px solid #ffaa00;
-  padding: 10px;
-  font-size: 14px;
-  line-height: 1.4;
-}
-
-.card h2 {
-  margin-top: 0;
-  color: #ffaa00;
-}
-
-.section-title {
-  color: #4db8ff;
-  margin-bottom: 10px;
-}
-
-footer {
+h1 {
   text-align: center;
-  padding: 20px;
-  font-size: 12px;
-  color: #888;
 }
 
-.severity-badge {
-  display: inline-block;
-  background-color: #333;
+.summary-card {
+  background: #114444;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.summary-title {
+  color: #ffc107;
+}
+
+.card {
+  background: #184d4d;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.category-title {
+  color: #ffcc00;
+  font-weight: bold;
+}
+
+.risk-rating-badge {
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.risk-low {
+  background: #33cc33;
   color: #fff;
-  padding: 3px 10px;
-  border-radius: 12px;
-  font-size: 12px;
-  margin-bottom: 8px;
 }
 
-.severity-badge.low {
-  background-color: #2ecc71; /* Green */
-}
-
-.severity-badge.medium {
-  background-color: #f1c40f; /* Yellow */
+.risk-medium {
+  background: #ffcc00;
   color: #000;
 }
 
-.severity-badge.high {
-  background-color: #e74c3c; /* Red */
+.risk-high {
+  background: #ff4c4c;
+  color: #fff;
 }
 
 .trend-container {
   margin-top: 10px;
   margin-bottom: 10px;
+  max-width: 100%;
+  height: 80px; /* You can adjust this to suit your design */
+  position: relative;
 }
-
+.trend-container canvas {
+  max-width: 100%;
+  height: 80px;  /* Matches parent height */
+}
 .trend-label {
-  font-size: 12px;
+  font-size: 0.85rem;
   color: #aaa;
-  margin-top: 5px;
 }
 
 .insight-label {
@@ -102,76 +84,34 @@ footer {
   margin-top: 10px;
 }
 
-ul.sources {
-  padding-left: 20px;
-  margin-top: 5px;
-}
-
-.show-more-link {
-  color: #4db8ff;
-  cursor: pointer;
-  font-size: 12px;
+.sources {
+  padding-left: 1.2rem;
 }
 
 .hidden {
   display: none;
 }
 
-.rumor-block {
-  background-color: #292e39;
-  padding: 20px;
-  margin-top: 40px;
-  border-left: 5px solid #ffaa00;
-}
-
-.rumor-block h3 {
-  margin-top: 0;
-}
-
-.rumor-block p {
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-.rumor-block .rumor {
-  margin-bottom: 15px;
-}
-
-.rumor-block .source {
-  font-weight: bold;
-  color: #ffaa00;
+.show-more-link {
+  color: #00c2ff;
+  cursor: pointer;
+  font-size: 0.85rem;
 }
 
 .ops-tip {
-  background-color: #f1c40f;
-  color: #1b1b1b;
-  padding: 10px 15px;
-  border-radius: 5px;
+  background: #ffc107;
+  color: #000;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 6px;
   font-size: 0.9rem;
-  margin-top: 12px;
-  max-width: 500px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
 }
 
-/* Risk rating bubble (colored by severity level) */
-.risk-rating-badge {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 12px;
-  margin-left: 8px;
-  color: #fff;
-}
-
-.risk-low {
-  background-color: #2ecc71; /* Green */
-}
-
-.risk-medium {
-  background-color: #f39c12; /* Orange */
-}
-
-.risk-high {
-  background-color: #e74c3c; /* Red */
+.history-block {
+  background: #2b2b2b;
+  color: #ddd;
+  border-left: 4px solid #888;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
 }
