@@ -49,8 +49,10 @@
           card.className = "card";
           card.innerHTML = `
             <div class="card-content">
-            ${block.rating ? `<div class="severity-badge severity-${Math.min(block.rating, 10)}">Risk Rating: ${block.rating}</div>` : ""}              
-              <h2>${block.category || 'Unnamed Category'}</h2>
+              <h2>
+                ${block.category || 'Unnamed Category'}
+                ${block.rating ? `<span class="risk-rating-badge ${block.rating <= 3 ? 'risk-low' : block.rating <= 6 ? 'risk-medium' : 'risk-high'}">Risk Rating: ${block.rating}</span>` : ""}
+              </h2>
               <p>${block.description || ''}</p>
               ${block.trend ? `
                 <div class="trend-container">

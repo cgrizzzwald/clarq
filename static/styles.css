@@ -73,6 +73,19 @@ footer {
   margin-bottom: 8px;
 }
 
+.severity-badge.low {
+  background-color: #2ecc71; /* Green */
+}
+
+.severity-badge.medium {
+  background-color: #f1c40f; /* Yellow */
+  color: #000;
+}
+
+.severity-badge.high {
+  background-color: #e74c3c; /* Red */
+}
+
 .trend-container {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -138,4 +151,27 @@ ul.sources {
   margin-top: 12px;
   max-width: 500px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+/* Risk rating bubble (colored by severity level) */
+.risk-rating-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 12px;
+  margin-left: 8px;
+  color: #fff;
+}
+
+.risk-low {
+  background-color: #2ecc71; /* Green */
+}
+
+.risk-medium {
+  background-color: #f39c12; /* Orange */
+}
+
+.risk-high {
+  background-color: #e74c3c; /* Red */
 }
