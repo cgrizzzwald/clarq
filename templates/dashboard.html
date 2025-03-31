@@ -49,7 +49,7 @@
           card.className = "card";
           card.innerHTML = `
             <div class="card-content">
-              ${block.rating ? `<div class="severity-badge severity-${block.rating}">Risk Rating: ${block.rating}</div>` : ""}
+            ${block.rating ? `<div class="severity-badge severity-${Math.min(block.rating, 10)}">Risk Rating: ${block.rating}</div>` : ""}              
               <h2>${block.category || 'Unnamed Category'}</h2>
               <p>${block.description || ''}</p>
               ${block.trend ? `
@@ -74,7 +74,7 @@
                 ` : ""}
               ` : ""}
             </div>
-            <div class="card-sidekick">
+            <div class="ops-tip">
               💡 <strong>Ops Tip:</strong><br/>
               Watch for secondary effects tied to this risk. Could it delay shipments? Impact pricing? Loop in your team and prep alternatives if needed.
             </div>
