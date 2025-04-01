@@ -1,24 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>⚡ CLARQ Risk Dashboard</title>
-  <link rel="stylesheet" href="/static/styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <style>
+    .risk-rating-bubble {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-left: 10px;
+      color: #fff;
+    }
+    .risk-low { background-color: #10b981; }
+    .risk-medium { background-color: #f59e0b; }
+    .risk-high { background-color: #ef4444; }
+    .trend-label { text-align: center; font-size: 12px; color: #ccc; margin-top: 4px; }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>⚡ CLARQ's balls Risk Dashboard</h1>
+  <header>
+    <h1>⚡ CLARQ Risk Dashboard</h1>
+    <div>Supply Chain Risk AI</div>
+  </header>
 
-    <div class="summary-card">
-      <h3 class="summary-title">📌 Latest Risk Summary</h3>
+  <div class="container">
+    <div class="card summary">
+      <h2 class="section-title">📌 Latest Risk Summary</h2>
       <p id="risk-summary">Loading risk summary...</p>
     </div>
 
     <div id="risk-blocks"></div>
-    <div id="history-blocks"></div>
+    <div id="rumor-watch"></div>
   </div>
+
+  <footer>&copy; 2025 CLARQ. Built with grit and AI.</footer>
 
   <script>
     function toggleExtra(idx) {
@@ -31,27 +51,26 @@
         const res = await fetch("/api/risks");
         const data = await res.json();
 
-        // Summary
         const summary = data.find(b => b.type === "summary");
         document.getElementById("risk-summary").innerText = summary?.content || 'No summary found.';
 
-        // Risk blocks
         const blocks = data.filter(b => b.type === "risk");
         const riskContainer = document.getElementById("risk-blocks");
         blocks.forEach((block, idx) => {
+          const ratingClass = block.rating <= 3 ? 'risk-low' : block.rating <= 6 ? 'risk-medium' : 'risk-high';
           const card = document.createElement("div");
           card.className = "card";
           card.innerHTML = `
             <div class="card-content">
               <h2>
-                <span class="category-title" style="color: #facc15">${block.category || 'Unnamed Category'}</span>
-                ${block.rating ? `<span class="risk-rating-badge ${block.rating <= 3 ? 'risk-low' : block.rating <= 6 ? 'risk-medium' : 'risk-high'}">Risk Rating: ${block.rating}</span>` : ""}
+                ${block.category || 'Unnamed Category'}
+                ${block.rating ? `<span class="risk-rating-bubble ${ratingClass}">Risk Rating: ${block.rating}</span>` : ""}
               </h2>
               <p>${block.description || ''}</p>
               ${block.trend ? `
                 <div class="trend-container">
                   <canvas class="trendChart" data-trend='${JSON.stringify(block.trend)}' width="200" height="60"></canvas>
-                  <div class="trend-label" style="text-align:center;">Trend: Last 30 Days</div>
+                  <div class="trend-label">📉 Trend: Last 30 Days</div>
                 </div>
               ` : ""}
               ${block.why_it_matters ? `<p class="insight-label">🧠 Why It Matters:</p><p>${block.why_it_matters}</p>` : ""}
@@ -78,38 +97,33 @@
           riskContainer.appendChild(card);
         });
 
-        // Historical insight blocks
-        const historyBlocks = data.filter(b => b.type === "history");
-        const historyContainer = document.getElementById("history-blocks");
-        historyBlocks.forEach(block => {
-          const div = document.createElement("div");
-          div.className = "history-block";
-          div.innerHTML = `<h3>📚 Historical Insight</h3><p>${block.content}</p>`;
-          historyContainer.appendChild(div);
-        });
+        const rumorBlock = data.find(b => b.type === "rumor");
+        if (rumorBlock?.rumors?.length) {
+          const wrapper = document.createElement("div");
+          wrapper.className = "rumor-block";
+          wrapper.innerHTML = `<h3>🔍 Rumor Watch</h3>
+            <p>These are early signals or unconfirmed whispers that could impact operations.</p>
+            ${rumorBlock.rumors.map(r =>
+              `<div style="margin-bottom: 1rem;">
+                <p><strong>🟡 Rumor:</strong> ${r.content}</p>
+                ${r.source ? `<p><strong>📍 Source:</strong> ${r.source}</p>` : ""}
+                ${r.severity ? `<p><strong>🚨 Severity:</strong> ${r.severity}</p>` : ""}
+                ${r.suggested_action ? `<p><strong>🛠 Suggested Action:</strong> ${r.suggested_action}</p>` : ""}
+              </div>`
+            ).join("")}`;
+          document.getElementById("rumor-watch").appendChild(wrapper);
+        }
 
-        // Chart rendering
         document.querySelectorAll(".trendChart").forEach(canvas => {
-          const data = JSON.parse(canvas.dataset.trend || "[]");
-          const ctx = canvas.getContext("2d");
-
-          const gradient = ctx.createLinearGradient(0, 0, 0, 60);
-          gradient.addColorStop(0, "#ef4444");  // Red
-          gradient.addColorStop(0.5, "#f59e0b"); // Yellow
-          gradient.addColorStop(1, "#10b981");  // Green
-
-          new Chart(ctx, {
+          const data = JSON.parse(canvas.getAttribute("data-trend"));
+          new Chart(canvas.getContext("2d"), {
             type: 'line',
             data: {
-              labels: data.map(() => ""),
+              labels: data.map((_, i) => i + 1),
               datasets: [{
-                data,
-                borderColor: gradient,
-                backgroundColor: "rgba(255, 255, 255, 0.05)",
-                tension: 0.3,
-                fill: true,
-                pointRadius: 0,
-                borderWidth: 2
+                label: "Risk Trend", data,
+                borderColor: "#38bdf8", backgroundColor: "rgba(59,130,246,0.2)",
+                tension: 0.4, pointRadius: 0, borderWidth: 2, fill: true
               }]
             },
             options: {
@@ -118,11 +132,10 @@
               scales: {
                 x: { display: false },
                 y: {
-                  min: 0,
-                  max: 10,
+                  display: true, min: 0, max: 10,
                   ticks: {
-                    stepSize: 1,
-                    callback: v => v === 0 ? "0 (Low)" : v === 10 ? "10 (High)" : ""
+                    callback: v => v === 0 ? "0 (Low)" : v === 10 ? "10 (High)" : "",
+                    color: "#9ca3af"
                   },
                   grid: {
                     drawBorder: false,
@@ -137,9 +150,9 @@
           });
         });
 
-      } catch (e) {
-        console.error("Failed to load risk data", e);
-        document.getElementById("risk-blocks").innerHTML = "<p>Error loading data.</p>";
+      } catch (err) {
+        console.error(err);
+        document.getElementById("risk-summary").innerText = 'Failed to load risk summary.';
       }
     });
   </script>
