@@ -73,10 +73,13 @@ h1 {
 .trend-container canvas {
   max-width: 100%;
   height: 80px;  /* Matches parent height */
-}
+
 .trend-label {
   font-size: 0.85rem;
   color: #aaa;
+  text-align: center;
+  display: block;
+  margin-top: 4px;
 }
 
 .insight-label {
