@@ -6,6 +6,21 @@
   <title>⚡ CLARQ Risk Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="/static/styles.css" />
+  <style>
+    .risk-rating-bubble {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-left: 10px;
+      color: #fff;
+    }
+    .risk-low { background-color: #10b981; }
+    .risk-medium { background-color: #f59e0b; }
+    .risk-high { background-color: #ef4444; }
+    .trend-label { text-align: center; font-size: 12px; color: #ccc; margin-top: 4px; }
+  </style>
 </head>
 <body>
   <header>
@@ -15,12 +30,11 @@
 
   <div class="container">
     <div class="card summary">
-      <h2 class="section-title">Latest Risk Summary</h2>
+      <h2 class="section-title">📌 Latest Risk Summary</h2>
       <p id="risk-summary">Loading risk summary...</p>
     </div>
 
     <div id="risk-blocks"></div>
-
     <div id="rumor-watch"></div>
   </div>
 
@@ -37,25 +51,26 @@
         const res = await fetch("/api/risks");
         const data = await res.json();
 
-        // Summary
         const summary = data.find(b => b.type === "summary");
         document.getElementById("risk-summary").innerText = summary?.content || 'No summary found.';
 
-        // Risk blocks
         const blocks = data.filter(b => b.type === "risk");
         const riskContainer = document.getElementById("risk-blocks");
         blocks.forEach((block, idx) => {
+          const ratingClass = block.rating <= 3 ? 'risk-low' : block.rating <= 6 ? 'risk-medium' : 'risk-high';
           const card = document.createElement("div");
           card.className = "card";
           card.innerHTML = `
             <div class="card-content">
-            ${block.rating ? `<div class="severity-badge severity-${Math.min(block.rating, 10)}">Risk Rating: ${block.rating}</div>` : ""}              
-              <h2>${block.category || 'Unnamed Category'}</h2>
+              <h2>
+                ${block.category || 'Unnamed Category'}
+                ${block.rating ? `<span class="risk-rating-bubble ${ratingClass}">Risk Rating: ${block.rating}</span>` : ""}
+              </h2>
               <p>${block.description || ''}</p>
               ${block.trend ? `
                 <div class="trend-container">
                   <canvas class="trendChart" data-trend='${JSON.stringify(block.trend)}' width="200" height="60"></canvas>
-                  <div class="trend-label">Trend: Last 30 Days</div>
+                  <div class="trend-label">📉 Trend: Last 30 Days</div>
                 </div>
               ` : ""}
               ${block.why_it_matters ? `<p class="insight-label">🧠 Why It Matters:</p><p>${block.why_it_matters}</p>` : ""}
@@ -82,7 +97,6 @@
           riskContainer.appendChild(card);
         });
 
-        // Rumor Watch
         const rumorBlock = data.find(b => b.type === "rumor");
         if (rumorBlock?.rumors?.length) {
           const wrapper = document.createElement("div");
@@ -100,7 +114,6 @@
           document.getElementById("rumor-watch").appendChild(wrapper);
         }
 
-        // Trend charts
         document.querySelectorAll(".trendChart").forEach(canvas => {
           const data = JSON.parse(canvas.getAttribute("data-trend"));
           new Chart(canvas.getContext("2d"), {
