@@ -41,23 +41,6 @@ def setup():
     
     return render_template("setup.html")
 
-@app.route("/setup", methods=["GET", "POST"])
-def setup():
-    if request.method == "POST":
-        data = {
-            "business_type": request.form.get("business_type"),
-            "countries": request.form.get("countries"),
-            "risks": request.form.getlist("risks"),
-            "signals": request.form.get("signals")
-        }
-
-        with open("user_profile.json", "w") as f:
-            json.dump(data, f, indent=2)
-
-        return redirect("/dashboard")
-
-    return render_template("setup.html")
-
 import os
 
 if __name__ == "__main__":
