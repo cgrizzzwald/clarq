@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CLARQ Setup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1e1e1e;
+      color: #fff;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+    h1 {
+      color: #4db8ff;
+    }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+    textarea, input[type="text"], select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 15px;
+    }
+    .checkbox-group {
+      margin-bottom: 15px;
+    }
+    .checkbox-group label {
+      font-weight: normal;
+      display: block;
+      margin: 5px 0;
+    }
+    button {
+      background-color: #ffaa00;
+      border: none;
+      padding: 10px 15px;
+      color: #000;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>⚡ CLARQ Smart Setup</h1>
+  <form>
+    <label for="business">1. What does your company do?</label>
+    <textarea id="business" rows="3" placeholder="E.g. We manufacture and distribute smartphone accessories globally."></textarea>
+
+    <label for="supply">2. Describe your supply chain</label>
+    <textarea id="supply" rows="3" placeholder="E.g. We source from China, manufacture in Vietnam, and ship to the US and UK."></textarea>
+
+    <label for="signals">3. What leading signals do you track?</label>
+    <textarea id="signals" rows="3" placeholder="E.g. Apple launch rumors, battery component shortages, port delays."></textarea>
+
+    <label>4. Risk Categories You Care About</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" /> Tariffs & Trade Policy</label>
+      <label><input type="checkbox" /> Factory Delays</label>
+      <label><input type="checkbox" /> Consumer Demand Trends</label>
+      <label><input type="checkbox" /> Regulatory Changes</label>
+      <label><input type="checkbox" /> Freight & Logistics Disruptions</label>
+      <label><input type="checkbox" /> Labor Shortages</label>
+      <label><input type="checkbox" /> Other: <input type="text" placeholder="Specify other concern"/></label>
+    </div>
+
+    <label for="project">5. Optional: Specific Product or Project?</label>
+    <textarea id="project" rows="2" placeholder="E.g. Our new MagSafe line launching Q3."></textarea>
+
+    <button type="submit">🪄 Build My Custom Scrubs</button>
+  </form>
+</body>
+</html>
