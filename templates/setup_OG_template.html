@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CLARQ Setup</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <style>
+    body { background: #111827; color: #f9fafb; font-family: sans-serif; padding: 2rem; }
+    form { max-width: 600px; margin: auto; background: #1f2937; padding: 2rem; border-radius: 1rem; }
+    label { display: block; margin-top: 1rem; font-weight: bold; }
+    input[type="text"], textarea {
+      width: 100%; padding: 0.5rem; margin-top: 0.5rem;
+      background: #374151; border: none; color: #fff; border-radius: 0.5rem;
+    }
+    .checkbox-group { margin-top: 1rem; }
+    .checkbox-group label { display: inline-block; margin-right: 1rem; font-weight: normal; }
+    button {
+      margin-top: 2rem; background: #3b82f6; color: #fff;
+      border: none; padding: 0.7rem 1.5rem; border-radius: 0.5rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>⚙️ CLARQ Setup</h1>
+  <form method="POST" action="/setup">
+    <label>1. What type of business are you in?</label>
+    <input type="text" name="business_type" required />
+
+    <label>2. What countries are you sourcing from or operating in?</label>
+    <input type="text" name="countries" placeholder="e.g. China, Vietnam, USA" required />
+
+    <label>3. What risks concern you most?</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" name="risks" value="logistics" /> Logistics</label>
+      <label><input type="checkbox" name="risks" value="geopolitical" /> Geopolitical</label>
+      <label><input type="checkbox" name="risks" value="economic" /> Economic</label>
+      <label><input type="checkbox" name="risks" value="environmental" /> Environmental</label>
+    </div>
+
+    <label>4. What signals or companies do you track?</label>
+    <textarea name="signals" rows="3" placeholder="e.g. Apple, lithium pricing, shipping delays"></textarea>
+
+    <button type="submit">Save Preferences</button>
+  </form>
+</body>
+</html>
