@@ -1,8 +1,6 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request, redirect
 import json
-
-from flask import Flask, render_template, request, redirect
-import json
+import os
 
 app = Flask(__name__)
 
@@ -33,15 +31,13 @@ def setup():
             "risks": request.form.getlist("risks"),
             "signals": request.form.get("signals")
         }
-        
+
         with open("user_profile.json", "w") as f:
             json.dump(data, f, indent=2)
-        
-        return redirect("/dashboard")
-    
-    return render_template("setup.html")
 
-import os
+        return redirect("/dashboard")
+
+    return render_template("setup.html")
 
 @app.route("/api/risks")
 def api_risks():
