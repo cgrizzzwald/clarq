@@ -1,48 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CLARQ Setup</title>
-  <link rel="stylesheet" href="/static/styles.css" />
-  <style>
-    body { background: #111827; color: #f9fafb; font-family: sans-serif; padding: 2rem; }
-    form { max-width: 600px; margin: auto; background: #1f2937; padding: 2rem; border-radius: 1rem; }
-    label { display: block; margin-top: 1rem; font-weight: bold; }
-    input[type="text"], textarea {
-      width: 100%; padding: 0.5rem; margin-top: 0.5rem;
-      background: #374151; border: none; color: #fff; border-radius: 0.5rem;
-    }
-    .checkbox-group { margin-top: 1rem; }
-    .checkbox-group label { display: inline-block; margin-right: 1rem; font-weight: normal; }
-    button {
-      margin-top: 2rem; background: #3b82f6; color: #fff;
-      border: none; padding: 0.7rem 1.5rem; border-radius: 0.5rem;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <h1>⚙️ CLARQ Setup</h1>
-  <form method="POST" action="/setup">
-    <label>1. What type of business are you in?</label>
-    <input type="text" name="business_type" required />
+import React, { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
 
-    <label>2. What countries are you sourcing from or operating in?</label>
-    <input type="text" name="countries" placeholder="e.g. China, Vietnam, USA" required />
+export default function IntakeForm() {
+  const [formData, setFormData] = useState({
+    businessDescription: "",
+    supplyChainDetails: "",
+    leadingSignals: "",
+    riskInterests: "",
+  });
 
-    <label>3. What risks concern you most?</label>
-    <div class="checkbox-group">
-      <label><input type="checkbox" name="risks" value="logistics" /> Logistics</label>
-      <label><input type="checkbox" name="risks" value="geopolitical" /> Geopolitical</label>
-      <label><input type="checkbox" name="risks" value="economic" /> Economic</label>
-      <label><input type="checkbox" name="risks" value="environmental" /> Environmental</label>
-    </div>
+  const [submitted, setSubmitted] = useState(false);
 
-    <label>4. What signals or companies do you track?</label>
-    <textarea name="signals" rows="3" placeholder="e.g. Apple, lithium pricing, shipping delays"></textarea>
+  const handleChange = (field) => (e) => {
+    setFormData({ ...formData, [field]: e.target.value });
+  };
 
-    <button type="submit">Save Preferences</button>
-  </form>
-</body>
-</html>
+  const handleSubmit = () => {
+    // Mock submit (in prod, POST to API)
+    console.log("User Intake Submitted:", formData);
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <Card className="p-6 text-center max-w-2xl mx-auto">
+        <h2 className="text-xl font-semibold mb-2">✅ Intake Received</h2>
+        <p>Thanks! We're generating your custom risk scrubs now.</p>
+      </Card>
+    );
+  }
+
+  return (
+    <Card className="p-6 max-w-2xl mx-auto">
+      <h2 className="text-2xl font-semibold mb-4">CLARQ Setup</h2>
+      <CardContent className="space-y-4">
+        <div>
+          <label className="block mb-1 font-medium">🧾 Describe your business</label>
+          <Textarea
+            placeholder="What does your company do, and who do you serve?"
+            value={formData.businessDescription}
+            onChange={handleChange("businessDescription")}
+          />
+        </div>
+
+        <div>
+          <label className="block mb-1 font-medium">🌍 Supply Chain Overview</label>
+          <Textarea
+            placeholder="Where do you source from, manufacture, ship to, or depend on?"
+            value={formData.supplyChainDetails}
+            onChange={handleChange("supplyChainDetails")}
+          />
+        </div>
+
+        <div>
+          <label className="block mb-1 font-medium">📈 Leading Indicators</label>
+          <Textarea
+            placeholder="What upstream topics or events give you early signals? (e.g. Apple if you sell iPhone accessories)"
+            value={formData.leadingSignals}
+            onChange={handleChange("leadingSignals")}
+          />
+        </div>
+
+        <div>
+          <label className="block mb-1 font-medium">🚨 Risk Categories</label>
+          <Textarea
+            placeholder="What types of risks do you want to track? (e.g. factory shutdowns, labor strikes, tariffs)"
+            value={formData.riskInterests}
+            onChange={handleChange("riskInterests")}
+          />
+        </div>
+
+        <Button className="w-full mt-4" onClick={handleSubmit}>
+          Generate My Risk Intelligence
+        </Button>
+      </CardContent>
+    </Card>
+  );
+}
+
