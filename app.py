@@ -43,6 +43,16 @@ def setup():
 
 import os
 
+@app.route("/api/risks")
+def api_risks():
+    try:
+        with open("risk_blocks_transformed.json") as f:
+            data = json.load(f)
+        return jsonify(data)
+    except Exception as e:
+        print(f"API Error: {e}")
+        return jsonify({"error": str(e)}), 500
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))  # Render provides PORT, fallback for local testing
     app.run(host="0.0.0.0", port=port)
