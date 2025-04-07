@@ -2,7 +2,7 @@ from flask import Flask, render_template, jsonify, request, redirect
 import json
 import os
 
-app = Flask(__name__)
+app = Flask(__name__) #Trigger update
 
 @app.route("/dashboard")
 def dashboard():
