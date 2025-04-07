@@ -1,36 +1,38 @@
-import requests
-from bs4 import BeautifulSoup
-from datetime import datetime
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 import json
-
-CBP_URL = "https://www.cbp.gov/newsroom"
+from datetime import datetime
+import time
 
 def scrape_cbp_newsroom():
-    response = requests.get(CBP_URL)
-    response.raise_for_status()
-    soup = BeautifulSoup(response.text, 'html.parser')
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--no-sandbox")
 
-    articles = soup.find_all('div', class_='views-row')
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    driver.get("https://www.cbp.gov/newsroom")
+
+    time.sleep(5)  # Wait for JS content to load
+
+    articles = driver.find_elements(By.CSS_SELECTOR, "div.views-row")
+
     scraped_data = []
 
     for article in articles:
-        title_tag = article.find('h3')
-        summary_tag = article.find('div', class_='field-content')
-        date_tag = article.find('span', class_='date-display-single')
+        try:
+            title_tag = article.find_element(By.TAG_NAME, "h3")
+            link_tag = title_tag.find_element(By.TAG_NAME, "a")
+            summary_tag = article.find_element(By.CLASS_NAME, "field-content")
+            date_tag = article.find_element(By.CLASS_NAME, "date-display-single")
 
-        if title_tag and summary_tag and date_tag:
-            title = title_tag.get_text(strip=True)
-            summary = summary_tag.get_text(strip=True)
-            date_str = date_tag.get_text(strip=True)
-
-            try:
-                date_obj = datetime.strptime(date_str, "%m/%d/%Y")
-                date = date_obj.strftime("%Y-%m-%d")
-            except ValueError:
-                date = date_str
-
-            link_tag = title_tag.find('a')
-            link = "https://www.cbp.gov" + link_tag['href'] if link_tag and 'href' in link_tag.attrs else None
+            title = title_tag.text.strip()
+            summary = summary_tag.text.strip()
+            date = datetime.strptime(date_tag.text.strip(), "%m/%d/%Y").strftime("%Y-%m-%d")
+            link = link_tag.get_attribute("href")
 
             scraped_data.append({
                 "source": "U.S. CBP Newsroom",
@@ -40,15 +42,15 @@ def scrape_cbp_newsroom():
                 "link": link,
                 "risk_type": "customs_regulation"
             })
+        except Exception as e:
+            print(f"Skipping article due to error: {e}")
 
-    return scraped_data
+    driver.quit()
 
-def save_to_json(data, filename="customs_risks.json"):
-    with open(filename, "w") as f:
-        json.dump(data, f, indent=2)
+    with open("customs_risks.json", "w") as f:
+        json.dump(scraped_data, f, indent=2)
+
+    print(f"Saved {len(scraped_data)} articles to customs_risks.json")
 
 if __name__ == "__main__":
-    cbp_data = scrape_cbp_newsroom()
-    save_to_json(cbp_data)
-    print(f"Saved {len(cbp_data)} articles to customs_risks.json")
-
+    scrape_cbp_newsroom()
