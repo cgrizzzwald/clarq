@@ -1,7 +1,8 @@
 from flask import Flask, render_template, jsonify, request, redirect
 import json
 import os
-
+import subprocess
+subprocess.run(["python", "generate_risk_trends.py"])
 app = Flask(__name__) #Trigger update
 
 @app.route("/dashboard")
