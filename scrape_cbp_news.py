@@ -9,12 +9,11 @@ import time
 
 def scrape_cbp_newsroom():
     options = Options()
-    options.add_argument("--headless")
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
 
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-    driver.get("https://www.cbp.gov/newsroom")
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options) 
+    driver.get("https://www.cbp.gov/newsroom/media-releases/all")
 
     time.sleep(5)  # Wait for JS content to load
 
