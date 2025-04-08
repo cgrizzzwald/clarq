@@ -9,32 +9,37 @@ import time
 
 def scrape_cbp_newsroom():
     options = Options()
+    # Comment this out to debug with visible browser
+    options.add_argument("--headless") # options.
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
 
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options) 
-    driver.get("https://www.cbp.gov/newsroom/media-releases/all")
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    driver.get("https://www.cbp.gov/newsroom/national-media-release")
 
-    time.sleep(5)  # Wait for JS content to load
+    time.sleep(5)  # Wait for JS to load
 
     articles = driver.find_elements(By.CSS_SELECTOR, "div.views-row")
+
+    print(f"Found {len(articles)} article blocks")
 
     scraped_data = []
 
     for article in articles:
         try:
-            title_tag = article.find_element(By.TAG_NAME, "h3")
-            link_tag = title_tag.find_element(By.TAG_NAME, "a")
-            summary_tag = article.find_element(By.CLASS_NAME, "field-content")
-            date_tag = article.find_element(By.CLASS_NAME, "date-display-single")
+            title_tag = article.find_element(By.CSS_SELECTOR, "h3 a")
+            date_tag = article.find_element(By.CSS_SELECTOR, ".date-display-single")
+            summary_tag = article.find_element(By.CSS_SELECTOR, ".field-content")
 
             title = title_tag.text.strip()
-            summary = summary_tag.text.strip()
+            link = title_tag.get_attribute("href")
+            if not link.startswith("http"):
+                link = "https://www.cbp.gov" + link
             date = datetime.strptime(date_tag.text.strip(), "%m/%d/%Y").strftime("%Y-%m-%d")
-            link = link_tag.get_attribute("href")
+            summary = summary_tag.text.strip()
 
             scraped_data.append({
-                "source": "U.S. CBP Newsroom",
+                "source": "U.S. CBP Media Release",
                 "title": title,
                 "summary": summary,
                 "date": date,
@@ -42,7 +47,7 @@ def scrape_cbp_newsroom():
                 "risk_type": "customs_regulation"
             })
         except Exception as e:
-            print(f"Skipping article due to error: {e}")
+            print("Skipped article due to error:", e)
 
     driver.quit()
 

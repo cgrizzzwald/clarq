@@ -1,4 +1,23 @@
 {
-  "Logistics": [5, 6, 6, 6, 7],
-  "Geopolitics": [6, 7, 7, 7, 7]
+  "Logistics": [
+    5,
+    6,
+    6,
+    6,
+    7
+  ],
+  "Geopolitics": [
+    6,
+    7,
+    7,
+    7,
+    7
+  ],
+  "Cybersecurity": [
+    6,
+    6,
+    7,
+    7,
+    8
+  ]
 }

@@ -51,5 +51,21 @@
         "suggested_action": "Scale back accessory production plans temporarily."
       }
     ]
+  },
+  {
+    "type": "risk",
+    "category": "Cybersecurity",
+    "rating": 8,
+    "description": "Surge in ransomware attacks targeting logistics platforms.",
+    "why_it_matters": "These attacks are delaying container release and customs clearance.",
+    "impact": "Potential for missed delivery deadlines and lost revenue.",
+    "suggested_action": "Ensure cybersecurity protocols are updated and redundancies are in place.",
+    "headlines": [
+      {
+        "title": "Ransomware cripples major freight forwarder",
+        "severity": 8
+      }
+    ],
+    "trend": [6, 6, 7, 7, 8]
   }
 ]
