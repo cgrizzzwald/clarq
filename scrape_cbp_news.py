@@ -1,11 +1,7 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
+import requests
+from bs4 import BeautifulSoup
 import json
 from datetime import datetime
-import time
 
 def scrape_cbp_newsroom():
     options = Options()
@@ -16,8 +12,35 @@ def scrape_cbp_newsroom():
     driver.get("https://www.cbp.gov/newsroom/media-releases/all")
 
     time.sleep(5)  # Wait for JS content to load
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.1 Safari/605.1.15",
+    "Accept-Language": "en-US,en;q=0.9",
+}
 
-    articles = driver.find_elements(By.CSS_SELECTOR, "div.views-row")
+def fetch_google_news(query):
+    url = f"https://www.google.com/search?q={query}&tbm=nws"
+    response = requests.get(url, headers=HEADERS)
+    soup = BeautifulSoup(response.text, "html.parser")
+    results = []
+
+    for g in soup.select(".dbsr, .SoaBEf"):
+        a_tag = g.find("a", href=True)
+        title_tag = g.find("div", attrs={"role": "heading"}) or g.find("div", class_="nDgy9d")
+        snippet_tag = g.find("div", class_="Y3v8qd") or g.find("div", class_="GI74Re") or g.find("div", class_="st")
+
+        if a_tag and title_tag:
+            title = title_tag.get_text(strip=True)
+            url = a_tag["href"]
+            snippet = snippet_tag.get_text(strip=True) if snippet_tag else ""
+            if title and url.startswith("http"):
+                results.append({
+                    "source": "Google News",
+                    "title": title,
+                    "summary": snippet,
+                    "date": datetime.now().strftime("%Y-%m-%d"),
+                    "link": url,
+                    "risk_type": "customs_regulation"
+                })
 
     scraped_data = []
 
@@ -45,11 +68,17 @@ def scrape_cbp_newsroom():
             print(f"Skipping article due to error: {e}")
 
     driver.quit()
+    return results[:4]
+
+def main():
+    query = "customs delays import duties site:cbp.gov OR site:ustr.gov"
+    print(f"🔍 Searching: {query}")
+    articles = fetch_google_news(query)
 
     with open("customs_risks.json", "w") as f:
-        json.dump(scraped_data, f, indent=2)
+        json.dump(articles, f, indent=2)
 
-    print(f"Saved {len(scraped_data)} articles to customs_risks.json")
+    print(f"✅ Saved {len(articles)} customs-related articles to customs_risks.json")
 
 if __name__ == "__main__":
-    scrape_cbp_newsroom()
+    main()

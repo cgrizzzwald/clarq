@@ -13,7 +13,13 @@
         "severity": 6
       }
     ],
-    "trend": [5, 6, 6, 6, 7]
+    "trend": [
+      5,
+      6,
+      6,
+      6,
+      7
+    ]
   },
   {
     "type": "risk",
@@ -29,7 +35,13 @@
         "severity": 7
       }
     ],
-    "trend": [6, 7, 7, 7, 7]
+    "trend": [
+      6,
+      7,
+      7,
+      7,
+      7
+    ]
   },
   {
     "type": "summary",
@@ -51,5 +63,67 @@
         "suggested_action": "Scale back accessory production plans temporarily."
       }
     ]
+  },
+  {
+    "type": "risk",
+    "category": "Cybersecurity",
+    "rating": 8,
+    "description": "Surge in ransomware attacks targeting logistics platforms.",
+    "why_it_matters": "These attacks are delaying container release and customs clearance.",
+    "impact": "Potential for missed delivery deadlines and lost revenue.",
+    "suggested_action": "Ensure cybersecurity protocols are updated and redundancies are in place.",
+    "headlines": [
+      {
+        "title": "Ransomware cripples major freight forwarder",
+        "severity": 8
+      }
+    ],
+    "trend": [
+      6,
+      6,
+      7,
+      7,
+      8
+    ]
+  },
+  {
+    "topic": "\ud83d\udea2 Customs & Enforcement",
+    "title": "Internet Purchases",
+    "date": "2025-04-10",
+    "summary": "The article emphasizes that individuals who purchase goods from foreign sources are considered the importers and are therefore responsible for ensuring that the goods comply with all regulations and laws.",
+    "impact": "This is crucial for our global supply chain team because any non-compliance with customs regulations could result in fines, penalties, or delays in delivery. It could also potentially damage our company's reputation.",
+    "action": "It is recommended that our sourcing teams double-check all goods purchased from foreign sources for compliance with local regulations and laws. The operations team should also ensure that all necessary paperwork and customs declarations are correctly filled out and submitted on time.",
+    "severity": 0,
+    "link": "https://www.cbp.gov/trade/basic-import-export/internet-purchases"
+  },
+  {
+    "topic": "\ud83d\udea2 Customs & Enforcement",
+    "title": "Cargo Systems Messaging Service",
+    "date": "2025-04-10",
+    "summary": "The article discusses the Cargo Systems Messaging Service (CSMS), a method used by the U.S. Customs and Border Protection (CBP) to communicate news and updates about their automated systems, specifically the Automated Commercial Environment.",
+    "impact": "The CSMS is crucial for companies involved in international trade, as it provides updates on changes in customs processes, regulations, and automated systems. Any changes in these areas could potentially impact the speed and efficiency of the supply chain, as well as compliance with customs laws.",
+    "action": "The operations and sourcing teams should ensure they are subscribed to the CSMS updates and regularly monitor these communications. Any changes or updates should be reviewed and assessed for potential impact on current operations. If necessary, adjustments should be made to maintain compliance and efficiency.",
+    "severity": 0,
+    "link": "https://www.cbp.gov/trade/automated/cargo-systems-messaging-service"
+  },
+  {
+    "topic": "\ud83d\udea2 Customs & Enforcement",
+    "title": "Importing into the United States A Guide for Commercial Importers",
+    "date": "2025-04-10",
+    "summary": "The article details the merger of U.S. Customs and Border Protection (CBP) with the Department of Homeland Security (DHS) on March 1, 2003, and provides a guide for commercial importers into the United States.",
+    "impact": "This merger and the guide provided could affect the procedures, regulations, and potential risks involved in importing goods into the United States. Understanding these changes is crucial for businesses to ensure compliance and smooth operations.",
+    "action": "The operations and sourcing teams should review this guide thoroughly to understand any changes in the import process. They should also consider arranging a meeting with a customs compliance expert or legal counsel to ensure full understanding and compliance with the new procedures and regulations.",
+    "severity": 0,
+    "link": "https://www.cbp.gov/sites/default/files/documents/Importing%20into%20the%20U.S.pdf"
+  },
+  {
+    "topic": "\ud83d\udea2 Customs & Enforcement",
+    "title": "Bill Payments",
+    "date": "2025-04-10",
+    "summary": "The US Customs and Border Protection (CBP) uses a lockbox facility at the US Bank in St. Louis, Missouri, to receive, process, and post most of its bill payments.",
+    "impact": "This information is crucial for businesses involved in importing and exporting goods to and from the US. It provides details about the payment process, which is a critical part of the customs process. Misunderstanding or lack of knowledge about this process could lead to delays, penalties, or other complications.",
+    "action": "Ensure that all relevant teams are aware of this payment process and have the necessary information to make payments correctly and on time. Regularly check the CBP website for any changes or updates to this process.",
+    "severity": 0,
+    "link": "https://www.cbp.gov/trade/priority-issues/revenue/bill-payments"
   }
 ]
