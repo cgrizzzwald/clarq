@@ -15,8 +15,10 @@ def fetch_splash247_articles(limit=5):
         f.write(response.text)
 
     soup = BeautifulSoup(response.text, "html.parser")
-    articles = []
     posts = soup.find_all("article", class_="jeg_post")[:limit]
+    print(f"🔎 Found {len(posts)} posts on Splash247")
+
+    articles = []
 
     for post in posts:
         try:
@@ -55,7 +57,6 @@ if __name__ == "__main__":
             json.dump(articles, f, indent=2)
         print(f"✅ Saved {len(articles)} Splash247 articles to data/splash247_articles.json")
 
-        # Log articles for debugging
+        # Log article titles for debugging
         for a in articles:
             print("→", a["title"])
-            print(f"🔎 Found {len(posts)} posts on Splash247")
