@@ -58,3 +58,4 @@ if __name__ == "__main__":
         # Log articles for debugging
         for a in articles:
             print("→", a["title"])
+            print(f"🔎 Found {len(posts)} posts on Splash247")
