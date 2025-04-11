@@ -35,3 +35,4 @@ def fetch_splash247_articles(limit=5):
                 "category": "logistics"
             })
         except Exception as e:
+            print("⚠️ Skipped article due to error:", e)
