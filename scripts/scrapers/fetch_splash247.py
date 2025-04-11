@@ -54,6 +54,7 @@ if __name__ == "__main__":
         with open("data/splash247_articles.json", "w") as f:
             json.dump(articles, f, indent=2)
         print(f"✅ Saved {len(articles)} Splash247 articles to data/splash247_articles.json")
+print(f"🔎 Found {len(posts)} posts on Splash247")
 
         # Log articles for debugging
         for a in articles:
