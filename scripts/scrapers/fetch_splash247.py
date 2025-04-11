@@ -34,4 +34,4 @@ def fetch_splash247_articles(limit=5):
                 "date": date,
                 "category": "logistics"
             })
-        except Exception as
+        except Exception as e:
