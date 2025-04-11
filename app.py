@@ -1,25 +1,9 @@
-from flask import Flask, render_template, jsonify, request, redirect
 import json
 import os
 import subprocess
 subprocess.run(["python", "generate_risk_trends.py"])
 app = Flask(__name__) #Trigger update
 
-@app.route("/refresh-headlines")
-def refresh_headlines():
-    from flask import request
-    import subprocess
-
-    secret = request.args.get("key")
-    if secret != "clarqbolt55":
-        return "⛔ Unauthorized", 401
-
-    try:
-        subprocess.run(["python3", "scripts/scrapers/fetch_splash247.py"], check=True)
-        subprocess.run(["python3", "scripts/merge_scraped_headlines.py"], check=True)
-        return "✅ Headlines refreshed successfully!"
-    except Exception as e:
-        return f"❌ Error: {str(e)}", 500
 @app.route("/dashboard")
 def dashboard():
     with open("risk_blocks_transformed.json") as f:
@@ -38,6 +22,22 @@ def dashboard():
                            rumor_blocks=rumor_blocks,
                            risk_trends=risk_trends)
 
+@app.route("/refresh-headlines")
+def refresh_headlines():
+    from flask import request
+    import subprocess
+
+    secret = request.args.get("key")
+    if secret != "clarqbolt55":
+        return "⛔ Unauthorized", 401
+
+    try:
+        subprocess.run(["python3", "scripts/scrapers/fetch_splash247.py"], check=True)
+        subprocess.run(["python3", "scripts/merge_scraped_headlines.py"], check=True)
+        return "✅ Headlines refreshed successfully!"
+    except Exception as e:
+        return f"❌ Error: {str(e)}", 500
+        
 @app.route("/setup", methods=["GET", "POST"])
 def setup():
     if request.method == "POST":
