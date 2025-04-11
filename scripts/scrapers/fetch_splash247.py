@@ -36,3 +36,20 @@ def fetch_splash247_articles(limit=5):
             })
         except Exception as e:
             print("⚠️ Skipped article due to error:", e)
+
+    return articles
+
+# 🔥 This is the part that was missing
+if __name__ == "__main__":
+    articles = fetch_splash247_articles()
+
+    if not articles:
+        print("⚠️ No articles fetched. Skipping save.")
+        exit(1)
+
+    os.makedirs("data", exist_ok=True)
+
+    with open("data/splash247_articles.json", "w") as f:
+        json.dump(articles, f, indent=2)
+
+    print(f"✅ Saved {len(articles)} Splash247 articles to data/splash247_articles.json")
