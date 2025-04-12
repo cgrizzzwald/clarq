@@ -13,6 +13,13 @@ def dashboard():
     with open("risk_trends.json") as f:
         risk_trends = json.load(f)
 
+    # Load merged articles
+    try:
+        with open("data/merged_articles.json") as f:
+            merged_articles = json.load(f)
+    except:
+        merged_articles = []
+
     summary_block = next((b for b in risk_blocks if b.get("type") == "summary"), None)
     rumor_blocks = [b for b in risk_blocks if b.get("type") == "rumor"]
     normal_blocks = [b for b in risk_blocks if b.get("type") not in ("summary", "rumor")]
@@ -21,7 +28,8 @@ def dashboard():
                            summary_block=summary_block,
                            risk_blocks=normal_blocks,
                            rumor_blocks=rumor_blocks,
-                           risk_trends=risk_trends)
+                           risk_trends=risk_trends,
+                           merged_articles=merged_articles)
 
 @app.route("/refresh-headlines")
 def refresh_headlines():
