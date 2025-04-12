@@ -50,13 +50,14 @@ def fetch_splash247_articles(limit=5):
 if __name__ == "__main__":
     articles = fetch_splash247_articles()
 
+    # Save HTML no matter what
+    os.makedirs("data", exist_ok=True)
+    with open("data/splash247_debug.html", "w") as f:
+        f.write(requests.get("https://splash247.com/category/news/").text)
+
     if not articles:
         print("⚠️ No articles fetched. Skipping save.")
     else:
         with open("data/splash247_articles.json", "w") as f:
             json.dump(articles, f, indent=2)
         print(f"✅ Saved {len(articles)} Splash247 articles to data/splash247_articles.json")
-
-        # Log article titles for debugging
-        for a in articles:
-            print("→", a["title"])
