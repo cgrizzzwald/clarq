@@ -5,11 +5,26 @@
   <title>⚡ CLARQ Risk Dashboard</title>
   <link rel="stylesheet" href="/static/styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .risk-rating-bubble {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-left: 10px;
+      color: #fff;
+    }
+    .risk-low { background-color: #10b981; }
+    .risk-medium { background-color: #f59e0b; }
+    .risk-high { background-color: #ef4444; }
+    .trend-label { text-align: center; font-size: 12px; color: #ccc; margin-top: 4px; }
+  </style>
 </head>
 <body>
   <header>
     <h1>⚡ CLARQ Risk Dashboard</h1>
-    <p>AI-Powered Supply Chain Intel</p>
+    <div>Supply Chain Risk AI</div>
   </header>
 
   <div class="container">
@@ -28,16 +43,16 @@
     <!-- 🔥 Risk Blocks -->
     <div id="risk-blocks"></div>
 
-    <!-- 🕵️ Rumor Watch -->
+    <!-- 🔍 Rumor Watch -->
     <div id="rumor-watch"></div>
 
     <!-- 🛠 Admin Panel -->
     <div class="card" style="border: 2px dashed #ccc;">
       <h2>🛠 Admin Panel</h2>
-      <p>Click below to manually refresh CLARQ headline data.</p>
+      <p>Manually refresh CLARQ headline data:</p>
       <form action="/refresh-headlines" method="get" target="_blank">
         <input type="hidden" name="key" value="clarqbolt55" />
-        <button type="submit" style="background: #10b981; color: white; padding: 0.5rem 1rem; border-radius: 4px; border: none;">
+        <button type="submit" style="background: #10b981; color: white; padding: 0.5rem 1rem; border-radius: 5px; border: none;">
           🔄 Refresh Headlines
         </button>
       </form>
@@ -46,50 +61,69 @@
 
   <footer>&copy; 2025 CLARQ. Built with grit and AI.</footer>
 
-  <!-- 📜 JS Logic -->
   <script>
-    async function loadDashboard() {
+    function getRiskColor(rating) {
+      if (rating <= 3) return "risk-low";
+      if (rating <= 6) return "risk-medium";
+      return "risk-high";
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
       try {
-        // Risk Summary + Blocks
-        const riskRes = await fetch("/api/risks");
-        const data = await riskRes.json();
+        // Load Risk Data
+        const res = await fetch("/api/risks");
+        const data = await res.json();
         const summary = data.find(b => b.type === "summary");
-        document.getElementById("risk-summary").innerText = summary?.content || 'No summary available';
+        document.getElementById("risk-summary").innerText = summary?.content || "No summary available";
 
         const blocks = data.filter(b => b.type === "risk");
         const riskContainer = document.getElementById("risk-blocks");
 
         blocks.forEach((block, idx) => {
+          const ratingClass = getRiskColor(block.rating || 0);
           const card = document.createElement("div");
           card.className = "card";
           card.innerHTML = `
-            <h3>${block.category || 'Unnamed Category'} — Risk: ${block.rating || '?'}</h3>
-            <p>${block.description || ''}</p>
-            ${block.why_it_matters ? `<p><strong>🧠 Why It Matters:</strong> ${block.why_it_matters}</p>` : ""}
-            ${block.impact ? `<p><strong>💥 Impact:</strong> ${block.impact}</p>` : ""}
-            ${block.suggested_action ? `<p><strong>🛠 Action:</strong> ${block.suggested_action}</p>` : ""}
-          `;
+            <div class="card-content">
+              <h2>
+                ${block.category || "Unnamed Category"}
+                ${block.rating ? `<span class="risk-rating-bubble ${ratingClass}">Risk Rating: ${block.rating}</span>` : ""}
+              </h2>
+              <p>${block.description || ""}</p>
+              ${block.trend ? `
+                <div class="trend-container">
+                  <canvas class="trendChart" data-trend='${JSON.stringify(block.trend)}' width="200" height="60"></canvas>
+                  <div class="trend-label">📉 Trend: Last 30 Days</div>
+                </div>` : ""}
+              ${block.why_it_matters ? `<p><strong>🧠 Why It Matters:</strong> ${block.why_it_matters}</p>` : ""}
+              ${block.impact ? `<p><strong>💥 Impact:</strong> ${block.impact}</p>` : ""}
+              ${block.suggested_action ? `<p><strong>🛠 Suggested Action:</strong> ${block.suggested_action}</p>` : ""}
+            </div>
+            <div class="ops-tip">
+              💡 <strong>Ops Tip:</strong><br/>
+              Watch for ripple effects. Could this delay shipments? Affect margin? Hit demand? Flag it for your team.
+            </div>`;
           riskContainer.appendChild(card);
         });
 
-        // Rumor Watch
+        // Load Rumors
         const rumor = data.find(b => b.type === "rumor");
         if (rumor?.rumors?.length) {
           const wrapper = document.getElementById("rumor-watch");
-          const box = document.createElement("div");
-          box.className = "card";
-          box.innerHTML = `<h3>🔍 Rumor Watch</h3>
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `<h2>🔍 Rumor Watch</h2>
             ${rumor.rumors.map(r => `
               <div style="margin-bottom: 1rem;">
-                <p><strong>Rumor:</strong> ${r.content}</p>
-                ${r.source ? `<p><strong>Source:</strong> ${r.source}</p>` : ""}
-                ${r.severity ? `<p><strong>Severity:</strong> ${r.severity}</p>` : ""}
-                ${r.suggested_action ? `<p><strong>Action:</strong> ${r.suggested_action}</p>` : ""}
+                <p><strong>🟡 Rumor:</strong> ${r.content}</p>
+                ${r.source ? `<p><strong>📍 Source:</strong> ${r.source}</p>` : ""}
+                ${r.severity ? `<p><strong>🚨 Severity:</strong> ${r.severity}</p>` : ""}
+                ${r.suggested_action ? `<p><strong>🛠 Action:</strong> ${r.suggested_action}</p>` : ""}
               </div>`).join("")}`;
-          wrapper.appendChild(box);
+          wrapper.appendChild(card);
         }
 
-        // Top Headlines
+        // Load Headlines
         const headlineRes = await fetch("/api/headlines");
         const headlines = await headlineRes.json();
         const list = document.getElementById("headline-list");
@@ -102,12 +136,53 @@
         } else {
           list.innerHTML = "<li>No headlines found.</li>";
         }
-      } catch (err) {
-        console.error("Dashboard load failed:", err);
-      }
-    }
 
-    document.addEventListener("DOMContentLoaded", loadDashboard);
+        // Render Trend Charts
+        document.querySelectorAll(".trendChart").forEach(canvas => {
+          const data = JSON.parse(canvas.getAttribute("data-trend"));
+          new Chart(canvas.getContext("2d"), {
+            type: "line",
+            data: {
+              labels: data.map((_, i) => i + 1),
+              datasets: [{
+                label: "Risk Trend",
+                data,
+                borderColor: "#3b82f6",
+                backgroundColor: "rgba(59, 130, 246, 0.2)",
+                tension: 0.4,
+                pointRadius: 0,
+                borderWidth: 2,
+                fill: true
+              }]
+            },
+            options: {
+              responsive: false,
+              plugins: { legend: { display: false } },
+              scales: {
+                x: { display: false },
+                y: {
+                  min: 0,
+                  max: 10,
+                  ticks: {
+                    callback: v => v === 0 ? "0 (Low)" : v === 10 ? "10 (High)" : ""
+                  },
+                  grid: {
+                    drawBorder: false,
+                    color: ctx => {
+                      const y = ctx.tick.value;
+                      return y < 4 ? "#10b981" : y < 7 ? "#f59e0b" : "#ef4444";
+                    }
+                  }
+                }
+              }
+            }
+          });
+        });
+
+      } catch (err) {
+        console.error("⚠️ Dashboard load failed:", err);
+      }
+    });
   </script>
 </body>
 </html>
