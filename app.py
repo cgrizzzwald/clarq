@@ -36,15 +36,19 @@ def api_headlines():
 def intake():
     if request.method == "POST":
         data = {
-            "business_type": request.form.get("business_type"),
-            "ideal_ops": request.form.get("ideal_ops"),
-            "monitored_threats": request.form.get("monitored_threats"),
-            "topics": request.form.get("topics"),
-            "email": request.form.get("email")
+            "business_name": request.form.get("business_name"),
+            "industry": request.form.get("industry"),
+            "main_country": request.form.get("main_country"),
+            "goals": request.form.get("goals"),
+            "perfect_ops": request.form.get("perfect_ops"),
+            "monitored_risks": request.form.get("monitored_risks"),
         }
+
         with open("user_profile.json", "w") as f:
             json.dump(data, f, indent=2)
+
         return redirect("/dashboard")
+
     return render_template("intake.html")
 
 @app.route("/refresh-headlines")
