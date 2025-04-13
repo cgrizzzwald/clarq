@@ -34,6 +34,12 @@
       <p id="risk-summary">Loading risk summary...</p>
     </div>
 
+    <!-- 📰 Top Headlines Section -->
+    <div class="card" id="top-headlines">
+      <h2 class="section-title">📰 Top Headlines</h2>
+      <ul id="headline-list"></ul>
+    </div>
+
     <div id="risk-blocks"></div>
     <div id="rumor-watch"></div>
   </div>
@@ -48,6 +54,7 @@
 
     document.addEventListener("DOMContentLoaded", async () => {
       try {
+        // Fetch and render Risk Summary + Risk Blocks
         const res = await fetch("/api/risks");
         const data = await res.json();
 
@@ -114,6 +121,22 @@
           document.getElementById("rumor-watch").appendChild(wrapper);
         }
 
+        // 📰 Fetch and render merged headlines
+        const headlinesRes = await fetch("/api/headlines");
+        const headlines = await headlinesRes.json();
+        const headlineList = document.getElementById("headline-list");
+
+        if (headlines.length) {
+          headlines.forEach(h => {
+            const li = document.createElement("li");
+            li.innerHTML = `<a href="${h.link}" target="_blank" style="color:#60a5fa;">${h.title}</a> <span style="color:gray;font-size:0.8em">(${h.source})</span>`;
+            headlineList.appendChild(li);
+          });
+        } else {
+          headlineList.innerHTML = "<li>No headlines found.</li>";
+        }
+
+        // 📈 Render trend charts
         document.querySelectorAll(".trendChart").forEach(canvas => {
           const data = JSON.parse(canvas.getAttribute("data-trend"));
           new Chart(canvas.getContext("2d"), {
