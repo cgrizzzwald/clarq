@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CLARQ Intake</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <style>
+    body { font-family: sans-serif; background: #0f172a; color: #fff; padding: 2rem; }
+    h1 { color: #facc15; }
+    label { display: block; margin-top: 1rem; font-weight: bold; }
+    textarea, input[type="text"] {
+      width: 100%; padding: 0.5rem; border: none; border-radius: 5px; margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 2rem; padding: 0.75rem 1.5rem; background: #10b981; color: #fff;
+      border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>⚡ CLARQ Intake</h1>
+    <p>Answer a few quick questions so we can tailor your risk insights:</p>
+    <form method="POST">
+      <label>🏢 What does your company do?
+        <textarea name="business_type" rows="2" placeholder="e.g. We sell smartphone accessories and bags online + to retailers."></textarea>
+      </label>
+      <label>🧠 Who do you sell to?
+        <textarea name="customers" rows="2" placeholder="e.g. Consumers with phones and laptops. Amazon & Best Buy too."></textarea>
+      </label>
+      <label>💥 What risks or problems do you want to avoid?
+        <textarea name="risks" rows="2" placeholder="e.g. Inventory delays, shipping cost spikes, factory issues, low demand."></textarea>
+      </label>
+      <label>🔍 What trends or industries indirectly affect you?
+        <textarea name="signals" rows="2" placeholder="e.g. Apple, Samsung, ecommerce, China/India policies."></textarea>
+      </label>
+      <label>🛠 How would you describe your perfect operations (even if impossible)?
+        <textarea name="ideal_ops" rows="2" placeholder="e.g. Predictable demand, fast factory response, zero logistics issues."></textarea>
+      </label>
+      <button type="submit">🚀 Go</button>
+    </form>
+  </div>
+</body>
+</html>
