@@ -74,6 +74,16 @@ def api_risks():
         print(f"API Error: {e}")
         return jsonify({"error": str(e)}), 500
 
+@app.route("/api/headlines")
+def api_headlines():
+    try:
+        with open("data/merged_articles.json") as f:
+            data = json.load(f)
+        return jsonify(data)
+    except Exception as e:
+        print(f"Headlines API error: {e}")
+        return jsonify([]), 500
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))  # Render provides PORT, fallback for local testing
     app.run(host="0.0.0.0", port=port)
