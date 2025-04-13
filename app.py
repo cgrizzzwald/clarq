@@ -36,12 +36,11 @@ def api_headlines():
 def intake():
     if request.method == "POST":
         data = {
-            "business_name": request.form.get("business_name"),
-            "industry": request.form.get("industry"),
-            "main_country": request.form.get("main_country"),
-            "goals": request.form.get("goals"),
-            "perfect_ops": request.form.get("perfect_ops"),
-            "monitored_risks": request.form.get("monitored_risks"),
+            "business_type": request.form.get("business_type"),
+            "customers": request.form.get("customers"),
+            "risks": request.form.get("risks"),
+            "signals": request.form.get("signals"),
+            "ideal_ops": request.form.get("ideal_ops")
         }
 
         with open("user_profile.json", "w") as f:
