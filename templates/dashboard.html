@@ -2,147 +2,112 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>⚡ CLARQ Risk Dashboard</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="/static/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
     <h1>⚡ CLARQ Risk Dashboard</h1>
-    <div>Supply Chain Risk AI</div>
+    <p>AI-Powered Supply Chain Intel</p>
   </header>
 
   <div class="container">
+    <!-- 📌 Summary -->
     <div class="card summary">
-      <h2 class="section-title">📌 Latest Risk Summary</h2>
-      <p id="risk-summary">Loading risk summary...</p>
+      <h2>📌 Latest Risk Summary</h2>
+      <p id="risk-summary">Loading summary...</p>
     </div>
 
+    <!-- 📰 Top Headlines -->
+    <div class="card">
+      <h2>📰 Top Headlines</h2>
+      <ul id="headline-list"></ul>
+    </div>
+
+    <!-- 🔥 Risk Blocks -->
     <div id="risk-blocks"></div>
+
+    <!-- 🕵️ Rumor Watch -->
     <div id="rumor-watch"></div>
+
+    <!-- 🛠 Admin Panel -->
+    <div class="card" style="border: 2px dashed #ccc;">
+      <h2>🛠 Admin Panel</h2>
+      <p>Click below to manually refresh CLARQ headline data.</p>
+      <form action="/refresh-headlines" method="get" target="_blank">
+        <input type="hidden" name="key" value="clarqbolt55" />
+        <button type="submit" style="background: #10b981; color: white; padding: 0.5rem 1rem; border-radius: 4px; border: none;">
+          🔄 Refresh Headlines
+        </button>
+      </form>
+    </div>
   </div>
 
   <footer>&copy; 2025 CLARQ. Built with grit and AI.</footer>
 
+  <!-- 📜 JS Logic -->
   <script>
-    function toggleExtra(idx) {
-      const el = document.getElementById("extra-" + idx);
-      el.classList.toggle("hidden");
-    }
-
-    document.addEventListener("DOMContentLoaded", async () => {
+    async function loadDashboard() {
       try {
-        const res = await fetch("/api/risks");
-        const data = await res.json();
-
+        // Risk Summary + Blocks
+        const riskRes = await fetch("/api/risks");
+        const data = await riskRes.json();
         const summary = data.find(b => b.type === "summary");
-        document.getElementById("risk-summary").innerText = summary?.content || 'No summary found.';
+        document.getElementById("risk-summary").innerText = summary?.content || 'No summary available';
 
         const blocks = data.filter(b => b.type === "risk");
         const riskContainer = document.getElementById("risk-blocks");
+
         blocks.forEach((block, idx) => {
           const card = document.createElement("div");
           card.className = "card";
           card.innerHTML = `
-            <div class="card-content">
-              ${block.rating ? `<div class="risk-rating-badge ${block.rating <= 3 ? 'risk-low' : block.rating <= 6 ? 'risk-medium' : 'risk-high'}">Risk Rating: ${block.rating}</div>` : ""}
-              <h2 class="block-title">
-                <span class="category-title">${block.category || 'Unnamed Category'}</span>
-              </h2>
-              <p>${block.description || ''}</p>
-              ${block.trend ? `
-                <div class="trend-container">
-                  <canvas class="trendChart" data-trend='${JSON.stringify(block.trend)}' width="200" height="60"></canvas>
-                  <div class="trend-label">📊 Trend: Last 30 Days</div>
-                </div>
-              ` : ""}
-              ${block.why_it_matters ? `<p class="insight-label">🧠 Why It Matters:</p><p>${block.why_it_matters}</p>` : ""}
-              ${block.impact ? `<p class="insight-label">💥 Impact on Your Ops:</p><p>${block.impact}</p>` : ""}
-              ${block.suggested_action ? `<p class="insight-label">🛠 Suggested Action:</p><p>${block.suggested_action}</p>` : ""}
-              ${block.headlines?.length ? `
-                <p class="insight-label">📰 Top Headlines:</p>
-                <ul class="sources">
-                  ${block.headlines.slice(0, 3).map(src => `<li>${src.title} — Severity ${src.severity}</li>`).join("")}
-                </ul>
-                ${block.headlines.length > 3 ? `
-                  <ul class="sources hidden" id="extra-${idx}">
-                    ${block.headlines.slice(3).map(src => `<li>${src.title} — Severity ${src.severity}</li>`).join("")}
-                  </ul>
-                  <span class="show-more-link" onclick="toggleExtra(${idx})">Show More Headlines</span>
-                ` : ""}
-              ` : ""}
-            </div>
-            <div class="ops-tip">
-              💡 <strong>Ops Tip:</strong><br/>
-              Watch for secondary effects tied to this risk. Could it delay shipments? Impact pricing? Loop in your team and prep alternatives if needed.
-            </div>
+            <h3>${block.category || 'Unnamed Category'} — Risk: ${block.rating || '?'}</h3>
+            <p>${block.description || ''}</p>
+            ${block.why_it_matters ? `<p><strong>🧠 Why It Matters:</strong> ${block.why_it_matters}</p>` : ""}
+            ${block.impact ? `<p><strong>💥 Impact:</strong> ${block.impact}</p>` : ""}
+            ${block.suggested_action ? `<p><strong>🛠 Action:</strong> ${block.suggested_action}</p>` : ""}
           `;
           riskContainer.appendChild(card);
         });
 
-        const rumorBlock = data.find(b => b.type === "rumor");
-        if (rumorBlock?.rumors?.length) {
-          const wrapper = document.createElement("div");
-          wrapper.className = "rumor-block";
-          wrapper.innerHTML = `<h3>🔍 Rumor Watch</h3>
-            <p>These are early signals or unconfirmed whispers that could impact operations.</p>
-            ${rumorBlock.rumors.map(r =>
-              `<div style="margin-bottom: 1rem;">
-                <p><strong>🟡 Rumor:</strong> ${r.content}</p>
-                ${r.source ? `<p><strong>📍 Source:</strong> ${r.source}</p>` : ""}
-                ${r.severity ? `<p><strong>🚨 Severity:</strong> ${r.severity}</p>` : ""}
-                ${r.suggested_action ? `<p><strong>🛠 Suggested Action:</strong> ${r.suggested_action}</p>` : ""}
-              </div>`
-            ).join("")}`;
-          document.getElementById("rumor-watch").appendChild(wrapper);
+        // Rumor Watch
+        const rumor = data.find(b => b.type === "rumor");
+        if (rumor?.rumors?.length) {
+          const wrapper = document.getElementById("rumor-watch");
+          const box = document.createElement("div");
+          box.className = "card";
+          box.innerHTML = `<h3>🔍 Rumor Watch</h3>
+            ${rumor.rumors.map(r => `
+              <div style="margin-bottom: 1rem;">
+                <p><strong>Rumor:</strong> ${r.content}</p>
+                ${r.source ? `<p><strong>Source:</strong> ${r.source}</p>` : ""}
+                ${r.severity ? `<p><strong>Severity:</strong> ${r.severity}</p>` : ""}
+                ${r.suggested_action ? `<p><strong>Action:</strong> ${r.suggested_action}</p>` : ""}
+              </div>`).join("")}`;
+          wrapper.appendChild(box);
         }
 
-        document.querySelectorAll(".trendChart").forEach(canvas => {
-          const data = JSON.parse(canvas.getAttribute("data-trend"));
-          new Chart(canvas.getContext("2d"), {
-            type: 'line',
-            data: {
-              labels: data.map((_, i) => i + 1),
-              datasets: [{
-                label: "Risk Trend", data,
-                borderColor: "#00c2ff",
-                backgroundColor: "transparent",
-                tension: 0.4, pointRadius: 0,
-                borderWidth: 2,
-                fill: false
-              }]
-            },
-            options: {
-              responsive: false,
-              plugins: { legend: { display: false } },
-              scales: {
-                x: { display: false },
-                y: {
-                  display: true, min: 0, max: 10,
-                  ticks: {
-                    callback: v => v === 0 ? "0 (Low)" : v === 10 ? "10 (High)" : "",
-                    color: "#9ca3af"
-                  },
-                  grid: {
-                    drawBorder: false,
-                    color: ctx => {
-                      const y = ctx.tick.value;
-                      return y < 4 ? "#10b981" : y < 7 ? "#f59e0b" : "#ef4444";
-                    }
-                  }
-                }
-              }
-            }
+        // Top Headlines
+        const headlineRes = await fetch("/api/headlines");
+        const headlines = await headlineRes.json();
+        const list = document.getElementById("headline-list");
+        if (headlines.length) {
+          headlines.forEach(h => {
+            const li = document.createElement("li");
+            li.innerHTML = `<a href="${h.link}" target="_blank" style="color: #3b82f6;">${h.title}</a> <small>(${h.source})</small>`;
+            list.appendChild(li);
           });
-        });
-
+        } else {
+          list.innerHTML = "<li>No headlines found.</li>";
+        }
       } catch (err) {
-        console.error(err);
-        document.getElementById("risk-summary").innerText = 'Failed to load risk summary.';
+        console.error("Dashboard load failed:", err);
       }
-    });
+    }
+
+    document.addEventListener("DOMContentLoaded", loadDashboard);
   </script>
 </body>
 </html>
-
