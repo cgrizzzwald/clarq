@@ -32,21 +32,20 @@ def api_headlines():
         print(f"Headlines API Error: {e}")
         return jsonify([]), 500
 
-@app.route("/setup", methods=["GET", "POST"])
-def setup():
+@app.route("/intake", methods=["GET", "POST"])
+def intake():
     if request.method == "POST":
         data = {
             "business_type": request.form.get("business_type"),
-            "countries": request.form.get("countries"),
-            "risks": request.form.getlist("risks"),
-            "signals": request.form.get("signals"),
             "ideal_ops": request.form.get("ideal_ops"),
-            "monitored_threats": request.form.get("monitored_threats")
+            "monitored_threats": request.form.get("monitored_threats"),
+            "topics": request.form.get("topics"),
+            "email": request.form.get("email")
         }
         with open("user_profile.json", "w") as f:
             json.dump(data, f, indent=2)
         return redirect("/dashboard")
-    return render_template("setup.html")
+    return render_template("intake.html")
 
 @app.route("/refresh-headlines")
 def refresh_headlines():
