@@ -52,9 +52,8 @@
       <p>Manually refresh CLARQ headline data:</p>
       <form action="/refresh-headlines" method="get" target="_blank">
         <input type="hidden" name="key" value="clarqbolt55" />
-        <button type="submit" style="background: #10b981; color: white; padding: 0.5rem 1rem; border-radius: 5px; border: none;">
-          🔄 Refresh Headlines
-        </button>
+        <input type="hidden" name="debug" value="true" />
+        <button type="submit">🔄 Refresh Headlines</button>
       </form>
     </div>
   </div>
