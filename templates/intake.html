@@ -10,7 +10,7 @@
     body { font-family: sans-serif; background: #0f172a; color: #fff; padding: 2rem; }
     h1 { color: #facc15; }
     label { display: block; margin-top: 1rem; font-weight: bold; }
-    textarea, input[type="text"] {
+    textarea, input[type="text"], input[type="email"] {
       width: 100%; padding: 0.5rem; border: none; border-radius: 5px; margin-top: 0.5rem;
       font-size: 1rem;
     }
@@ -26,6 +26,9 @@
     <h1>⚡ CLARQ Intake</h1>
     <p>Answer a few quick questions so we can tailor your risk insights:</p>
     <form method="POST">
+      <label>🧑‍💼 What's your job title or role?
+  <input type="text" name="role" placeholder="e.g. VP of Supply Chain, CFO, Ops Manager" />
+</label>
       <label>🏢 What does your company do?
         <textarea name="business_type" rows="2" placeholder="e.g. We sell smartphone accessories and bags online + to retailers."></textarea>
       </label>
