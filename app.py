@@ -54,13 +54,21 @@ def intake():
 @app.route("/refresh-headlines")
 def refresh_headlines():
     key = request.args.get("key")
+    debug = request.args.get("debug", "false").lower() == "true"
+
     if key != "clarqbolt55":
         return "⛔ Unauthorized", 401
+
     try:
         subprocess.run(["python3", "scripts/scrapers/fetch_splash247.py"], check=True)
         subprocess.run(["python3", "scripts/scrapers/supplychaindive_scraper.py"], check=True)
-        subprocess.run(["python3", "scripts/processors/tag_and_score.py"], check=True)
         subprocess.run(["python3", "scripts/merge_scraped_headlines.py"], check=True)
+
+        if debug:
+            subprocess.run(["python3", "scripts/processors/tag_and_score.py", "--debug"], check=True)
+        else:
+            subprocess.run(["python3", "scripts/processors/tag_and_score.py"], check=True)
+
         return "✅ Headlines refreshed successfully!"
     except Exception as e:
         return f"❌ Error: {str(e)}", 500
