@@ -69,6 +69,8 @@ def refresh_headlines():
         else:
             subprocess.run(["python3", "scripts/processors/tag_and_score.py"], check=True)
 
+        subprocess.run(["python3", "scripts/processors/generate_risk_blocks.py"], check=True)
+
         return "✅ Headlines refreshed successfully!"
     except Exception as e:
         return f"❌ Error: {str(e)}", 500
