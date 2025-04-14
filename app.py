@@ -59,6 +59,7 @@ def refresh_headlines():
     try:
         subprocess.run(["python3", "scripts/scrapers/fetch_splash247.py"], check=True)
         subprocess.run(["python3", "scripts/scrapers/supplychaindive_scraper.py"], check=True)
+        subprocess.run(["python3", "scripts/processors/tag_and_score.py"], check=True)
         subprocess.run(["python3", "scripts/merge_scraped_headlines.py"], check=True)
         return "✅ Headlines refreshed successfully!"
     except Exception as e:
