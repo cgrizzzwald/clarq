@@ -1,9 +1,14 @@
-
+import argparse
 import json
 import os
-from datetime import datetime
 
-# Very basic keyword → category + severity score mapping
+# Parse --debug flag
+parser = argparse.ArgumentParser()
+parser.add_argument("--debug", action="store_true", help="Enable debug output")
+args = parser.parse_args()
+debug_mode = args.debug
+
+# Keyword mapping to category and severity
 CATEGORY_MAP = {
     "tariff": ("customs", 7),
     "strike": ("labor", 8),
@@ -23,14 +28,23 @@ def tag_and_score_article(article):
     score = 3
     category = "general"
     text = f"{article.get('title', '')} {article.get('summary', '')}".lower()
+    found_keywords = []
 
     for keyword, (cat, sev) in CATEGORY_MAP.items():
         if keyword in text:
+            found_keywords.append(keyword)
             category = cat
             score = max(score, sev)
 
     article["category"] = category
     article["severity"] = score
+
+    if debug_mode:
+        print(f"\n🔍 Title: {article.get('title')}")
+        print(f"   ➤ Found keywords: {found_keywords}")
+        print(f"   ➤ Category: {category}")
+        print(f"   ➤ Severity: {score}")
+
     return article
 
 def process_articles(input_path):
