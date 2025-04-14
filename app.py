@@ -36,6 +36,7 @@ def api_headlines():
 def intake():
     if request.method == "POST":
         data = {
+            "role": request.form.get("role"),
             "business_type": request.form.get("business_type"),
             "customers": request.form.get("customers"),
             "risks": request.form.get("risks"),
