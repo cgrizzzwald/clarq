@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,6 +65,18 @@
       border-top: 1px solid #ddd;
     }
   </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.querySelector("form");
+      if (form) {
+        form.addEventListener("submit", function () {
+          setTimeout(function () {
+            window.location.href = "/thanks";
+          }, 1500);
+        });
+      }
+    });
+  </script>
 </head>
 <body>
   <header>
