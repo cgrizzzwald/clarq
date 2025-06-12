@@ -1,209 +1,36 @@
-from datetime import datetime, timezone
-import json
-import os
-import openai
-from mailchimp_subscribers_generic import get_mailchimp_subscribers  # ✅ Generic subscribers only
-from mailgun import send_email
-
-# Toggle manually for now
-TEST_MODE = True
-TEST_EMAIL = "clark@gwccompany.com"
-
-BLOCKED_DOMAINS = ["reuters.com", "responsiblestatecraft.org"]
-
-TOPIC_LABELS = {
-    "global supply chain disruption": "🌐 Global Supply Chain",
-    "international tariffs": "🌍 Global Tariffs",
-    "factory relocation trends": "🏗️ Factory Relocation",
-    "global trade policy updates": "📜 Trade Policy",
-    "port congestion": "⚓ Port Congestion",
-    "freight rate volatility": "📉 Freight Volatility",
-    "supplier shutdowns": "🔌 Supplier Shutdowns",
-
-    "Asia trade and manufacturing": "🌏 Asia Trade",
-    "China US trade tensions": "🇨🇳 China–US Trade",
-    "Vietnam sourcing trends": "🇻🇳 Vietnam Sourcing",
-    "India global trade rise": "🇮🇳 India Trade",
-    "Thailand exports": "🇹🇭 Thailand Exports",
-    "Indonesia manufacturing": "🇮🇩 Indonesia Manufacturing",
-    "Southeast Asia factory movement": "🌏 SE Asia Manufacturing",
-
-    "EU supply chain regulation": "🇪🇺 EU Supply Chain",
-    "Germany logistics": "🇩🇪 Germany Logistics",
-    "UK trade policy": "🇬🇧 UK Trade Policy",
-
-    "Mexico LATAM manufacturing": "🇲🇽 LATAM Manufacturing",
-    "Brazil logistics export news": "🇧🇷 Brazil Logistics",
-    "Canada import/export policy": "🇨🇦 Canada Trade",
-    "US import trends": "🇺🇸 US Imports",
-
-    "Africa supply chain": "🌍 Africa Supply Chain",
-    "South Africa port logistics": "🇿🇦 South Africa Ports",
-    "Nigeria trade barriers": "🇳🇬 Nigeria Trade",
-
-    "Middle East trade development": "🌄 Middle East Trade",
-    "UAE export policy": "🇦🇪 UAE Export",
-    "Saudi manufacturing investment": "🇸🇦 Saudi Industry",
-
-    "Australia Asia trade": "🇦🇺 Australia–Asia Trade",
-    "Oceania shipping news": "🌊 Oceania Shipping",
-
-    "customs enforcement alerts": "🛃 Customs Alerts",
-    "import/export restrictions": "🚫 Trade Restrictions",
-    "tariff workaround strategies": "🩾 Tariff Workarounds"
-}
-
-def get_topic_label(topic):
-    return TOPIC_LABELS.get(topic, f"📌 {topic.capitalize()}")
-
-CTA_OPTIONS = [
-    "💡 Want updates for just your region or industry? <a href='https://clarq.ai'>Subscribe to customize</a>",
-    "🌍 Need focused alerts for your supply chain? <a href='https://clarq.ai'>Build your feed</a>",
-    "🚢 Want a tariff tracker for your top routes? <a href='https://clarq.ai'>Start your custom CLARQ feed</a>"
-]
-
-def time_since(timestamp_str):
-    try:
-        dt = datetime.fromisoformat(timestamp_str.replace("Z", "+00:00"))
-        now = datetime.now(timezone.utc)
-        delta = now - dt
-        total_seconds = int(delta.total_seconds())
-        days = total_seconds // 86400
-        hours = (total_seconds % 86400) // 3600
-
-        formatted = ""
-        if days > 0:
-            formatted += f"{days} day{'s' if days != 1 else ''} "
-        formatted += f"{hours} hour{'s' if hours != 1 else ''}"
-        return formatted.strip()
-    except Exception as e:
-        print(f"⚠️ Timestamp parse failed: {timestamp_str} → {e}")
-        return "⏳ Date not provided"
-
-def fetch_and_summarize_article(article):
-    print(f"✏️ Summarizing: {article['title']}")
-
-    if article.get("summary"):
-        return article["summary"]
-
-    snippet = article.get("snippet", "")
-    if not snippet:
-        return "Click to read the full article."
-
-    try:
-        response = openai.ChatCompletion.create(
-            model="gpt-4",
-            messages=[
-                {
-                    "role": "system",
-                    "content": (
-                        "You are a helpful assistant writing clear 4–6 sentence summaries that extract the core thesis of business and trade articles. "
-                        "Avoid fluff. Give the insight directly. Don't introduce the article — just explain what it actually says, as if explaining it to a smart manager."
-                    ),
-                },
-                {
-                    "role": "user",
-                    "content": f"{snippet}\n\nWrite a concise summary of this article.",
-                },
-            ],
-            max_tokens=400,
-        )
-        summary = response["choices"][0]["message"]["content"].strip()
-
-        if len(summary.split()) < 8 or "not enough" in summary.lower() or "unable" in summary.lower():
-            return "Unable to summarize this article due to limited content. Click the link for full details."
-
-        return summary
-    except Exception as e:
-        print(f"⚠️ Error summarizing: {e} — Using snippet instead.")
-        return snippet or "Click to read the full article."
-
-def format_html(topics):
-    import random
-    today = datetime.today().strftime("%B %d, %Y")
-    html = f"""
-    <html>
-    <body style="font-family:Arial, sans-serif; font-size:14px;">
-    <p style='font-size:13px; color:gray;'>Want to stop receiving this report? <a href="https://gwccompany.us7.list-manage.com/unsubscribe?u=594179b93cb39e0ec357aab60&id=d4ae44f75c">Unsubscribe here</a>.</p>
-    <h2>⚡️CLARQ Morning Strike Report – {today}</h2>
-    <p style="color: black; font-style: italic;">
-    This global digest is powered by CLARQ to highlight urgent business signals, tariff updates, sourcing challenges, and supply chain moves from around the world.
-    </p>
-    <ul>
-    <li><b>Summary:</b> Global trade moves fast — we cut through the noise so you don't have to.</li>
-    <li><b>Impact:</b> Each section highlights urgent shifts, from tariffs to factory relocations, that could disrupt or benefit your operations.</li>
-    <li><b>Action:</b> Want updates tailored to your industry or country? <a href='https://clarq.ai'>Click here to customize</a></li>
-    </ul>
-
-    <h3 style="margin-top: 2.5rem;">📈 Tariff Ticker (Preview)</h3>
-    <ul>
-      <li>🇨🇳 China → US: 25% (Electronics)</li>
-      <li>🇹🇭 Thailand → US: 9.5% (Plastics)</li>
-      <li>🇲🇽 Mexico → US: 5% (Automotive)</li>
-      <li>🇻🇳 Vietnam → EU: 0% (Apparel under EVFTA)</li>
-      <li>🇮🇳 India → US: 12% (Chemicals)</li>
-    </ul>
-    <p><em>This is a preview. Subscribers can request custom trackers by product, HS code, or trade lane.</em></p>
-    """
-
-    for topic, articles in topics.items():
-        articles = [a for a in articles if a.get("title") and a.get("url")]
-        if not articles:
-            continue
-
-        anchor = topic.lower().replace(" ", "-").replace("–", "-").replace("/", "-").replace(",", "")
-        html += f'<h3 id="{anchor}" style="margin-top: 2rem;">{get_topic_label(topic)}</h3><ul>'
-        seen_titles = set()
-
-        for article in articles[:1]:
-            title = article.get("title")
-            url = article.get("url")
-            if title in seen_titles:
-                continue
-            seen_titles.add(title)
-
-            summary = fetch_and_summarize_article(article)
-            timestamp = article.get("timestamp") or article.get("publishedAt")
-
-            if timestamp:
-                relative_time = time_since(timestamp)
-                date_display = timestamp.split("T")[0]
-                stamp_display = f"{date_display} – {relative_time} ago"
-            else:
-                stamp_display = "🗓️ Date not provided"
-
-            html += (
-                f'<li style="margin-bottom: 12px;">'
-                f'<a href="{url}" style="font-weight:bold;">{title}</a> '
-                f'<span style="color:gray; font-size:12px;">({stamp_display})</span><br>'
-                f'<span style="font-size:13px;">{summary}</span>'
-                f'</li>'
-            )
-
-        html += f"""</ul>
-        <p style='font-size:13px;'>Want to see more headlines like this? <a href='https://clarq.ai'>Click here to customize your feed.</a></p>
-        """
-
-    html += f"""
-    <hr style='margin-top:30px;'>
-    <p style='font-size:13px;'>{random.choice(CTA_OPTIONS)}</p>
-    <p style='font-size:12px; color:gray;'>
-    Want to stop receiving this report? <a href="https://gwccompany.us7.list-manage.com/unsubscribe?u=594179b93cb39e0ec357aab60&id=d4ae44f75c">Unsubscribe here</a>.
-    </p>
-    <footer>
-    <small style='color:#888;'>CLARQ™ | Global Ops Intel with AI ⚡️</small>
-    </footer>
-    </body></html>
-    """
-    return html
-
-def load_articles(filepath="daily_risk_feed_generic.json"):
-    with open(filepath, "r") as file:
-        return json.load(file)["topics"]
-
-# This function is used ONLY when triggered by webhook for new subscriber
-def run_generic_strike_email(new_email):
-    topics = load_articles()
-    html_content = format_html(topics)
-    subject = "⚡️CLARQ Morning Strike Report – " + datetime.today().strftime("%B %d, %Y")
-    send_email(subject, html_content, [new_email])
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CLARQ — Supply Chain AI</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 40px;
+      background-color: #f8f8f8;
+      color: #333;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+    }
+    p {
+      font-size: 1.1em;
+      max-width: 600px;
+      margin: 0 auto 1em;
+    }
+    .emoji {
+      font-size: 1.3em;
+    }
+  </style>
+</head>
+<body>
+  <h1>⚡️ CLARQ</h1>
+  <p><strong>Supply Chain Risk Intel</strong><br>Built for small & medium businesses.</p>
+  <p>🛠️ WIP — We’re building something smart, simple, and powerful.</p>
+  <p>💡 Stay tuned.</p>
+</body>
+</html>
