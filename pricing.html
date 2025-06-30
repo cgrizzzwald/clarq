@@ -3,107 +3,136 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CLARQ | Pricing</title>
+  <title>CLARQ | Plans & Pricing</title>
   <style>
     body {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background-color: #f9f9fb;
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fc;
       color: #222;
-      margin: 0;
-      padding: 2rem;
       text-align: center;
+      padding: 2rem;
     }
     .logo {
-      width: 160px;
-      margin-bottom: 2rem;
+      width: 120px;
+      margin-bottom: 1rem;
     }
     h1 {
       font-size: 2.5rem;
       margin-bottom: 0.5rem;
     }
-    p.description {
-      font-size: 1.2rem;
-      color: #555;
+    .subtitle {
+      font-size: 1rem;
+      color: #666;
       margin-bottom: 2rem;
     }
-    .pricing-container {
+    .plans {
       display: flex;
       justify-content: center;
-      gap: 2rem;
+      gap: 1.5rem;
       flex-wrap: wrap;
     }
     .plan {
-      background-color: white;
+      background: #fff;
       border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       padding: 2rem;
-      width: 300px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
+      width: 280px;
+      transition: transform 0.3s ease;
     }
     .plan:hover {
       transform: translateY(-5px);
     }
     .plan h2 {
-      font-size: 1.5rem;
       margin-bottom: 0.5rem;
-    }
-    .plan p {
-      font-size: 0.95rem;
-      color: #666;
-      margin-bottom: 1.5rem;
     }
     .price {
       font-size: 1.5rem;
-      font-weight: bold;
+      margin: 1rem 0;
+    }
+    .description {
+      font-size: 0.95rem;
+      color: #444;
+      margin-bottom: 1.2rem;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      text-align: left;
       margin-bottom: 1.5rem;
     }
-    .btn {
-      padding: 10px 25px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 5px;
-      background: linear-gradient(to right, #667eea, #764ba2);
-      color: white;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
+    ul li::before {
+      content: "✔️ ";
     }
-    .btn:hover {
-      background: linear-gradient(to right, #5a67d8, #6b46c1);
+    button {
+      background: linear-gradient(to right, #4e7dff, #845ef7);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: linear-gradient(to right, #5c8dff, #9774ff);
     }
     .footer {
       font-size: 13px;
       color: #888;
-      margin-top: 4rem;
+      margin-top: 2rem;
+    }
+    .footer a {
+      color: #4e7dff;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <img src="CLARQ_LOGO.jpeg" alt="CLARQ logo" class="logo" />
-
   <h1>Choose Your CLARQ Plan</h1>
-  <p class="description">Flexible options whether you're just getting started or need elite, tailored intel.</p>
+  <p class="subtitle">Flexible options whether you're just getting started or need elite, tailored intel.</p>
 
-  <div class="pricing-container">
+  <div class="plans">
     <div class="plan">
       <h2>⚡️ Basic</h2>
-      <p>Quick overview to stay informed</p>
+      <p class="description">Quick overview to stay informed</p>
       <div class="price">Free</div>
-      <a href="index.html" class="btn">Get Basic</a>
+      <ul>
+        <li>Daily email with 5–7 key trade headlines</li>
+        <li>Smart GPT summary of top disruptions</li>
+        <li>Sample Tariff Tracker</li>
+        <li>General insights across global routes</li>
+      </ul>
+      <a href="/"><button>Get Basic</button></a>
     </div>
 
     <div class="plan">
       <h2>🧠 Pro</h2>
-      <p>More signals, more insights</p>
+      <p class="description">More signals, more insights</p>
       <div class="price">$29 / month</div>
-      <a href="pro.html" class="btn">Get Pro</a>
+      <ul>
+        <li>Everything in Basic</li>
+        <li>Up to 3 custom signals or routes</li>
+        <li>Policy & port disruption alerts</li>
+        <li>Tailored GPT summaries</li>
+      </ul>
+      <a href="/pro.html"><button>Get Pro</button></a>
     </div>
 
     <div class="plan">
       <h2>📈 Elite</h2>
-      <p>Tailored, powerful intel – just for you</p>
+      <p class="description">Tailored, powerful intel – just for you</p>
       <div class="price">$89 / month</div>
-      <a href="elite.html" class="btn">Get Elite</a>
+      <ul>
+        <li>Everything in Pro</li>
+        <li>Up to 10 custom topics</li>
+        <li>Custom widgets & sourcing leads</li>
+        <li>Work directly with the CLARQ team</li>
+      </ul>
+      <a href="/elite.html"><button>Get Elite</button></a>
     </div>
   </div>
 
