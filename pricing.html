@@ -3,62 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CLARQ Plans & Pricing</title>
+  <title>CLARQ | Plans & Pricing</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f7f9fc;
-      color: #111;
+      background-color: #f8f9fb;
+      color: #222;
       text-align: center;
       padding: 2rem;
     }
     .logo {
-      width: 120px;
+      width: 150px;
       margin-bottom: 1rem;
     }
     h1 {
-      font-size: 2.4rem;
+      font-size: 2.8rem;
+      font-weight: 700;
       margin-bottom: 2rem;
     }
     .plan {
       background: white;
       border-radius: 12px;
-      margin: 1rem auto;
-      padding: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
       max-width: 500px;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+      margin: 1.5rem auto;
+      padding: 2rem;
+      transition: transform 0.2s;
+    }
+    .plan:hover {
+      transform: translateY(-4px);
     }
     .plan-title {
-      font-size: 1.6rem;
-      font-weight: bold;
+      font-size: 1.5rem;
+      font-weight: 600;
       margin-bottom: 0.5rem;
     }
-    .plan-description {
-      color: #555;
+    .plan-desc {
       font-size: 1rem;
+      color: #555;
+      margin-bottom: 1rem;
     }
     .plan-button {
       display: inline-block;
-      margin-top: 1rem;
-      padding: 10px 20px;
-      font-size: 1rem;
+      background: linear-gradient(to right, #0052cc, #00b8d9);
       color: white;
+      padding: 0.6rem 1.4rem;
+      font-size: 1rem;
+      font-weight: 500;
       border: none;
       border-radius: 8px;
-      background: linear-gradient(to right, #6a11cb, #2575fc);
       text-decoration: none;
       transition: background 0.3s ease;
     }
     .plan-button:hover {
-      background: linear-gradient(to right, #2575fc, #6a11cb);
+      background: linear-gradient(to right, #0041a3, #009bb3);
     }
     .footer {
-      margin-top: 2.5rem;
+      margin-top: 3rem;
       font-size: 0.9rem;
-      color: #555;
+      color: #666;
     }
     .footer a {
-      color: #0044cc;
+      color: #0052cc;
       text-decoration: none;
       font-weight: bold;
     }
@@ -70,19 +76,22 @@
 
   <div class="plan">
     <div class="plan-title">⚡️ Basic</div>
-    <div class="plan-description">Quick overview to stay informed.<br><strong>Free</strong> — Daily summary and sample content.</div>
+    <div class="plan-desc">Quick overview to stay informed</div>
+    <div class="plan-desc">$0/month — Includes the daily Strike Report with curated intel.</div>
   </div>
 
   <div class="plan">
     <div class="plan-title">🧠 Pro</div>
-    <div class="plan-description">More signals, more insights.<br><strong>$9/month</strong> — Choose 1 custom signal.</div>
-    <a class="plan-button" href="pro.html">Upgrade to Pro</a>
+    <div class="plan-desc">More signals, more insights</div>
+    <div class="plan-desc">$9/month — Add up to 3 custom topics (countries, industries, etc.).</div>
+    <a href="pro.html" class="plan-button">Get Pro</a>
   </div>
 
   <div class="plan">
     <div class="plan-title">📈 Elite</div>
-    <div class="plan-description">Tailored, powerful intel — just for you.<br><strong>$29/month</strong> — Choose up to 5 signals with priority support.</div>
-    <a class="plan-button" href="elite.html">Upgrade to Elite</a>
+    <div class="plan-desc">Tailored, powerful intel – just for you</div>
+    <div class="plan-desc">$29/month — Unlimited signals. Tell us what matters and we’ll watch it.</div>
+    <a href="elite.html" class="plan-button">Get Elite</a>
   </div>
 
   <div class="footer">
