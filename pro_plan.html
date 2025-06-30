@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CLARQ Pro Signup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f9fc;
+      color: #222;
+      text-align: center;
+      padding: 2rem;
+    }
+    .logo {
+      width: 120px;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+    }
+    form {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: inline-block;
+      text-align: left;
+      margin-top: 1rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    button {
+      background: linear-gradient(to right, #667eea, #764ba2);
+      color: white;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .footer {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <img src="CLARQ_LOGO.jpeg" alt="CLARQ logo" class="logo" />
+  <h1>📊 CLARQ Pro Signup</h1>
+  <p>$29/month – Get more signals, deeper insights, and priority topic support. Tell us what you care about and we’ll handle the rest.</p>
+
+  <form action="https://formspree.io/f/your-form-id" method="POST">
+    <label>Email</label>
+    <input type="email" name="email" required />
+
+    <label>What topics, industries, or regions are most important to you?</label>
+    <textarea name="focus" rows="4" required></textarea>
+
+    <label>Any specific risks or signals you’d like us to monitor?</label>
+    <textarea name="signals" rows="4"></textarea>
+
+    <label>Other notes or comments?</label>
+    <textarea name="notes" rows="3"></textarea>
+
+    <button type="submit">Subscribe to Pro</button>
+  </form>
+
+  <p class="footer">Questions? <a href="mailto:clark@gwccompany.com">Email us</a> anytime.</p>
+</body>
+</html>
