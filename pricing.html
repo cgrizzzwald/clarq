@@ -3,79 +3,120 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CLARQ | Pricing</title>
+  <title>CLARQ | Plans & Pricing</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f7fa;
-      color: #222;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f1f5f9;
+      color: #111827;
       text-align: center;
       padding: 2rem;
     }
     .logo {
-      width: 150px;
+      width: 120px;
       margin-bottom: 1rem;
     }
     h1 {
       font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .plans {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      max-width: 700px;
-      margin: 2rem auto;
+      font-weight: bold;
+      margin-bottom: 2rem;
     }
     .plan {
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      padding: 1.5rem;
-      background-color: #fff;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 2rem;
+      margin: 1rem auto;
+      max-width: 400px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease-in-out;
     }
-    .plan h2 {
-      font-size: 1.6rem;
+    .plan:hover {
+      transform: scale(1.02);
+    }
+    .plan-title {
+      font-size: 1.5rem;
+      font-weight: bold;
       margin-bottom: 0.5rem;
     }
-    .plan p {
-      font-size: 1rem;
-      color: #555;
+    .plan-price {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      color: #4b5563;
+    }
+    .plan-description {
+      color: #6b7280;
+      margin-bottom: 1rem;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 30px;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease;
+      margin-top: 1rem;
+    }
+    .basic-btn {
+      background: linear-gradient(90deg, #6366f1, #4f46e5);
+    }
+    .basic-btn:hover {
+      background: linear-gradient(90deg, #4f46e5, #4338ca);
+    }
+    .pro-btn {
+      background: linear-gradient(90deg, #10b981, #059669);
+    }
+    .pro-btn:hover {
+      background: linear-gradient(90deg, #059669, #047857);
+    }
+    .elite-btn {
+      background: linear-gradient(90deg, #ec4899, #db2777);
+    }
+    .elite-btn:hover {
+      background: linear-gradient(90deg, #db2777, #be185d);
     }
     .footer {
       font-size: 14px;
-      color: #888;
+      color: #6b7280;
       margin-top: 3rem;
     }
-    .cta {
-      font-weight: bold;
-      color: #0077cc;
+    .footer a {
+      color: #2563eb;
       text-decoration: none;
+      font-weight: bold;
+    }
+    .footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <img src="CLARQ_LOGO.jpeg" alt="CLARQ logo" class="logo" />
-
   <h1>CLARQ Plans & Pricing</h1>
 
-  <div class="plans">
-    <div class="plan">
-      <h2>⚡️ Basic</h2>
-      <p>Quick overview to stay informed</p>
-    </div>
-    <div class="plan">
-      <h2>🧠 Pro</h2>
-      <p>More signals, more insights</p>
-    </div>
-    <div class="plan">
-      <h2>📈 Elite</h2>
-      <p>Tailored, powerful intel – just for you</p>
-    </div>
+  <div class="plan">
+    <div class="plan-title">⚡️ Basic</div>
+    <div class="plan-description">Quick overview to stay informed</div>
+    <div class="plan-price">Free</div>
+    <a href="/" class="cta-button basic-btn">Subscribe Free</a>
   </div>
 
-  <div class="footer">
-    Want to get started? <a class="cta" href="mailto:clark@gwccompany.com">Email us to customize</a>
+  <div class="plan">
+    <div class="plan-title">🧠 Pro</div>
+    <div class="plan-description">More signals, more insights</div>
+    <div class="plan-price">$29/month</div>
+    <a href="/customize.html?plan=pro" class="cta-button pro-btn">Get Pro</a>
   </div>
+
+  <div class="plan">
+    <div class="plan-title">📈 Elite</div>
+    <div class="plan-description">Tailored, powerful intel – just for you</div>
+    <div class="plan-price">$79/month</div>
+    <a href="/customize.html?plan=elite" class="cta-button elite-btn">Get Elite</a>
+  </div>
+
+  <p class="footer">
+    Want to get started another way? <a href="mailto:clark@gwccompany.com">Email us to customize</a>
+  </p>
 </body>
 </html>
