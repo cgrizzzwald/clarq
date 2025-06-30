@@ -1,101 +1,88 @@
+<!-- pricing.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CLARQ | Plans & Pricing</title>
+  <title>CLARQ Pricing</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f8f9fb;
-      color: #222;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
       text-align: center;
       padding: 2rem;
     }
-    .logo {
-      width: 150px;
+    h1 {
+      font-size: 2.5rem;
       margin-bottom: 1rem;
     }
-    h1 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      margin-bottom: 2rem;
+    .plans {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
     }
     .plan {
       background: white;
       border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      max-width: 500px;
-      margin: 1.5rem auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       padding: 2rem;
-      transition: transform 0.2s;
+      width: 300px;
     }
-    .plan:hover {
-      transform: translateY(-4px);
+    .plan h2 {
+      font-size: 1.8rem;
     }
-    .plan-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-    .plan-desc {
-      font-size: 1rem;
+    .plan p {
+      font-size: 0.95rem;
       color: #555;
-      margin-bottom: 1rem;
     }
-    .plan-button {
-      display: inline-block;
-      background: linear-gradient(to right, #0052cc, #00b8d9);
-      color: white;
-      padding: 0.6rem 1.4rem;
+    .price {
+      font-size: 1.5rem;
+      margin: 1rem 0;
+    }
+    .button {
+      padding: 0.7rem 1.5rem;
       font-size: 1rem;
-      font-weight: 500;
       border: none;
       border-radius: 8px;
-      text-decoration: none;
+      cursor: pointer;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      color: white;
       transition: background 0.3s ease;
-    }
-    .plan-button:hover {
-      background: linear-gradient(to right, #0041a3, #009bb3);
-    }
-    .footer {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #666;
-    }
-    .footer a {
-      color: #0052cc;
       text-decoration: none;
-      font-weight: bold;
+      display: inline-block;
+    }
+    .button:hover {
+      background: linear-gradient(to right, #00f2fe, #4facfe);
     }
   </style>
 </head>
 <body>
-  <img src="CLARQ_LOGO.jpeg" alt="CLARQ logo" class="logo" />
-  <h1>CLARQ Plans & Pricing</h1>
+  <h1>Choose Your CLARQ Plan</h1>
 
-  <div class="plan">
-    <div class="plan-title">⚡️ Basic</div>
-    <div class="plan-desc">Quick overview to stay informed</div>
-    <div class="plan-desc">$0/month — Includes the daily Strike Report with curated intel.</div>
-  </div>
+  <div class="plans">
+    <div class="plan">
+      <h2>⚡️ Basic</h2>
+      <p>Quick overview to stay informed. Get the daily generic Strike Report.</p>
+      <p class="price">Free</p>
+      <a href="https://clarq.ai" class="button">Get Basic</a>
+    </div>
 
-  <div class="plan">
-    <div class="plan-title">🧠 Pro</div>
-    <div class="plan-desc">More signals, more insights</div>
-    <div class="plan-desc">$9/month — Add up to 3 custom topics (countries, industries, etc.).</div>
-    <a href="pro.html" class="plan-button">Get Pro</a>
-  </div>
+    <div class="plan">
+      <h2>🧠 Pro</h2>
+      <p>More signals, more insights. Includes custom topics and preferred country lanes.</p>
+      <p class="price">$29/month</p>
+      <a href="pro.html" class="button">Get Pro</a>
+    </div>
 
-  <div class="plan">
-    <div class="plan-title">📈 Elite</div>
-    <div class="plan-desc">Tailored, powerful intel – just for you</div>
-    <div class="plan-desc">$29/month — Unlimited signals. Tell us what matters and we’ll watch it.</div>
-    <a href="elite.html" class="plan-button">Get Elite</a>
-  </div>
-
-  <div class="footer">
-    Want to get started? <a href="mailto:clark@gwccompany.com">Email us to customize</a>
+    <div class="plan">
+      <h2>📈 Elite</h2>
+      <p>Tailored, powerful intel—just for you. White-glove service with full customization.</p>
+      <p class="price">$89/month</p>
+      <a href="elite.html" class="button">Get Elite</a>
+    </div>
   </div>
 </body>
 </html>
