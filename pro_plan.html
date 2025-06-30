@@ -8,76 +8,100 @@
     body {
       font-family: Arial, sans-serif;
       background-color: #f7f9fc;
-      color: #222;
-      text-align: center;
+      margin: 0;
       padding: 2rem;
+      text-align: center;
     }
-    .logo {
-      width: 120px;
+    img.logo {
+      width: 100px;
       margin-bottom: 1rem;
     }
     h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+      margin-bottom: 0.2rem;
     }
-    p {
-      font-size: 1rem;
-      max-width: 600px;
-      margin: 0 auto 1.5rem;
+    .subhead {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 2rem;
     }
     form {
-      background: white;
+      background-color: white;
+      max-width: 600px;
+      margin: 0 auto;
       padding: 2rem;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      display: inline-block;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
       text-align: left;
-      margin-top: 1rem;
+    }
+    label {
+      display: block;
+      margin: 1rem 0 0.5rem;
+      font-weight: bold;
     }
     input, textarea {
       width: 100%;
       padding: 10px;
-      margin-top: 0.5rem;
-      margin-bottom: 1rem;
       font-size: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    textarea {
+      height: 80px;
     }
     button {
-      background: linear-gradient(to right, #667eea, #764ba2);
-      color: white;
-      padding: 10px 20px;
-      font-size: 1rem;
+      margin-top: 1.5rem;
+      padding: 12px 20px;
+      background: linear-gradient(to right, #4e54c8, #8f94fb);
       border: none;
-      border-radius: 5px;
+      color: white;
+      font-size: 1rem;
+      border-radius: 6px;
       cursor: pointer;
     }
+    button:hover {
+      opacity: 0.95;
+    }
     .footer {
-      font-size: 0.9rem;
-      color: #666;
       margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .footer a {
+      color: #3366cc;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
+
   <img src="CLARQ_LOGO.jpeg" alt="CLARQ logo" class="logo" />
-  <h1>📊 CLARQ Pro Signup</h1>
-  <p>$29/month – Get more signals, deeper insights, and priority topic support. Tell us what you care about and we’ll handle the rest.</p>
 
-  <form action="https://formspree.io/f/your-form-id" method="POST">
-    <label>Email</label>
-    <input type="email" name="email" required />
+  <h1>📊 CLARQ Pro – $29/month</h1>
+  <div class="subhead">
+    Get more signals, deeper insights, and priority topic support. <br>
+    Tell us what you care about and we’ll handle the rest.
+  </div>
 
-    <label>What topics, industries, or regions are most important to you?</label>
-    <textarea name="focus" rows="4" required></textarea>
+  <form>
+    <label for="email">Your email</label>
+    <input type="email" id="email" placeholder="you@example.com" required />
 
-    <label>Any specific risks or signals you’d like us to monitor?</label>
-    <textarea name="signals" rows="4"></textarea>
+    <label for="interests">What topics, industries, or regions are most important to you?</label>
+    <textarea id="interests" placeholder="e.g. global logistics, Vietnam, tech exports"></textarea>
 
-    <label>Other notes or comments?</label>
-    <textarea name="notes" rows="3"></textarea>
+    <label for="signals">Any specific risks or signals you’d like us to monitor?</label>
+    <textarea id="signals" placeholder="e.g. tariff news, import policy changes, supply chain disruption alerts"></textarea>
+
+    <label for="notes">Other notes or requests? (Optional)</label>
+    <textarea id="notes" placeholder="Let us know any preferences, formats, or questions."></textarea>
 
     <button type="submit">Subscribe to Pro</button>
   </form>
 
-  <p class="footer">Questions? <a href="mailto:clark@gwccompany.com">Email us</a> anytime.</p>
+  <div class="footer">
+    Need help? Email us at <a href="mailto:clark@gwccompany.com">clark@gwccompany.com</a>
+  </div>
 </body>
 </html>
