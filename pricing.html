@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CLARQ | Plans & Pricing</title>
+  <title>CLARQ Plans & Pricing</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f1f5f9;
-      color: #111827;
+      background: #f7f9fc;
+      color: #111;
       text-align: center;
       padding: 2rem;
     }
@@ -17,76 +17,50 @@
       margin-bottom: 1rem;
     }
     h1 {
-      font-size: 2.5rem;
-      font-weight: bold;
+      font-size: 2.4rem;
       margin-bottom: 2rem;
     }
     .plan {
-      background: #ffffff;
-      border-radius: 10px;
-      padding: 2rem;
+      background: white;
+      border-radius: 12px;
       margin: 1rem auto;
-      max-width: 400px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s ease-in-out;
-    }
-    .plan:hover {
-      transform: scale(1.02);
+      padding: 1.5rem;
+      max-width: 500px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
     }
     .plan-title {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: bold;
       margin-bottom: 0.5rem;
     }
-    .plan-price {
-      font-size: 1.2rem;
-      margin-top: 0.5rem;
-      color: #4b5563;
-    }
     .plan-description {
-      color: #6b7280;
-      margin-bottom: 1rem;
+      color: #555;
+      font-size: 1rem;
     }
-    .cta-button {
+    .plan-button {
       display: inline-block;
-      padding: 0.75rem 1.5rem;
-      border-radius: 30px;
+      margin-top: 1rem;
+      padding: 10px 20px;
+      font-size: 1rem;
       color: white;
-      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
       text-decoration: none;
       transition: background 0.3s ease;
-      margin-top: 1rem;
     }
-    .basic-btn {
-      background: linear-gradient(90deg, #6366f1, #4f46e5);
-    }
-    .basic-btn:hover {
-      background: linear-gradient(90deg, #4f46e5, #4338ca);
-    }
-    .pro-btn {
-      background: linear-gradient(90deg, #10b981, #059669);
-    }
-    .pro-btn:hover {
-      background: linear-gradient(90deg, #059669, #047857);
-    }
-    .elite-btn {
-      background: linear-gradient(90deg, #ec4899, #db2777);
-    }
-    .elite-btn:hover {
-      background: linear-gradient(90deg, #db2777, #be185d);
+    .plan-button:hover {
+      background: linear-gradient(to right, #2575fc, #6a11cb);
     }
     .footer {
-      font-size: 14px;
-      color: #6b7280;
-      margin-top: 3rem;
+      margin-top: 2.5rem;
+      font-size: 0.9rem;
+      color: #555;
     }
     .footer a {
-      color: #2563eb;
+      color: #0044cc;
       text-decoration: none;
       font-weight: bold;
-    }
-    .footer a:hover {
-      text-decoration: underline;
     }
   </style>
 </head>
@@ -96,27 +70,23 @@
 
   <div class="plan">
     <div class="plan-title">⚡️ Basic</div>
-    <div class="plan-description">Quick overview to stay informed</div>
-    <div class="plan-price">Free</div>
-    <a href="/" class="cta-button basic-btn">Subscribe Free</a>
+    <div class="plan-description">Quick overview to stay informed.<br><strong>Free</strong> — Daily summary and sample content.</div>
   </div>
 
   <div class="plan">
     <div class="plan-title">🧠 Pro</div>
-    <div class="plan-description">More signals, more insights</div>
-    <div class="plan-price">$29/month</div>
-    <a href="/customize.html?plan=pro" class="cta-button pro-btn">Get Pro</a>
+    <div class="plan-description">More signals, more insights.<br><strong>$9/month</strong> — Choose 1 custom signal.</div>
+    <a class="plan-button" href="pro.html">Upgrade to Pro</a>
   </div>
 
   <div class="plan">
     <div class="plan-title">📈 Elite</div>
-    <div class="plan-description">Tailored, powerful intel – just for you</div>
-    <div class="plan-price">$79/month</div>
-    <a href="/customize.html?plan=elite" class="cta-button elite-btn">Get Elite</a>
+    <div class="plan-description">Tailored, powerful intel — just for you.<br><strong>$29/month</strong> — Choose up to 5 signals with priority support.</div>
+    <a class="plan-button" href="elite.html">Upgrade to Elite</a>
   </div>
 
-  <p class="footer">
-    Want to get started another way? <a href="mailto:clark@gwccompany.com">Email us to customize</a>
-  </p>
+  <div class="footer">
+    Want to get started? <a href="mailto:clark@gwccompany.com">Email us to customize</a>
+  </div>
 </body>
 </html>
