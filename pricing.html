@@ -1,88 +1,112 @@
-<!-- pricing.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CLARQ Pricing</title>
+  <title>CLARQ | Pricing</title>
   <style>
     body {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background-color: #f0f4f8;
-      color: #333;
-      text-align: center;
+      background-color: #f9f9fb;
+      color: #222;
+      margin: 0;
       padding: 2rem;
+      text-align: center;
+    }
+    .logo {
+      width: 160px;
+      margin-bottom: 2rem;
     }
     h1 {
       font-size: 2.5rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
-    .plans {
+    p.description {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+    .pricing-container {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
       gap: 2rem;
-      margin-top: 2rem;
+      flex-wrap: wrap;
     }
     .plan {
-      background: white;
+      background-color: white;
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       padding: 2rem;
       width: 300px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+    .plan:hover {
+      transform: translateY(-5px);
     }
     .plan h2 {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
     }
     .plan p {
       font-size: 0.95rem;
-      color: #555;
+      color: #666;
+      margin-bottom: 1.5rem;
     }
     .price {
       font-size: 1.5rem;
-      margin: 1rem 0;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
     }
-    .button {
-      padding: 0.7rem 1.5rem;
+    .btn {
+      padding: 10px 25px;
       font-size: 1rem;
       border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      background: linear-gradient(to right, #4facfe, #00f2fe);
+      border-radius: 5px;
+      background: linear-gradient(to right, #667eea, #764ba2);
       color: white;
-      transition: background 0.3s ease;
+      cursor: pointer;
       text-decoration: none;
       display: inline-block;
     }
-    .button:hover {
-      background: linear-gradient(to right, #00f2fe, #4facfe);
+    .btn:hover {
+      background: linear-gradient(to right, #5a67d8, #6b46c1);
+    }
+    .footer {
+      font-size: 13px;
+      color: #888;
+      margin-top: 4rem;
     }
   </style>
 </head>
 <body>
-  <h1>Choose Your CLARQ Plan</h1>
+  <img src="CLARQ_LOGO.jpeg" alt="CLARQ logo" class="logo" />
 
-  <div class="plans">
+  <h1>Choose Your CLARQ Plan</h1>
+  <p class="description">Flexible options whether you're just getting started or need elite, tailored intel.</p>
+
+  <div class="pricing-container">
     <div class="plan">
       <h2>⚡️ Basic</h2>
-      <p>Quick overview to stay informed. Get the daily generic Strike Report.</p>
-      <p class="price">Free</p>
-      <a href="https://clarq.ai" class="button">Get Basic</a>
+      <p>Quick overview to stay informed</p>
+      <div class="price">Free</div>
+      <a href="index.html" class="btn">Get Basic</a>
     </div>
 
     <div class="plan">
       <h2>🧠 Pro</h2>
-      <p>More signals, more insights. Includes custom topics and preferred country lanes.</p>
-      <p class="price">$29/month</p>
-      <a href="pro.html" class="button">Get Pro</a>
+      <p>More signals, more insights</p>
+      <div class="price">$29 / month</div>
+      <a href="pro.html" class="btn">Get Pro</a>
     </div>
 
     <div class="plan">
       <h2>📈 Elite</h2>
-      <p>Tailored, powerful intel—just for you. White-glove service with full customization.</p>
-      <p class="price">$89/month</p>
-      <a href="elite.html" class="button">Get Elite</a>
+      <p>Tailored, powerful intel – just for you</p>
+      <div class="price">$89 / month</div>
+      <a href="elite.html" class="btn">Get Elite</a>
     </div>
   </div>
+
+  <p class="footer">Have questions? <a href="mailto:clark@gwccompany.com">Email us</a> and we'll help customize your plan.</p>
 </body>
 </html>
