@@ -66,13 +66,21 @@
   <h1>📈 Elite Setup – $89/month</h1>
   <p>Tell us what you want to monitor. We’ll build a custom intel feed just for you — trade, policy, disruptions, niche trends, or anything else.</p>
 
-  <form action="https://formspree.io/f/xknladqw" method="POST">
-    <input type="email" name="email" placeholder="Your email" required />
-    <textarea name="topics" rows="3" placeholder="What are your main interests or industry focus?" required></textarea>
-    <textarea name="signals" rows="3" placeholder="What events, risks, or trends should we watch for you?" required></textarea>
-    <textarea name="notes" rows="3" placeholder="Any other requests or context we should know? (Optional)"></textarea>
-    <button type="submit">Subscribe to Elite</button>
-  </form>
+  <form action="/submit_elite_form" method="POST" style="max-width: 500px; margin: 0 auto;">
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" required><br><br>
+
+  <label for="watchlist">What specific countries, suppliers, routes, or signals should we monitor for you?</label><br>
+  <textarea id="watchlist" name="watchlist" rows="3" cols="40" placeholder="e.g., China port disruptions, Vietnam EV sourcing, Mexico customs changes"></textarea><br><br>
+
+  <label for="intel_style">Preferred intel style (brief/detailed, summary/action-oriented, etc.):</label><br>
+  <input type="text" id="intel_style" name="intel_style" placeholder="e.g., Summary + Action bullets"><br><br>
+
+  <label for="notes">Anything else you’d like our analysts to know?</label><br>
+  <textarea id="notes" name="notes" rows="4" cols="40" placeholder="Optional… open-ended space to describe your goals"></textarea><br><br>
+
+  <button type="submit">Submit Elite Setup</button>
+</form>
 
   <p class="footer">Need help? Email us at <a href="mailto:clark@gwccompany.com">clark@gwccompany.com</a></p>
 </body>
