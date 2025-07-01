@@ -84,22 +84,22 @@
     Tell us what you care about and we’ll handle the rest.
   </div>
 
-  <form>
-    <label for="email">Your email</label>
-    <input type="email" id="email" placeholder="you@example.com" required />
+  <form action="/submit_pro_form" method="POST" style="max-width: 500px; margin: 0 auto;">
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" required><br><br>
 
-    <label for="interests">What topics, industries, or regions are most important to you?</label>
-    <textarea id="interests" placeholder="e.g. global logistics, Vietnam, tech exports"></textarea>
+  <label for="topics">Topics you want tracked:</label><br>
+  <input type="text" id="topics" name="topics" placeholder="e.g., Vietnam, tariffs, EV news"><br><br>
 
-    <label for="signals">Any specific risks or signals you’d like us to monitor?</label>
-    <textarea id="signals" placeholder="e.g. tariff news, import policy changes, supply chain disruption alerts"></textarea>
+  <label for="signals">Signals or indicators you care about:</label><br>
+  <input type="text" id="signals" name="signals" placeholder="e.g., factory delays, policy changes"><br><br>
 
-    <label for="notes">Other notes or requests? (Optional)</label>
-    <textarea id="notes" placeholder="Let us know any preferences, formats, or questions."></textarea>
+  <label for="notes">Anything else we should know?</label><br>
+  <textarea id="notes" name="notes" rows="4" cols="40" placeholder="Optional..."></textarea><br><br>
 
-    <button type="submit">Subscribe to Pro</button>
-  </form>
-
+  <button type="submit">Submit Setup</button>
+</form>
+  
   <div class="footer">
     Need help? Email us at <a href="mailto:clark@gwccompany.com">clark@gwccompany.com</a>
   </div>
