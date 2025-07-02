@@ -97,51 +97,60 @@ def refresh_headlines():
     except Exception as e:
         return f"❌ Error: {str(e)}", 500
 
-@app.route("/submit-pro", methods=["POST"])
-def submit_pro():
-    try:
-        data = {
-            "name": request.form.get("name"),
-            "email": request.form.get("email"),
-            "topics": request.form.get("topics"),
-            "goals": request.form.get("goals"),
-            "extra": request.form.get("extra"),
-        }
+@app.route("/submit_pro_plan", methods=["POST"])
+def submit_pro_plan():
+    data = {
+        "email": request.form.get("email"),
+        "topics": request.form.get("topics"),
+        "signals": request.form.get("signals"),
+        "notes": request.form.get("notes")
+    }
 
-        # Save to file
-        with open("pro_submissions.json", "a") as f:
-            f.write(json.dumps(data) + "\n")
+    print("📩 PRO PLAN SUBMISSION:")
+    print(json.dumps(data, indent=2))
 
-        # Send email to Clark
-        os.system(f'echo "Pro plan interest:\n{json.dumps(data, indent=2)}" | mail -s "New Pro Subscriber" clark@gwccompany.com')
+    with open("pro_submissions.json", "a") as f:
+        f.write(json.dumps(data) + "\n")
 
-        return "✅ Thank you! We’ll be in touch shortly."
-    except Exception as e:
-        return f"❌ Error: {e}", 500
+    message = f"""
+📥 New PRO Plan Submission
+
+Email: {data['email']}
+Topics: {data['topics']}
+Signals: {data['signals']}
+Notes: {data['notes']}
+"""
+    send_notification_email("New PRO Plan Signup", message)
+
+    return redirect("/thank-you.html")
 
 
-@app.route("/submit-elite", methods=["POST"])
-def submit_elite():
-    try:
-        data = {
-            "name": request.form.get("name"),
-            "email": request.form.get("email"),
-            "company": request.form.get("company"),
-            "monitoring": request.form.get("monitoring"),
-            "format": request.form.get("format"),
-            "notes": request.form.get("notes"),
-        }
+@app.route("/submit_elite_plan", methods=["POST"])
+def submit_elite_plan():
+    data = {
+        "email": request.form.get("email"),
+        "interests": request.form.get("interests"),
+        "risks": request.form.get("risks"),
+        "notes": request.form.get("notes")
+    }
 
-        # Save to file
-        with open("elite_submissions.json", "a") as f:
-            f.write(json.dumps(data) + "\n")
+    print("📩 ELITE PLAN SUBMISSION:")
+    print(json.dumps(data, indent=2))
 
-        # Send email to Clark
-        os.system(f'echo "Elite plan interest:\n{json.dumps(data, indent=2)}" | mail -s "New Elite Subscriber" clark@gwccompany.com')
+    with open("elite_submissions.json", "a") as f:
+        f.write(json.dumps(data) + "\n")
 
-        return "✅ Thank you! We’ll be in touch shortly."
-    except Exception as e:
-        return f"❌ Error: {e}", 500
+    message = f"""
+🚨 New ELITE Plan Submission
+
+Email: {data['email']}
+Interests: {data['interests']}
+Risks/Trends: {data['risks']}
+Notes: {data['notes']}
+"""
+    send_notification_email("🔥 New ELITE Plan Signup", message)
+
+    return redirect("/thank-you.html")
     
     
 if __name__ == "__main__":
