@@ -2,7 +2,29 @@ from flask import Flask, render_template, jsonify, request, redirect
 import json
 import os
 import subprocess
+import requests
 
+def send_notification_email(subject, message):
+    MAILGUN_API_KEY = os.getenv("MAILGUN_API_KEY")
+    MAILGUN_DOMAIN = os.getenv("MAILGUN_DOMAIN")
+    RECIPIENT = "clark@case-mate.com"
+
+    if not MAILGUN_API_KEY or not MAILGUN_DOMAIN:
+        print("❌ Mailgun credentials missing.")
+        return
+
+    response = requests.post(
+        f"https://api.mailgun.net/v3/{MAILGUN_DOMAIN}/messages",
+        auth=("api", MAILGUN_API_KEY),
+        data={
+            "from": f"CLARQ Bot <no-reply@{MAILGUN_DOMAIN}>",
+            "to": RECIPIENT,
+            "subject": subject,
+            "text": message
+        }
+    )
+    print(f"📬 Notification email sent: {response.status_code}")
+    
 app = Flask(__name__)
 
 # Auto-generate trends on app start (optional)
