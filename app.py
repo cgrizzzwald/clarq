@@ -75,6 +75,36 @@ def refresh_headlines():
     except Exception as e:
         return f"❌ Error: {str(e)}", 500
 
+@app.route("/submit_pro_form", methods=["POST"])
+def submit_pro_form():
+    email = request.form.get("email")
+    focus = request.form.get("focus")
+    frequency = request.form.get("frequency")
+    extras = request.form.get("extras")
+
+    print("📬 Pro Form Submission:")
+    print(f"Email: {email}")
+    print(f"Focus: {focus}")
+    print(f"Frequency: {frequency}")
+    print(f"Extras: {extras}")
+
+    return "✅ Thanks! We'll follow up to complete your Pro setup."
+
+@app.route("/submit_elite_form", methods=["POST"])
+def submit_elite_form():
+    email = request.form.get("email")
+    custom_goals = request.form.get("custom_goals")
+    countries = request.form.get("countries")
+    preferences = request.form.get("preferences")
+
+    print("📬 Elite Form Submission:")
+    print(f"Email: {email}")
+    print(f"Custom Goals: {custom_goals}")
+    print(f"Countries: {countries}")
+    print(f"Preferences: {preferences}")
+
+    return "✅ Thanks! We'll follow up to tailor your Elite intel."
+    
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
