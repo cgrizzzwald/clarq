@@ -75,35 +75,52 @@ def refresh_headlines():
     except Exception as e:
         return f"❌ Error: {str(e)}", 500
 
-@app.route("/submit_pro_form", methods=["POST"])
-def submit_pro_form():
-    email = request.form.get("email")
-    focus = request.form.get("focus")
-    frequency = request.form.get("frequency")
-    extras = request.form.get("extras")
+@app.route("/submit-pro", methods=["POST"])
+def submit_pro():
+    try:
+        data = {
+            "name": request.form.get("name"),
+            "email": request.form.get("email"),
+            "topics": request.form.get("topics"),
+            "goals": request.form.get("goals"),
+            "extra": request.form.get("extra"),
+        }
 
-    print("📬 Pro Form Submission:")
-    print(f"Email: {email}")
-    print(f"Focus: {focus}")
-    print(f"Frequency: {frequency}")
-    print(f"Extras: {extras}")
+        # Save to file
+        with open("pro_submissions.json", "a") as f:
+            f.write(json.dumps(data) + "\n")
 
-    return "✅ Thanks! We'll follow up to complete your Pro setup."
+        # Send email to Clark
+        os.system(f'echo "Pro plan interest:\n{json.dumps(data, indent=2)}" | mail -s "New Pro Subscriber" clark@gwccompany.com')
 
-@app.route("/submit_elite_form", methods=["POST"])
-def submit_elite_form():
-    email = request.form.get("email")
-    custom_goals = request.form.get("custom_goals")
-    countries = request.form.get("countries")
-    preferences = request.form.get("preferences")
+        return "✅ Thank you! We’ll be in touch shortly."
+    except Exception as e:
+        return f"❌ Error: {e}", 500
 
-    print("📬 Elite Form Submission:")
-    print(f"Email: {email}")
-    print(f"Custom Goals: {custom_goals}")
-    print(f"Countries: {countries}")
-    print(f"Preferences: {preferences}")
 
-    return "✅ Thanks! We'll follow up to tailor your Elite intel."
+@app.route("/submit-elite", methods=["POST"])
+def submit_elite():
+    try:
+        data = {
+            "name": request.form.get("name"),
+            "email": request.form.get("email"),
+            "company": request.form.get("company"),
+            "monitoring": request.form.get("monitoring"),
+            "format": request.form.get("format"),
+            "notes": request.form.get("notes"),
+        }
+
+        # Save to file
+        with open("elite_submissions.json", "a") as f:
+            f.write(json.dumps(data) + "\n")
+
+        # Send email to Clark
+        os.system(f'echo "Elite plan interest:\n{json.dumps(data, indent=2)}" | mail -s "New Elite Subscriber" clark@gwccompany.com')
+
+        return "✅ Thank you! We’ll be in touch shortly."
+    except Exception as e:
+        return f"❌ Error: {e}", 500
+    
     
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
