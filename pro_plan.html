@@ -1,90 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>CLARQ Pro – Setup</title>
+  <meta charset="UTF-8">
+  <title>CLARQ Pro – $29/month</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      padding: 2rem;
+      font-family: system-ui, sans-serif;
+      background: #f9f9ff;
+      padding: 40px;
       text-align: center;
     }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-    .subhead {
-      font-size: 1rem;
-      margin-bottom: 2rem;
-      color: #555;
-    }
-    form {
+    .form-container {
+      background: white;
+      padding: 30px;
       max-width: 500px;
       margin: 0 auto;
-      text-align: left;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
-    label {
-      font-weight: bold;
-    }
-    input, textarea {
+    input, textarea, button {
       width: 100%;
-      padding: 10px;
-      margin: 10px 0 20px;
-      border-radius: 5px;
+      padding: 12px;
+      margin-top: 8px;
+      margin-bottom: 16px;
       border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
     }
     button {
-      background: linear-gradient(to right, #007bff, #00b3ff);
+      background-color: #6c63ff;
       color: white;
-      padding: 10px 20px;
       border: none;
-      border-radius: 6px;
-      font-size: 1rem;
       cursor: pointer;
     }
     button:hover {
-      background: linear-gradient(to right, #00b3ff, #007bff);
+      background-color: #574fd6;
     }
-    .footer {
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #777;
+    .subhead {
+      color: #666;
+      margin-bottom: 24px;
     }
   </style>
 </head>
 <body>
+  <div class="form-container">
+    <img src="/static/CLARQ_LOGO.jpeg" alt="CLARQ Logo" style="max-height: 70px; margin-bottom: 20px;">
+    <h1>📊 CLARQ Pro – $29/month</h1>
+    <div class="subhead">
+      Get more signals, deeper insights, and priority topic support.<br>
+      Tell us what you care about and we’ll handle the rest.
+    </div>
 
-  <h1>📊 CLARQ Pro – $29/month</h1>
-  <div class="subhead">
-    Get more signals, deeper insights, and priority topic support. <br>
-    Tell us what you care about and we’ll handle the rest.
+    <form action="https://clarq-strike-bot.onrender.com/submit_pro_plan" method="POST">
+      <input type="hidden" name="tier" value="Pro">
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required placeholder="Where should we send your daily intel?">
+
+      <label for="regions">Countries or regions you want intel on:</label>
+      <input type="text" id="regions" name="regions" placeholder="e.g., Vietnam, China, Mexico">
+
+      <label for="signals">Signals or disruptions you care about most:</label>
+      <input type="text" id="signals" name="signals" placeholder="e.g., tariffs, factory shutdowns, energy costs">
+
+      <label for="routes">Routes or trade lanes (optional):</label>
+      <input type="text" id="routes" name="routes" placeholder="e.g., China to US, Vietnam to EU">
+
+      <label for="notes">Keywords or themes (optional):</label>
+      <input type="text" id="notes" name="notes" placeholder="e.g., iPhone, EV, logistics, customs">
+
+      <button type="submit">Submit Setup</button>
+    </form>
+
+    <p style="margin-top: 20px; font-size: 14px;">
+      Need help? Email us at <a href="mailto:clark@gwccompany.com">clark@gwccompany.com</a>
+    </p>
   </div>
-
-  <form action="/submit_pro_plan" method="POST">
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email" placeholder="Where should we send your daily intel?" required><br><br>
-
-    <label for="regions">Countries or regions you want intel on:</label><br>
-    <input type="text" id="regions" name="regions" placeholder="e.g., Vietnam, tariffs, EV news"><br><br>
-
-    <label for="signals">Signals or disruptions you care about most:</label><br>
-    <input type="text" id="signals" name="signals" placeholder="e.g., factory delays, policy changes"><br><br>
-
-    <label for="routes">Trade routes you want monitored:</label><br>
-    <input type="text" id="routes" name="routes" placeholder="e.g., China → US, India → UK"><br><br>
-
-    <label for="notes">Anything else we should know?</label><br>
-    <textarea id="notes" name="notes" rows="4" cols="40" placeholder="Optional..."></textarea><br><br>
-
-    <input type="hidden" name="tier" value="Pro">
-
-    <button type="submit">Submit Setup</button>
-  </form>
-
-  <div class="footer">
-    Need help? Email us at <a href="mailto:clark@gwccompany.com">clark@gwccompany.com</a>
-  </div>
-
 </body>
 </html>
