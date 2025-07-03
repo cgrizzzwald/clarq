@@ -79,29 +79,32 @@
   <img src="CLARQ_LOGO.jpeg" alt="CLARQ logo" class="logo" />
 
   <h1>📊 CLARQ Pro – $29/month</h1>
-  <div class="subhead">
-    Get more signals, deeper insights, and priority topic support. <br>
-    Tell us what you care about and we’ll handle the rest.
-  </div>
+<div class="subhead">
+  Get more signals, deeper insights, and priority topic support.<br>
+  Tell us what you care about and we’ll handle the rest.
+</div>
 
-  <form action="https://clarq-strike-bot.onrender.com/submit_pro_plan" method="POST" style="max-width: 500px; margin: 0 auto;">
+<form action="https://clarq-strike-bot.onrender.com/submit_pro_plan" method="POST" style="max-width: 500px; margin: 0 auto;">
   <label for="email">Email:</label><br>
-  <input type="email" id="email" name="email" required><br><br>
+  <input type="email" id="email" name="email" placeholder="Where should we send your daily intel?" required><br><br>
 
-  <label for="topics">Topics you want tracked:</label><br>
-  <input type="text" id="topics" name="topics" placeholder="e.g., Vietnam, tariffs, EV news"><br><br>
+  <label for="regions">Countries or regions you want intel on:</label><br>
+  <input type="text" id="regions" name="regions" placeholder="e.g., Vietnam, China, LATAM"><br><br>
 
-  <label for="signals">Signals or indicators you care about:</label><br>
-  <input type="text" id="signals" name="signals" placeholder="e.g., factory delays, policy changes"><br><br>
+  <label for="signals">Signals or disruptions you care about most:</label><br>
+  <input type="text" id="signals" name="signals" placeholder="e.g., port delays, customs enforcement, tariffs"><br><br>
 
-  <label for="notes">Anything else we should know?</label><br>
-  <textarea id="notes" name="notes" rows="4" cols="40" placeholder="Optional..."></textarea><br><br>
+  <label for="routes">Routes or trade lanes (optional):</label><br>
+  <input type="text" id="routes" name="routes" placeholder="e.g., Vietnam → US, China → Mexico"><br><br>
+
+  <label for="keywords">Keywords or themes (optional):</label><br>
+  <input type="text" id="keywords" name="keywords" placeholder="e.g., EV batteries, textile bans"><br><br>
 
   <button type="submit">Submit Setup</button>
 </form>
-  
-  <div class="footer">
-    Need help? Email us at <a href="mailto:clark@gwccompany.com">clark@gwccompany.com</a>
-  </div>
+
+<div class="footer">
+  Need help? Email us at <a href="mailto:clark@gwccompany.com">clark@gwccompany.com</a>
+</div>
 </body>
 </html>
