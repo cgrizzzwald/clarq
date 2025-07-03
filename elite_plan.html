@@ -64,24 +64,34 @@
 <body>
   <img src="CLARQ_LOGO.jpeg" alt="CLARQ logo" class="logo" />
   <h1>📈 Elite Setup – $89/month</h1>
-  <p>Tell us what you want to monitor. We’ll build a custom intel feed just for you — trade, policy, disruptions, niche trends, or anything else.</p>
+<div class="subhead">
+  Tell us what you want to monitor. We’ll build a custom intel feed just for you — trade, policy, disruptions, niche trends, or anything else.
+</div>
 
-  <form action="https://clarq-strike-bot.onrender.com/submit_elite_plan" method="POST" style="max-width: 500px; margin: 0 auto;">
+<form action="https://clarq-strike-bot.onrender.com/submit_elite_plan" method="POST" style="max-width: 500px; margin: 0 auto;">
   <label for="email">Email:</label><br>
-  <input type="email" id="email" name="email" required><br><br>
+  <input type="email" id="email" name="email" placeholder="Where should we send your custom report?" required><br><br>
 
-  <label for="watchlist">What specific countries, suppliers, routes, or signals should we monitor for you?</label><br>
-  <textarea id="watchlist" name="watchlist" rows="3" cols="40" placeholder="e.g., China port disruptions, Vietnam EV sourcing, Mexico customs changes"></textarea><br><br>
+  <label for="regions">Countries or regions to monitor:</label><br>
+  <input type="text" id="regions" name="regions" placeholder="e.g., Vietnam, China, EU, LATAM"><br><br>
 
-  <label for="intel_style">Preferred intel style (brief/detailed, summary/action-oriented, etc.):</label><br>
-  <input type="text" id="intel_style" name="intel_style" placeholder="e.g., Summary + Action bullets"><br><br>
+  <label for="signals">What signals, topics, or industries should we watch?</label><br>
+  <input type="text" id="signals" name="signals" placeholder="e.g., EV sourcing, semiconductors, customs issues"><br><br>
 
-  <label for="notes">Anything else you’d like our analysts to know?</label><br>
-  <textarea id="notes" name="notes" rows="4" cols="40" placeholder="Optional… open-ended space to describe your goals"></textarea><br><br>
+  <label for="routes">Key routes or supply chains of interest (optional):</label><br>
+  <input type="text" id="routes" name="routes" placeholder="e.g., India → US, China → Mexico"><br><br>
+
+  <label for="format">Preferred intel style:</label><br>
+  <input type="text" id="format" name="format" placeholder="e.g., Summary + Action bullets, Deep Dive, Alert Only"><br><br>
+
+  <label for="notes">Anything else you'd like our analysts to know?</label><br>
+  <textarea id="notes" name="notes" rows="4" cols="40" placeholder="Optional… feel free to describe your business, goals, or any weird stuff we should watch."></textarea><br><br>
 
   <button type="submit">Submit Elite Setup</button>
 </form>
 
-  <p class="footer">Need help? Email us at <a href="mailto:clark@gwccompany.com">clark@gwccompany.com</a></p>
+<div class="footer">
+  Need help? Email us at <a href="mailto:clark@gwccompany.com">clark@gwccompany.com</a>
+</div>
 </body>
 </html>
