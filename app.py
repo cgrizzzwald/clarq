@@ -30,9 +30,9 @@ app = Flask(__name__)
 # Auto-generate trends on app start (optional)
 # subprocess.run(["python", "generate_risk_trends.py"])
 
-@app.route("/dashboard")
-def dashboard():
-    return render_template("dashboard.html")
+# @app.route("/dashboard")
+# def dashboard():
+#    return render_template("dashboard.html")
 
 @app.route("/api/risks")
 def api_risks():
