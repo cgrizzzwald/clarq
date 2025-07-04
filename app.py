@@ -28,7 +28,7 @@ def send_notification_email(subject, message):
 app = Flask(__name__)
 
 # Auto-generate trends on app start (optional)
-subprocess.run(["python", "generate_risk_trends.py"])
+# subprocess.run(["python", "generate_risk_trends.py"])
 
 @app.route("/dashboard")
 def dashboard():
