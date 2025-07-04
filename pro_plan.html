@@ -44,14 +44,14 @@
 </head>
 <body>
   <div class="form-container">
-    <img src="/static/CLARQ_LOGO.jpeg" alt="CLARQ Logo" style="max-height: 70px; margin-bottom: 20px;">
+    <img src="{{ url_for('static', filename='CLARQ_LOGO.jpeg') }}" alt="CLARQ Logo" style="max-height: 70px; margin-bottom: 20px;">
     <h1>📊 CLARQ Pro – $29/month</h1>
     <div class="subhead">
       Get more signals, deeper insights, and priority topic support.<br>
       Tell us what you care about and we’ll handle the rest.
     </div>
 
-    <form action="https://clarq-strike-bot.onrender.com/submit_pro_plan" method="POST">
+    <form action="/submit_pro_plan" method="POST">
       <input type="hidden" name="tier" value="Pro">
 
       <label for="email">Email:</label>
