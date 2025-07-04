@@ -90,6 +90,18 @@
   <button type="submit">Submit Elite Setup</button>
 </form>
 
+  <script>
+  // Prevent Enter key from submitting the form
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+    form.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" && event.target.tagName !== "TEXTAREA") {
+        event.preventDefault();
+      }
+    });
+  });
+</script>
+  
 <div class="footer">
   Need help? Email us at <a href="mailto:clark@gwccompany.com">clark@gwccompany.com</a>
 </div>
