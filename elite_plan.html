@@ -64,29 +64,28 @@
 <body>
   <img src="CLARQ_LOGO.jpeg" alt="CLARQ logo" class="logo" />
   <h1>📈 Elite Setup – $89/month</h1>
-<div class="subhead">
-  Tell us what you want to monitor. We’ll build a custom intel feed just for you — trade, policy, disruptions, niche trends, or anything else.
-</div>
+  <div class="subhead">
+    Tell us what you want to monitor. We’ll build a custom intel feed just for you — trade, policy, disruptions, niche trends, or anything else.
+  </div>
 
-<form action="/submit_elite_plan" method="POST" style="max-width: 500px; margin: 0 auto;">
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" required placeholder="Where should we send your custom report?">
+  <form action="/submit_elite_plan" method="POST" style="max-width: 500px; margin: 0 auto;">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required placeholder="Where should we send your custom report?">
 
-  <label for="regions">Countries or regions to monitor:</label>
-  <input type="text" id="regions" name="regions" placeholder="e.g., Vietnam, China, EU, LATAM">
+    <label for="regions">Countries or regions you want to monitor:</label>
+    <input type="text" id="regions" name="regions" placeholder="e.g., Vietnam, China, EU, LATAM">
 
-  <label for="signals">What signals, topics, or industries should we watch?</label>
-  <input type="text" id="signals" name="signals" placeholder="e.g., EV sourcing, semiconductors, customs issues">
+    <label for="signals">Signals, disruptions, or industries you care about:</label>
+    <input type="text" id="signals" name="signals" placeholder="e.g., tariffs, tech exports, footwear, supply chain strikes">
 
-  <label for="routes">Key routes or supply chains of interest (optional):</label>
-  <input type="text" id="routes" name="routes" placeholder="e.g., India → US, China → Mexico">
+    <label for="routes">Key routes or trade lanes (optional):</label>
+    <input type="text" id="routes" name="routes" placeholder="e.g., India → US, China → Mexico">
 
-  <label for="notes">Preferred intel style:</label>
-  <input type="text" id="notes" name="notes" placeholder="e.g., Summary + Action bullets, Deep Dive, Alert Only">
+    <label for="notes">Would you like deeper visibility on anything specific?</label>
+    <input type="text" id="notes" name="notes" placeholder="e.g., port delays, rare earths, raw materials, brand risk">
 
-  <button type="submit">Submit</button>
-</form>
-  
+    <button type="submit">Submit</button>
+  </form>
 
   <script>
   // Prevent Enter key from submitting the form
@@ -98,10 +97,10 @@
       }
     });
   });
-</script>
-  
-<div class="footer">
-  Need help? Email us at <a href="mailto:clark@gwccompany.com">clark@gwccompany.com</a>
-</div>
+  </script>
+
+  <div class="footer">
+    Need help? Email us at <a href="mailto:clark@gwccompany.com">clark@gwccompany.com</a>
+  </div>
 </body>
 </html>
