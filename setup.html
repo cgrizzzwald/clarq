@@ -1,113 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CLARQ Setup</title>
-  <script defer>
-    function limitCheckboxes(plan) {
-      const limits = { basic: 3, pro: 5, elite: 10 };
-      const limit = limits[plan];
-      const checkboxes = document.querySelectorAll('input[name="topics"]');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Set Up Your CLARQ Report</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      background-color: #f9fbfd;
+      color: #222;
+      padding: 30px;
+    }
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    h2 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+    p.subtitle {
+      color: #666;
+      font-size: 15px;
+      margin-bottom: 25px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    input[type="email"], input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .checkbox-group, .plan-group {
+      margin-bottom: 25px;
+    }
+    .checkbox-group label, .plan-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .submit-btn {
+      background-color: #003366;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      display: block;
+      width: 100%;
+    }
+    .footer {
+      text-align: center;
+      font-size: 13px;
+      color: #999;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>🛠️ Set Up Your CLARQ Report</h2>
+    <p class="subtitle">Choose your regions and intel. We'll tailor your updates accordingly.</p>
+    <form id="setup-form">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
 
-      checkboxes.forEach(cb => cb.disabled = false);
+      <label for="job">Job Title (optional):</label>
+      <input type="text" id="job" name="job">
 
-      const checked = Array.from(checkboxes).filter(cb => cb.checked);
+      <div class="checkbox-group">
+        <strong>Which countries or regions are most relevant to your business?</strong><br>
+        <label><input type="checkbox" name="topics" value="China"> China</label>
+        <label><input type="checkbox" name="topics" value="Vietnam"> Vietnam</label>
+        <label><input type="checkbox" name="topics" value="Thailand"> Thailand</label>
+        <label><input type="checkbox" name="topics" value="India"> India</label>
+        <label><input type="checkbox" name="topics" value="Indonesia"> Indonesia</label>
+        <label><input type="checkbox" name="topics" value="Mexico"> Mexico</label>
+        <label><input type="checkbox" name="topics" value="USA"> USA</label>
+        <label><input type="checkbox" name="topics" value="Europe"> Europe</label>
+      </div>
+
+      <div class="checkbox-group">
+        <strong>What types of trade intel are you most interested in?</strong><br>
+        <label><input type="checkbox" name="topics" value="Tariff updates"> Tariff updates</label>
+        <label><input type="checkbox" name="topics" value="Ocean freight rates"> Ocean freight rates</label>
+        <label><input type="checkbox" name="topics" value="Air cargo costs"> Air cargo costs</label>
+        <label><input type="checkbox" name="topics" value="Factory relocation news"> Factory relocation news</label>
+        <label><input type="checkbox" name="topics" value="Customs changes or delays"> Customs changes or delays</label>
+        <label><input type="checkbox" name="topics" value="iPhone supply chain rumors"> iPhone supply chain rumors</label>
+      </div>
+
+      <div class="plan-group">
+        <strong>Choose your plan to get started:</strong><br>
+        <label><input type="radio" name="plan" value="Basic" checked> Basic (Free – 3 topics, 3 articles/week)</label>
+        <label><input type="radio" name="plan" value="Pro"> Pro ($1/mo – 5 topics, 5 articles weekdays)</label>
+        <label><input type="radio" name="plan" value="Elite"> Elite ($10/mo – 10 topics, concierge delivery)</label>
+      </div>
+
+      <button type="submit" class="submit-btn">📤 Send My First Report</button>
+    </form>
+    <div class="footer">
+      CLARQ™ by GWC Company | Global Ops Intel with AI ⚡<br>
+      Need a topic not listed? <a href="mailto:hello@clarq.ai">Email us for custom builds</a>
+    </div>
+  </div>
+
+  <script>
+    const planRadios = document.querySelectorAll('input[name="plan"]');
+    const topicCheckboxes = document.querySelectorAll('input[name="topics"]');
+    const submitBtn = document.querySelector('.submit-btn');
+
+    function getLimit() {
+      const selectedPlan = document.querySelector('input[name="plan"]:checked').value;
+      return selectedPlan === 'Elite' ? 10 : selectedPlan === 'Pro' ? 5 : 3;
+    }
+
+    function enforceLimit() {
+      const limit = getLimit();
+      const checked = Array.from(topicCheckboxes).filter(cb => cb.checked);
+
+      topicCheckboxes.forEach(cb => cb.disabled = false);
       if (checked.length >= limit) {
-        checkboxes.forEach(cb => {
+        topicCheckboxes.forEach(cb => {
           if (!cb.checked) cb.disabled = true;
         });
       }
     }
 
-    function enforcePlanLimits() {
-      const plan = document.querySelector('input[name="plan"]:checked').value;
-      const limits = { basic: 3, pro: 5, elite: 10 };
-      const limit = limits[plan];
-      const checkboxes = document.querySelectorAll('input[name="topics"]');
+    function validateSelection() {
+      const limit = getLimit();
+      const checked = Array.from(topicCheckboxes).filter(cb => cb.checked).length;
 
-      const checked = Array.from(checkboxes).filter(cb => cb.checked);
-      if (checked.length > limit) {
-        alert(`Your plan allows up to ${limit} topics. Please deselect some.`);
-        return false;
+      if (checked > limit) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = `⚠️ Reduce topics to ${limit} or less`;
+        submitBtn.style.backgroundColor = '#999';
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '📤 Send My First Report';
+        submitBtn.style.backgroundColor = '#003366';
       }
-      return true;
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('input[name="plan"]').forEach(el => {
-        el.addEventListener('change', () => limitCheckboxes(el.value));
-      });
-
-      document.querySelectorAll('input[name="topics"]').forEach(cb => {
-        cb.addEventListener('change', () => {
-          const plan = document.querySelector('input[name="plan"]:checked').value;
-          limitCheckboxes(plan);
-        });
-      });
-
-      document.getElementById('setup-form').addEventListener('submit', (e) => {
-        if (!enforcePlanLimits()) e.preventDefault();
-      });
-
-      limitCheckboxes(document.querySelector('input[name="plan"]:checked').value);
+    planRadios.forEach(r => r.addEventListener('change', () => {
+      enforceLimit();
+      validateSelection();
+    }));
+    topicCheckboxes.forEach(cb => cb.addEventListener('change', validateSelection));
+    window.addEventListener('load', () => {
+      enforceLimit();
+      validateSelection();
     });
   </script>
-  <style>
-    body {
-      background-color: #f8f9fa;
-      font-family: sans-serif;
-      padding: 2rem;
-      color: #333;
-    }
-    .plan-section {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      margin-bottom: 2rem;
-    }
-    .topic-checkbox {
-      margin-bottom: 0.5rem;
-    }
-  </style>
-</head>
-<body>
-  <h1 style="text-align: center; font-weight: bold; font-size: 2rem;">⚡️ Set Up Your CLARQ Feed</h1>
-  <form id="setup-form" method="POST" action="/submit">
-    <div class="plan-section">
-      <h2>Select Your Plan</h2>
-      <label><input type="radio" name="plan" value="basic" checked> Basic (Free): 3 topics, 3 articles, weekly</label><br>
-      <label><input type="radio" name="plan" value="pro"> Pro ($1/mo): 5 topics, 5 articles, weekdays</label><br>
-      <label><input type="radio" name="plan" value="elite"> Elite ($10/mo): 10 topics, 5 articles, customizable schedule</label>
-
-      <p class="mt-6 text-sm text-center text-gray-500">
-        Need a topic not listed? <a href="mailto:clark@gwccompany.com" class="text-blue-600 underline">Email us for custom builds</a>
-      </p>
-    </div>
-
-    <div class="plan-section">
-      <h2>Select Topics</h2>
-      <div class="topic-checkbox"><label><input type="checkbox" name="topics" value="china"> China</label></div>
-      <div class="topic-checkbox"><label><input type="checkbox" name="topics" value="vietnam"> Vietnam</label></div>
-      <div class="topic-checkbox"><label><input type="checkbox" name="topics" value="indonesia"> Indonesia</label></div>
-      <div class="topic-checkbox"><label><input type="checkbox" name="topics" value="thailand"> Thailand</label></div>
-      <div class="topic-checkbox"><label><input type="checkbox" name="topics" value="india"> India</label></div>
-      <div class="topic-checkbox"><label><input type="checkbox" name="topics" value="mexico"> Mexico</label></div>
-      <div class="topic-checkbox"><label><input type="checkbox" name="topics" value="usa"> USA</label></div>
-      <div class="topic-checkbox"><label><input type="checkbox" name="topics" value="ocean"> Ocean Freight</label></div>
-      <div class="topic-checkbox"><label><input type="checkbox" name="topics" value="air"> Air Freight</label></div>
-      <div class="topic-checkbox"><label><input type="checkbox" name="topics" value="tariff"> Tariff News</label></div>
-      <div class="topic-checkbox"><label><input type="checkbox" name="topics" value="factory"> Factory Movement</label></div>
-    </div>
-
-    <div style="text-align: center;">
-      <input type="submit" value="Submit" style="padding: 10px 20px; font-size: 1rem; background: black; color: white; border: none; border-radius: 6px;">
-    </div>
-  </form>
-
-  <footer style="text-align: center; font-size: 12px; color: gray; margin-top: 3rem;">
-    © 2025 CLARQ by GWC Co
-  </footer>
 </body>
 </html>
