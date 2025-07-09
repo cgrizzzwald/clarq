@@ -88,6 +88,10 @@
       border-left: 4px solid #004aad;
       font-size: 0.95rem;
       color: #2a2a2a;
+      display: none;
+    }
+    .sample.active {
+      display: block;
     }
     .sample a {
       font-weight: bold;
@@ -137,7 +141,7 @@
     </ul>
   </section>
 
-  <section class="sample">
+  <section class="sample active">
     <a href="https://asia.nikkei.com/Business/Tech/Samsung-expands-Vietnam-investment-amid-China-shift" target="_blank">
       🇻🇳 Samsung expands Vietnam investment amid China shift
     </a>
@@ -174,5 +178,16 @@
   <footer>
     CLARQ™ | Global Intelligence for Modern Operators ⚡
   </footer>
+
+  <script>
+    const samples = document.querySelectorAll('.sample');
+    let index = 0;
+
+    setInterval(() => {
+      samples[index].classList.remove('active');
+      index = (index + 1) % samples.length;
+      samples[index].classList.add('active');
+    }, 6000);
+  </script>
 </body>
 </html>
