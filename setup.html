@@ -4,84 +4,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CLARQ Setup</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
   <style>
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f9fafb;
-      margin: 0;
-      padding: 2rem;
-      color: #1a1a1a;
-    }
-    .container {
+      font-family: Arial, sans-serif;
       max-width: 600px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 2rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-    }
-    h1 {
-      font-size: 1.75rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    p {
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
-      color: #333;
+      margin: auto;
+      padding: 20px;
     }
     label {
+      font-weight: bold;
+      margin-top: 20px;
       display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
     }
-    .checkbox-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
+    .checkbox-group, .radio-group {
+      margin-top: 10px;
     }
-    input[type="submit"] {
-      background: #1c1c1c;
+    .checkbox-group input, .radio-group input {
+      margin-right: 10px;
+    }
+    .form-section {
+      margin-bottom: 30px;
+    }
+    button {
+      background-color: #003249;
       color: #fff;
-      padding: 0.75rem 1.5rem;
       border: none;
-      border-radius: 4px;
-      font-size: 1rem;
-      font-weight: 600;
+      padding: 10px 20px;
       cursor: pointer;
-    }
-    input[type="submit"]:hover {
-      background: #333;
-    }
-    .note {
-      font-size: 0.85rem;
-      color: #666;
+      font-weight: bold;
+      border-radius: 4px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Customize Your Free Feed</h1>
-    <p>Select up to <strong>2 topics</strong> to tailor your daily CLARQ Strike Report.</p>
+  <h2>🔧 Set Up Your CLARQ Report</h2>
+  <form action="/submit-setup" method="post">
 
-    <form action="/api/send-basic-report" method="POST">
-      <label for="email">Email Address</label>
-      <input type="email" name="email" id="email" required style="padding: 0.5rem; font-size: 1rem; width: 100%; margin-bottom: 1rem;">
-
+    <div class="form-section">
+      <label>Which countries or regions are most relevant to your business?</label>
       <div class="checkbox-group">
-        <label><input type="checkbox" name="topics" value="China US trade tensions"> China–US Trade</label>
-        <label><input type="checkbox" name="topics" value="Vietnam sourcing trends"> Vietnam Sourcing</label>
-        <label><input type="checkbox" name="topics" value="India global trade rise"> India Trade</label>
-        <label><input type="checkbox" name="topics" value="customs enforcement alerts"> Customs Alerts</label>
-        <label><input type="checkbox" name="topics" value="factory relocation trends"> Factory Relocation</label>
-        <label><input type="checkbox" name="topics" value="international tariffs"> Tariff Updates</label>
+        <input type="checkbox" name="topics" value="china">China<br>
+        <input type="checkbox" name="topics" value="vietnam">Vietnam<br>
+        <input type="checkbox" name="topics" value="thailand">Thailand<br>
+        <input type="checkbox" name="topics" value="india">India<br>
+        <input type="checkbox" name="topics" value="indonesia">Indonesia<br>
+        <input type="checkbox" name="topics" value="mexico">Mexico<br>
+        <input type="checkbox" name="topics" value="usa">USA<br>
+        <input type="checkbox" name="topics" value="europe">Europe<br>
       </div>
+    </div>
 
-      <input type="submit" value="Get My Free Report">
-      <p class="note">We’ll send a live report to your inbox and include you in the free daily CLARQ feed.</p>
-    </form>
-  </div>
+    <div class="form-section">
+      <label>What types of trade intel are you most interested in?</label>
+      <div class="checkbox-group">
+        <input type="checkbox" name="tags" value="tariffs">Tariff updates<br>
+        <input type="checkbox" name="tags" value="ocean">Ocean freight rates<br>
+        <input type="checkbox" name="tags" value="air">Air cargo costs<br>
+        <input type="checkbox" name="tags" value="factory">Factory relocation news<br>
+        <input type="checkbox" name="tags" value="customs">Customs changes or delays<br>
+        <input type="checkbox" name="tags" value="iphone">iPhone supply chain rumors<br>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <label>Choose your plan to get started:</label>
+      <div class="radio-group">
+        <input type="radio" name="plan" value="basic" checked> Basic (Free)<br>
+        <input type="radio" name="plan" value="pro"> Pro ($29/mo – Priority Report + Custom Alerts)<br>
+        <input type="radio" name="plan" value="elite"> Elite ($89/mo – Concierge Intel)<br>
+      </div>
+    </div>
+
+    <button type="submit">📩 Send My First Report</button>
+  </form>
 </body>
 </html>
