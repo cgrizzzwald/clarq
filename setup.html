@@ -3,96 +3,104 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Set Up Your CLARQ Report</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>CLARQ | Setup</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #121212;
-      color: #f5f5f5;
       font-family: 'Inter', sans-serif;
+      background-color: #f7f9fc;
+      color: #1a1a1a;
       margin: 0;
-      padding: 0;
+      padding: 2rem;
     }
     .container {
       max-width: 600px;
-      margin: 60px auto;
-      padding: 30px;
-      background-color: #1e1e1e;
+      margin: 2rem auto;
+      background: white;
+      padding: 2.5rem;
       border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
     }
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
+    h2 {
+      font-size: 1.75rem;
+      margin-bottom: 1.25rem;
+      text-align: center;
+    }
+    fieldset {
+      border: none;
+      margin-bottom: 2rem;
+    }
+    legend {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
     }
     label {
       display: block;
-      margin-bottom: 10px;
-      font-weight: 500;
+      margin: 0.5rem 0;
     }
-    .section-title {
-      font-weight: 600;
-      margin: 20px 0 10px;
-    }
-    input[type="checkbox"],
-    input[type="radio"] {
-      margin-right: 10px;
-    }
-    .submit-btn {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 12px 24px;
-      font-size: 16px;
-      background-color: #0077b6;
+    button {
+      background-color: #003366;
       color: white;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      transition: background 0.3s;
+      font-size: 1rem;
+      width: 100%;
     }
-    .submit-btn:hover {
-      background-color: #005f87;
+    button:hover {
+      background-color: #002b5e;
     }
     footer {
-      margin-top: 40px;
+      margin-top: 2rem;
       text-align: center;
-      font-size: 13px;
+      font-size: 0.85rem;
       color: #888;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>🛠️ Set Up Your CLARQ Report</h1>
+    <h2>🛠️ Set Up Your CLARQ Report</h2>
 
-    <div class="section-title">Which countries or regions are most relevant to your business?</div>
-    <label><input type="checkbox" name="regions" value="China">China</label>
-    <label><input type="checkbox" name="regions" value="Vietnam">Vietnam</label>
-    <label><input type="checkbox" name="regions" value="Thailand">Thailand</label>
-    <label><input type="checkbox" name="regions" value="India">India</label>
-    <label><input type="checkbox" name="regions" value="Indonesia">Indonesia</label>
-    <label><input type="checkbox" name="regions" value="Mexico">Mexico</label>
-    <label><input type="checkbox" name="regions" value="USA">USA</label>
-    <label><input type="checkbox" name="regions" value="Europe">Europe</label>
+    <form action="/submit-setup" method="POST">
+      <fieldset>
+        <legend>Which countries or regions are most relevant to your business?</legend>
+        <label><input type="checkbox" name="regions" value="China"> China</label>
+        <label><input type="checkbox" name="regions" value="Vietnam"> Vietnam</label>
+        <label><input type="checkbox" name="regions" value="Thailand"> Thailand</label>
+        <label><input type="checkbox" name="regions" value="India"> India</label>
+        <label><input type="checkbox" name="regions" value="Indonesia"> Indonesia</label>
+        <label><input type="checkbox" name="regions" value="Mexico"> Mexico</label>
+        <label><input type="checkbox" name="regions" value="USA"> USA</label>
+        <label><input type="checkbox" name="regions" value="Europe"> Europe</label>
+      </fieldset>
 
-    <div class="section-title">What types of trade intel are you most interested in?</div>
-    <label><input type="checkbox" name="topics" value="Tariff updates">Tariff updates</label>
-    <label><input type="checkbox" name="topics" value="Ocean freight rates">Ocean freight rates</label>
-    <label><input type="checkbox" name="topics" value="Air cargo costs">Air cargo costs</label>
-    <label><input type="checkbox" name="topics" value="Factory relocation news">Factory relocation news</label>
-    <label><input type="checkbox" name="topics" value="Customs changes or delays">Customs changes or delays</label>
-    <label><input type="checkbox" name="topics" value="iPhone supply chain rumors">iPhone supply chain rumors</label>
+      <fieldset>
+        <legend>What types of trade intel are you most interested in?</legend>
+        <label><input type="checkbox" name="topics" value="Tariff updates"> Tariff updates</label>
+        <label><input type="checkbox" name="topics" value="Ocean freight rates"> Ocean freight rates</label>
+        <label><input type="checkbox" name="topics" value="Air cargo costs"> Air cargo costs</label>
+        <label><input type="checkbox" name="topics" value="Factory relocation news"> Factory relocation news</label>
+        <label><input type="checkbox" name="topics" value="Customs changes or delays"> Customs changes or delays</label>
+        <label><input type="checkbox" name="topics" value="iPhone supply chain rumors"> iPhone supply chain rumors</label>
+      </fieldset>
 
-    <div class="section-title">Choose your plan to get started:</div>
-    <label><input type="radio" name="plan" value="basic" checked> Basic (Free)</label>
-    <label><input type="radio" name="plan" value="pro"> Pro ($29/mo – Priority Report + Custom Alerts)</label>
-    <label><input type="radio" name="plan" value="elite"> Elite ($89/mo – Concierge Intel)</label>
+      <fieldset>
+        <legend>Choose your plan to get started:</legend>
+        <label><input type="radio" name="plan" value="Basic" checked> Basic (Free)</label>
+        <label><input type="radio" name="plan" value="Pro"> Pro ($1/mo – Priority Report + Custom Alerts)</label>
+        <label><input type="radio" name="plan" value="Elite"> Elite ($10/mo – Concierge Intel)</label>
+      </fieldset>
 
-    <button class="submit-btn">📬 Send My First Report</button>
+      <button type="submit"><i class="fas fa-paper-plane"></i> Send My First Report</button>
+    </form>
 
     <footer>
-      CLARQ™ | Global Ops Intel with AI ⚡️<br>
-      <a href="https://gwccompany.us7.list-manage.com/unsubscribe?u=594179b93cb39e0ec357aab60&id=d4ae44f75c" style="color: #888;">Unsubscribe</a>
+      <hr style="margin-top: 2rem;">
+      <small>CLARQ™ | Global Ops Intel with AI ⚡️</small>
     </footer>
   </div>
 </body>
