@@ -1,108 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CLARQ | Setup</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Set Up Your CLARQ Report</title>
   <style>
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f7f9fc;
-      color: #1a1a1a;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: #f9fbfd;
       margin: 0;
-      padding: 2rem;
+      padding: 40px 20px;
+      color: #222;
     }
     .container {
       max-width: 600px;
-      margin: 2rem auto;
       background: white;
-      padding: 2.5rem;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      padding: 40px;
+      border-radius: 8px;
+      margin: auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
-    h2 {
-      font-size: 1.75rem;
-      margin-bottom: 1.25rem;
-      text-align: center;
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
     }
-    fieldset {
-      border: none;
-      margin-bottom: 2rem;
-    }
-    legend {
-      font-weight: 600;
-      margin-bottom: 0.75rem;
+    h1 span {
+      margin-right: 8px;
     }
     label {
       display: block;
-      margin: 0.5rem 0;
+      margin: 8px 0;
     }
-    button {
+    .section {
+      margin-bottom: 30px;
+    }
+    input[type="checkbox"], input[type="radio"] {
+      margin-right: 10px;
+    }
+    .submit-btn {
       background-color: #003366;
       color: white;
-      font-weight: 600;
-      padding: 0.75rem 1.5rem;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      font-size: 1rem;
       width: 100%;
     }
-    button:hover {
-      background-color: #002b5e;
-    }
-    footer {
-      margin-top: 2rem;
+    .footer {
+      margin-top: 40px;
       text-align: center;
-      font-size: 0.85rem;
+      font-size: 12px;
       color: #888;
+    }
+    .note {
+      font-size: 13px;
+      margin-top: 12px;
+      color: #555;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>🛠️ Set Up Your CLARQ Report</h2>
+    <h1>🛠️ Set Up Your CLARQ Report</h1>
 
-    <form action="/submit-setup" method="POST">
-      <fieldset>
-        <legend>Which countries or regions are most relevant to your business?</legend>
-        <label><input type="checkbox" name="regions" value="China"> China</label>
-        <label><input type="checkbox" name="regions" value="Vietnam"> Vietnam</label>
-        <label><input type="checkbox" name="regions" value="Thailand"> Thailand</label>
-        <label><input type="checkbox" name="regions" value="India"> India</label>
-        <label><input type="checkbox" name="regions" value="Indonesia"> Indonesia</label>
-        <label><input type="checkbox" name="regions" value="Mexico"> Mexico</label>
-        <label><input type="checkbox" name="regions" value="USA"> USA</label>
-        <label><input type="checkbox" name="regions" value="Europe"> Europe</label>
-      </fieldset>
+    <div class="section">
+      <strong>Which countries or regions are most relevant to your business?</strong>
+      <label><input type="checkbox" name="topic" value="China" /> China</label>
+      <label><input type="checkbox" name="topic" value="Vietnam" /> Vietnam</label>
+      <label><input type="checkbox" name="topic" value="Thailand" /> Thailand</label>
+      <label><input type="checkbox" name="topic" value="India" /> India</label>
+      <label><input type="checkbox" name="topic" value="Indonesia" /> Indonesia</label>
+      <label><input type="checkbox" name="topic" value="Mexico" /> Mexico</label>
+      <label><input type="checkbox" name="topic" value="USA" /> USA</label>
+      <label><input type="checkbox" name="topic" value="Europe" /> Europe</label>
+    </div>
 
-      <fieldset>
-        <legend>What types of trade intel are you most interested in?</legend>
-        <label><input type="checkbox" name="topics" value="Tariff updates"> Tariff updates</label>
-        <label><input type="checkbox" name="topics" value="Ocean freight rates"> Ocean freight rates</label>
-        <label><input type="checkbox" name="topics" value="Air cargo costs"> Air cargo costs</label>
-        <label><input type="checkbox" name="topics" value="Factory relocation news"> Factory relocation news</label>
-        <label><input type="checkbox" name="topics" value="Customs changes or delays"> Customs changes or delays</label>
-        <label><input type="checkbox" name="topics" value="iPhone supply chain rumors"> iPhone supply chain rumors</label>
-      </fieldset>
+    <div class="section">
+      <strong>What types of trade intel are you most interested in?</strong>
+      <label><input type="checkbox" name="topic" value="Tariff updates" /> Tariff updates</label>
+      <label><input type="checkbox" name="topic" value="Ocean freight rates" /> Ocean freight rates</label>
+      <label><input type="checkbox" name="topic" value="Air cargo costs" /> Air cargo costs</label>
+      <label><input type="checkbox" name="topic" value="Factory relocation news" /> Factory relocation news</label>
+      <label><input type="checkbox" name="topic" value="Customs changes or delays" /> Customs changes or delays</label>
+      <label><input type="checkbox" name="topic" value="iPhone supply chain rumors" /> iPhone supply chain rumors</label>
+    </div>
 
-      <fieldset>
-        <legend>Choose your plan to get started:</legend>
-        <label><input type="radio" name="plan" value="Basic" checked> Basic (Free)</label>
-        <label><input type="radio" name="plan" value="Pro"> Pro ($1/mo – Priority Report + Custom Alerts)</label>
-        <label><input type="radio" name="plan" value="Elite"> Elite ($10/mo – Concierge Intel)</label>
-      </fieldset>
+    <div class="section">
+      <strong>Choose your plan to get started:</strong>
+      <label><input type="radio" name="plan" value="basic" checked /> Basic (Free) – 3 topics, 3 articles per topic, weekly</label>
+      <label><input type="radio" name="plan" value="pro" /> Pro ($1/mo) – 5 topics, 5 articles per topic, weekdays</label>
+      <label><input type="radio" name="plan" value="elite" /> Elite ($10/mo) – 10 topics, 5 articles per topic, custom delivery</label>
+    </div>
 
-      <button type="submit"><i class="fas fa-paper-plane"></i> Send My First Report</button>
-    </form>
+    <p class="note">Need a topic not listed? <a href="https://clarq.ai/contact" target="_blank">Email us for custom builds</a>.</p>
 
-    <footer>
-  <small style="color:#888;">
-    CLARQ™ by GWC Company | Global Ops Intel with AI ⚡️
-  </small>
-</footer>
+    <button class="submit-btn">📤 Send My First Report</button>
+
+    <div class="footer">
+      CLARQ™ by GWC Company | Global Ops Intel with AI ⚡️
+    </div>
   </div>
+
+  <script>
+    const planRadios = document.querySelectorAll('input[name="plan"]');
+    const topicCheckboxes = document.querySelectorAll('input[name="topic"]');
+
+    function getLimit() {
+      const selected = document.querySelector('input[name="plan"]:checked').value;
+      if (selected === 'basic') return 3;
+      if (selected === 'pro') return 5;
+      if (selected === 'elite') return 10;
+      return 3;
+    }
+
+    function enforceLimit() {
+      const limit = getLimit();
+      const checked = Array.from(topicCheckboxes).filter(c => c.checked);
+      topicCheckboxes.forEach(box => {
+        box.disabled = checked.length >= limit && !box.checked;
+      });
+    }
+
+    planRadios.forEach(radio => radio.addEventListener('change', enforceLimit));
+    topicCheckboxes.forEach(box => box.addEventListener('change', enforceLimit));
+    window.addEventListener('load', enforceLimit);
+  </script>
 </body>
 </html>
