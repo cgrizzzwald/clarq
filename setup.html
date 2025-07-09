@@ -3,106 +3,126 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CLARQ | Setup</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>CLARQ Setup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #f7f9fc;
-      color: #1a1a1a;
+      background-color: #111;
+      color: #f5f5f5;
+      padding: 40px;
       margin: 0;
-      padding: 2rem;
     }
-    .container {
-      max-width: 600px;
-      margin: 2rem auto;
-      background: white;
-      padding: 2.5rem;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    }
-    h2 {
-      font-size: 1.75rem;
-      margin-bottom: 1.25rem;
+    h1 {
       text-align: center;
+      font-size: 2em;
+      margin-bottom: 10px;
     }
-    fieldset {
-      border: none;
-      margin-bottom: 2rem;
+    p.subheading {
+      text-align: center;
+      font-size: 1em;
+      margin-bottom: 40px;
+      color: #aaa;
     }
-    legend {
-      font-weight: 600;
-      margin-bottom: 0.75rem;
+    form {
+      max-width: 600px;
+      margin: auto;
+      background-color: #1c1c1c;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.5);
     }
     label {
       display: block;
-      margin: 0.5rem 0;
-    }
-    button {
-      background-color: #003366;
-      color: white;
+      margin-bottom: 15px;
       font-weight: 600;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 1rem;
-      width: 100%;
     }
-    button:hover {
-      background-color: #002b5e;
+    input[type="text"], input[type="email"], select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      background-color: #222;
+      color: #fff;
+      border: 1px solid #444;
+      border-radius: 6px;
+    }
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .checkbox-group label {
+      background: #222;
+      border: 1px solid #444;
+      border-radius: 6px;
+      padding: 10px;
+      cursor: pointer;
+      flex: 1 1 45%;
+    }
+    input[type="checkbox"] {
+      margin-right: 8px;
+    }
+    input[type="submit"] {
+      background-color: #ffcc00;
+      border: none;
+      color: #000;
+      padding: 12px 20px;
+      text-align: center;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s ease;
+    }
+    input[type="submit"]:hover {
+      background-color: #e6b800;
     }
     footer {
-      margin-top: 2rem;
+      margin-top: 40px;
       text-align: center;
-      font-size: 0.85rem;
       color: #888;
+      font-size: 0.85em;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>🛠️ Set Up Your CLARQ Report</h2>
-
-    <form action="/submit-setup" method="POST">
-      <fieldset>
-        <legend>Which countries or regions are most relevant to your business?</legend>
-        <label><input type="checkbox" name="regions" value="China"> China</label>
-        <label><input type="checkbox" name="regions" value="Vietnam"> Vietnam</label>
-        <label><input type="checkbox" name="regions" value="Thailand"> Thailand</label>
-        <label><input type="checkbox" name="regions" value="India"> India</label>
-        <label><input type="checkbox" name="regions" value="Indonesia"> Indonesia</label>
-        <label><input type="checkbox" name="regions" value="Mexico"> Mexico</label>
-        <label><input type="checkbox" name="regions" value="USA"> USA</label>
-        <label><input type="checkbox" name="regions" value="Europe"> Europe</label>
-      </fieldset>
-
-      <fieldset>
-        <legend>What types of trade intel are you most interested in?</legend>
-        <label><input type="checkbox" name="topics" value="Tariff updates"> Tariff updates</label>
-        <label><input type="checkbox" name="topics" value="Ocean freight rates"> Ocean freight rates</label>
-        <label><input type="checkbox" name="topics" value="Air cargo costs"> Air cargo costs</label>
-        <label><input type="checkbox" name="topics" value="Factory relocation news"> Factory relocation news</label>
-        <label><input type="checkbox" name="topics" value="Customs changes or delays"> Customs changes or delays</label>
-        <label><input type="checkbox" name="topics" value="iPhone supply chain rumors"> iPhone supply chain rumors</label>
-      </fieldset>
-
-      <fieldset>
-        <legend>Choose your plan to get started:</legend>
-        <label><input type="radio" name="plan" value="Basic" checked> Basic (Free)</label>
-        <label><input type="radio" name="plan" value="Pro"> Pro ($1/mo – Priority Report + Custom Alerts)</label>
-        <label><input type="radio" name="plan" value="Elite"> Elite ($10/mo – Concierge Intel)</label>
-      </fieldset>
-
-      <button type="submit"><i class="fas fa-paper-plane"></i> Send My First Report</button>
-    </form>
-
-    <footer>
-  <small style="color:#888;">
+  <h1>Set Up Your Free Report</h1>
+  <p class="subheading">Choose up to 3 topics for your Basic CLARQ plan</p>
+  <form method="post" action="/submit-setup">
+    <label>Email:
+      <input type="email" name="email" required>
+    </label>
+    <label>Job Title (optional):
+      <input type="text" name="job_title">
+    </label>
+    <label>Select Your Topics (up to 3 for Basic Plan):</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" name="topics" value="China"> China</label>
+      <label><input type="checkbox" name="topics" value="Vietnam"> Vietnam</label>
+      <label><input type="checkbox" name="topics" value="India"> India</label>
+      <label><input type="checkbox" name="topics" value="Indonesia"> Indonesia</label>
+      <label><input type="checkbox" name="topics" value="Mexico"> Mexico</label>
+      <label><input type="checkbox" name="topics" value="Thailand"> Thailand</label>
+      <label><input type="checkbox" name="topics" value="Tariff News"> Tariff News</label>
+      <label><input type="checkbox" name="topics" value="Ocean Rates"> Ocean Rates</label>
+      <label><input type="checkbox" name="topics" value="Air Freight"> Air Freight</label>
+      <label><input type="checkbox" name="topics" value="US Manufacturing"> US Manufacturing</label>
+    </div>
+    <input type="submit" value="Submit">
+  </form>
+  <footer>
     CLARQ™ by GWC Company | Global Ops Intel with AI ⚡️
-  </small>
-</footer>
-  </div>
+  </footer>
+  <script>
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(e) {
+      const checked = [...checkboxes].filter(cb => cb.checked);
+      if (checked.length > 3) {
+        e.preventDefault();
+        alert('Basic plan allows up to 3 topics. Please deselect extras or upgrade your plan.');
+      }
+    });
+  </script>
 </body>
 </html>
