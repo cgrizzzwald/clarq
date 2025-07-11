@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CLARQ | Global Ops Intel</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <link rel="icon" type="image/png" href="/static/favicon.png" />
+  <script defer src="/static/formLogic.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <h1><span class="logo-flash">⚡</span> CLARQ: Global Ops Intel</h1>
+      <p class="tagline">Smarter. Faster. Custom. Your morning strike briefing powered by AI.</p>
+    </header>
+
+    <section class="teaser">
+      <h2>🧠 Sample Intel</h2>
+      <div class="rotating-feed">
+        <div class="teaser-card">🇻🇳 Vietnam quietly cutting import taxes for EU buyers...</div>
+        <div class="teaser-card">🚢 China–US container rate spikes 13% overnight...</div>
+        <div class="teaser-card">📉 India factory subsidies paused — potential Q4 ripple...</div>
+        <div class="teaser-card">📦 Tariff loophole reported for phone case plastics...</div>
+      </div>
+      <p class="disclaimer">(Live sample. Subscribe below to pick your own topics.)</p>
+    </section>
+
+    <form method="POST" action="/submit" class="signup-form">
+      <h2>Set Up Your CLARQ Feed</h2>
+
+      <div class="plan-box">
+        <h3>Select Your Plan</h3>
+        <label><input type="radio" name="plan" value="Basic" checked> Basic (Free): 3 topics, 3 articles, weekly</label><br>
+        <label><input type="radio" name="plan" value="Pro"> Pro ($1/mo): 5 topics, 5 articles, weekdays</label><br>
+        <label><input type="radio" name="plan" value="Elite"> Elite ($10/mo): 10 topics, 5 articles, customizable schedule</label>
+        <p class="custom-topic-note">Need a topic not listed? <a href="mailto:support@clarq.ai">Email us for custom builds</a></p>
+      </div>
+
+      <div class="topic-box">
+        <h3>Select Topics</h3>
+        <div class="topic-grid">
+          <label><input type="checkbox" name="topics" value="China"> China</label>
+          <label><input type="checkbox" name="topics" value="Vietnam"> Vietnam</label>
+          <label><input type="checkbox" name="topics" value="Indonesia"> Indonesia</label>
+          <label><input type="checkbox" name="topics" value="Thailand"> Thailand</label>
+          <label><input type="checkbox" name="topics" value="India"> India</label>
+          <label><input type="checkbox" name="topics" value="Mexico"> Mexico</label>
+          <label><input type="checkbox" name="topics" value="USA"> USA</label>
+          <label><input type="checkbox" name="topics" value="Ocean Freight"> Ocean Freight</label>
+          <label><input type="checkbox" name="topics" value="Air Freight"> Air Freight</label>
+          <label><input type="checkbox" name="topics" value="Tariff News"> Tariff News</label>
+          <label><input type="checkbox" name="topics" value="Factory Movement"> Factory Movement</label>
+          <label><input type="checkbox" name="topics" value="Customs changes"> Customs changes or delays</label>
+          <label><input type="checkbox" name="topics" value="iPhone rumors"> iPhone supply chain rumors</label>
+        </div>
+      </div>
+
+      <div class="email-box">
+        <h3>Your Email</h3>
+        <input type="email" name="email" placeholder="you@company.com" required />
+      </div>
+
+      <button type="submit" class="submit-btn">📤 Send My First Report</button>
+    </form>
+
+    <footer class="footer">
+      <hr />
+      <p>CLARQ™ by GWC Company | Global Ops Intel with AI ⚡</p>
+    </footer>
+  </div>
+</body>
+</html>
