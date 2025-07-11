@@ -1,139 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CLARQ™ | Global Ops Intel with AI ⚡</title>
-  <link rel="stylesheet" href="/static/style.css">
-  <link rel="icon" href="/static/favicon.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CLARQ Signup</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f9f9;
-      color: #111;
-      padding: 40px;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
     }
-    .logo {
-      width: 180px;
-      margin: 0 auto 30px;
-      display: block;
-    }
-    .headline {
-      font-size: 2em;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .summary {
-      font-size: 1em;
-      max-width: 800px;
-      margin: 0 auto 40px;
-      text-align: center;
-    }
-    form {
-      max-width: 800px;
-      margin: 0 auto;
+    .container {
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 30px;
       background: white;
       border-radius: 12px;
-      padding: 30px;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 0 14px rgba(0,0,0,0.05);
     }
-    .plan-group, .topics-group {
-      margin-bottom: 25px;
-    }
-    .plan-group label, .topics-group label {
+    .logo {
+      width: 140px;
       display: block;
-      margin: 8px 0;
+      margin: 0 auto 20px;
+    }
+    h1 {
+      font-size: 28px;
+      text-align: center;
+      color: #222;
+    }
+    p.description {
+      text-align: center;
+      font-size: 15px;
+      margin-bottom: 30px;
+    }
+    .plans {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .plan-box {
+      flex: 1;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 0 5px;
+      cursor: pointer;
+      text-align: center;
+      background-color: #fafafa;
+      transition: all 0.2s ease;
+    }
+    .plan-box:hover {
+      background-color: #f0f0f0;
+      border-color: #888;
+    }
+    .plan-box input {
+      display: none;
+    }
+    .plan-box.selected {
+      border-color: #333;
+      background-color: #e9ecef;
+    }
+    .topic-group {
+      margin-top: 30px;
+    }
+    .topics {
+      columns: 2;
+      margin: 20px 0;
+    }
+    .topics label {
+      display: block;
+      margin: 6px 0;
     }
     .submit-btn {
-      padding: 12px 25px;
+      display: block;
+      width: 100%;
+      padding: 12px;
       font-size: 16px;
-      border: none;
-      background: #222;
+      background-color: #111;
       color: white;
+      border: none;
+      border-radius: 8px;
       cursor: pointer;
-      border-radius: 6px;
+      margin-top: 20px;
     }
     .footer {
-      margin-top: 40px;
-      font-size: 12px;
-      color: #999;
       text-align: center;
+      font-size: 12px;
+      color: #777;
+      margin-top: 40px;
     }
-    .email-cta {
-      margin: 10px 0 25px;
-      font-size: 13px;
+    .custom-topic {
+      text-align: center;
+      margin: 20px 0 10px;
     }
   </style>
 </head>
-
 <body>
-  <img src="/static/CLARQ_new_logo.jpeg" alt="CLARQ Logo" class="logo">
-  <div class="headline">Smart Global Operations News Delivered</div>
-  <div class="summary">
-    TL;DR for the world of trade, tariffs, logistics, and manufacturing. CLARQ monitors breaking news across global supply chains and delivers real summaries of what matters — no fluff. Choose your topics, get your insights.
-  </div>
+  <div class="container">
+    <img src="/static/CLARQ_new_logo.png" alt="CLARQ Logo" class="logo"/>
+    <h1>Get Smart Intel in Your Inbox</h1>
+    <p class="description">
+      Choose your plan, select your topics, and get global ops intel with AI. CLARQ gives you clear summaries of relevant business news — no fluff.
+    </p>
+    <form method="POST" action="/submit">
+      <div class="plans">
+        <label class="plan-box" id="plan-basic">
+          <input type="radio" name="plan" value="Basic" checked>
+          <strong>Basic</strong><br>
+          Free – 3 topics<br>
+          3 articles/week
+        </label>
+        <label class="plan-box" id="plan-pro">
+          <input type="radio" name="plan" value="Pro">
+          <strong>Pro</strong><br>
+          $1/mo – 5 topics<br>
+          5 articles weekdays
+        </label>
+        <label class="plan-box" id="plan-elite">
+          <input type="radio" name="plan" value="Elite">
+          <strong>Elite</strong><br>
+          $10/mo – 10 topics<br>
+          Concierge delivery
+        </label>
+      </div>
 
-  <form method="POST" action="/submit">
-    <div class="plan-group">
-      <strong>Choose your plan to get started:</strong><br>
-      <label><input type="radio" name="plan" value="Basic" checked> Basic (Free – 3 topics, 3 articles/week)</label>
-      <label><input type="radio" name="plan" value="Pro"> Pro ($1/mo – 5 topics, 5 articles, weekdays)</label>
-      <label><input type="radio" name="plan" value="Elite"> Elite ($10/mo – 10 topics, 10 articles, daily)</label>
+      <div class="topic-group">
+        <strong>Select up to 3 topics (based on plan):</strong>
+        <div class="topics">
+          <label><input type="checkbox" name="topics" value="China"> China</label>
+          <label><input type="checkbox" name="topics" value="Vietnam"> Vietnam</label>
+          <label><input type="checkbox" name="topics" value="Indonesia"> Indonesia</label>
+          <label><input type="checkbox" name="topics" value="India"> India</label>
+          <label><input type="checkbox" name="topics" value="Thailand"> Thailand</label>
+          <label><input type="checkbox" name="topics" value="Malaysia"> Malaysia</label>
+          <label><input type="checkbox" name="topics" value="Cambodia"> Cambodia</label>
+          <label><input type="checkbox" name="topics" value="Mexico"> Mexico</label>
+          <label><input type="checkbox" name="topics" value="US Policy"> US Policy</label>
+          <label><input type="checkbox" name="topics" value="Europe Trade"> Europe Trade</label>
+          <label><input type="checkbox" name="topics" value="Tariffs"> Tariffs</label>
+          <label><input type="checkbox" name="topics" value="Ocean Freight"> Ocean Freight</label>
+          <label><input type="checkbox" name="topics" value="Air Freight"> Air Freight</label>
+          <label><input type="checkbox" name="topics" value="Factory Moves"> Factory Moves</label>
+        </div>
+      </div>
+
+      <div class="custom-topic">
+        Need a topic not listed? <a href="mailto:support@clarq.ai">Email us for custom builds</a>
+      </div>
+
+      <button type="submit" class="submit-btn">📤 Send My First Report</button>
+    </form>
+
+    <div class="footer">
+      CLARQ™ by GWC Company | Global Ops Intel with AI ⚡
     </div>
-
-    <div class="topics-group">
-      <strong>Select your topics:</strong><br>
-      <label><input type="checkbox" name="topics" value="China"> China</label>
-      <label><input type="checkbox" name="topics" value="Vietnam"> Vietnam</label>
-      <label><input type="checkbox" name="topics" value="Indonesia"> Indonesia</label>
-      <label><input type="checkbox" name="topics" value="India"> India</label>
-      <label><input type="checkbox" name="topics" value="Mexico"> Mexico</label>
-      <label><input type="checkbox" name="topics" value="US"> US</label>
-      <label><input type="checkbox" name="topics" value="Thailand"> Thailand</label>
-      <label><input type="checkbox" name="topics" value="Cambodia"> Cambodia</label>
-      <label><input type="checkbox" name="topics" value="Trade Policy"> Trade Policy</label>
-      <label><input type="checkbox" name="topics" value="Tariffs"> Tariffs</label>
-      <label><input type="checkbox" name="topics" value="Ocean Rates"> Ocean Rates</label>
-      <label><input type="checkbox" name="topics" value="Air Freight"> Air Freight</label>
-      <label><input type="checkbox" name="topics" value="Factory Moves"> Factory Moves</label>
-      <label><input type="checkbox" name="topics" value="Red Sea"> Red Sea</label>
-    </div>
-
-    <div class="email-cta">
-      Need a topic not listed? <a href="mailto:support@clarq.ai">Email us for custom builds</a>
-    </div>
-
-    <button type="submit" class="submit-btn">📤 Send My First Report</button>
-  </form>
-
-  <div class="footer">
-    © 2025 CLARQ™ by GWC Company | Global Ops Intel with AI ⚡
   </div>
 
   <script>
-    const planRadios = document.querySelectorAll('input[name="plan"]');
-    const topicCheckboxes = document.querySelectorAll('input[name="topics"]');
+    const planBoxes = document.querySelectorAll('.plan-box');
+    const checkboxes = document.querySelectorAll('input[type="checkbox"][name="topics"]');
 
-    function updateTopicLimit() {
-      let selectedPlan = document.querySelector('input[name="plan"]:checked').value;
-      let maxTopics = selectedPlan === 'Elite' ? 10 : selectedPlan === 'Pro' ? 5 : 3;
-      let checked = Array.from(topicCheckboxes).filter(cb => cb.checked);
-
-      topicCheckboxes.forEach(cb => {
-        if (!cb.checked) cb.disabled = checked.length >= maxTopics;
+    function updateLimits(limit) {
+      let checkedCount = 0;
+      checkboxes.forEach(cb => {
+        cb.disabled = false;
+        if (cb.checked) checkedCount++;
       });
+      if (checkedCount >= limit) {
+        checkboxes.forEach(cb => {
+          if (!cb.checked) cb.disabled = true;
+        });
+      }
     }
 
-    planRadios.forEach(r => r.addEventListener('change', () => {
-      topicCheckboxes.forEach(cb => cb.checked = false);
-      updateTopicLimit();
-    }));
+    planBoxes.forEach(box => {
+      box.addEventListener('click', () => {
+        planBoxes.forEach(b => b.classList.remove('selected'));
+        box.classList.add('selected');
+        box.querySelector('input[type="radio"]').checked = true;
 
-    topicCheckboxes.forEach(cb => cb.addEventListener('change', updateTopicLimit));
-    updateTopicLimit();
+        const plan = box.querySelector('input').value;
+        let limit = plan === 'Pro' ? 5 : plan === 'Elite' ? 10 : 3;
+        updateLimits(limit);
+      });
+    });
+
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', () => {
+        const selectedPlan = document.querySelector('input[name="plan"]:checked').value;
+        let limit = selectedPlan === 'Pro' ? 5 : selectedPlan === 'Elite' ? 10 : 3;
+        updateLimits(limit);
+      });
+    });
+
+    // initialize
+    document.getElementById('plan-basic').classList.add('selected');
+    updateLimits(3);
   </script>
 </body>
-
 </html>
