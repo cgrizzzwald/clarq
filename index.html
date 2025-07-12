@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,124 +9,122 @@
   <style>
     body {
       font-family: 'Inter', sans-serif;
+      background-color: #f7f7f7;
       margin: 0;
       padding: 0;
-      background-color: #f9f9f9;
-      color: #222;
+      color: #333;
     }
     .container {
-      max-width: 960px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 40px 20px;
     }
     .logo {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 24px;
-    }
-    .logo img {
-      height: 90px;
+      display: block;
+      margin: 0 auto 30px auto;
+      width: 240px; /* Increased logo size significantly */
     }
     h1 {
       text-align: center;
       font-size: 28px;
-      font-weight: 700;
       margin-bottom: 10px;
+      color: #111;
     }
     .tagline {
       text-align: center;
-      font-size: 16px;
+      font-size: 15px;
       color: #555;
-      max-width: 720px;
-      margin: 0 auto 40px;
+      margin-bottom: 30px;
     }
     .plans {
       display: flex;
-      justify-content: center;
-      gap: 20px;
+      justify-content: space-between;
       margin-bottom: 40px;
+      gap: 20px;
     }
     .plan {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 20px;
-      text-align: center;
       flex: 1;
+      padding: 20px;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.3s ease;
     }
-    .plan h2 {
-      font-size: 20px;
-      margin-bottom: 8px;
+    .plan input {
+      margin-top: 10px;
     }
-    .plan p {
-      font-size: 14px;
-      color: #333;
-      margin-bottom: 10px;
+    .plan:hover {
+      border-color: #000;
     }
     .checkbox-group {
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
     .checkbox-group strong {
+      display: block;
+      margin-bottom: 5px;
       font-size: 16px;
     }
     .checkbox-group p {
       font-size: 13px;
       color: #555;
+      margin-top: 0;
+      margin-bottom: 10px;
     }
-    .checkbox-columns {
+    .region-columns {
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
     }
-    .checkbox-column {
-      flex: 0 1 30%;
+    .region-columns div {
+      flex: 1;
+      min-width: 180px;
     }
-    .checkbox-column label {
+    label {
       display: block;
       margin-bottom: 6px;
-      font-size: 14px;
     }
     input[type="text"] {
       width: 100%;
       padding: 10px;
-      margin-top: 8px;
-      border: 1px solid #ccc;
       border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
     }
   </style>
 </head>
+
 <body>
   <div class="container">
-    <div class="logo">
-      <img src="/static/CLARQ_new_logo.png" alt="CLARQ Logo">
-    </div>
+    <img src="/static/CLARQ_new_logo.png" alt="CLARQ Logo" class="logo">
     <h1>CLARQ Morning Strike Report</h1>
-    <p class="tagline">
-      A curated intelligence report for operators and decision-makers. We skip the clickbait and summarize each article with real insight — TLDR-style. Prefer the source? Click through to read the full version.
-    </p>
+    <p class="tagline">A curated intelligence report for operators and decision-makers. We skip the clickbait and summarize each article with real insight — TLDR-style. Prefer the source? Click through to read the full version.</p>
 
     <div class="plans">
       <div class="plan">
-        <h2>Basic</h2>
-        <p>3 topics · 3 articles · Weekly</p>
-        <label><input type="radio" name="plan" value="Basic" checked> Choose Basic</label>
+        <strong>Basic</strong><br>
+        3 topics · 3 articles · Weekly<br>
+        <input type="radio" name="plan" value="Basic" checked> Choose Basic
       </div>
       <div class="plan">
-        <h2>Pro</h2>
-        <p>5 topics · 5 articles · Weekdays</p>
-        <label><input type="radio" name="plan" value="Pro"> Choose Pro</label>
+        <strong>Pro</strong><br>
+        5 topics · 5 articles · Weekdays<br>
+        <input type="radio" name="plan" value="Pro"> Choose Pro
       </div>
       <div class="plan">
-        <h2>Elite</h2>
-        <p>10 topics · 10 articles · Daily</p>
-        <label><input type="radio" name="plan" value="Elite"> Choose Elite</label>
+        <strong>Elite</strong><br>
+        10 topics · 10 articles · Daily<br>
+        <input type="radio" name="plan" value="Elite"> Choose Elite
       </div>
     </div>
 
     <div class="checkbox-group">
-      <strong>Which countries or regions are most relevant to your business?</strong><br>
+      <strong>Which countries or regions are most relevant to your business?</strong>
       <p>Choose the regions that affect your supply chain most (or that you want to monitor).</p>
-      <div class="checkbox-columns">
-        <div class="checkbox-column">
+      <div class="region-columns">
+        <div>
           <label><input type="checkbox" name="topics" value="China"> China</label>
           <label><input type="checkbox" name="topics" value="Vietnam"> Vietnam</label>
           <label><input type="checkbox" name="topics" value="Thailand"> Thailand</label>
@@ -135,7 +134,7 @@
           <label><input type="checkbox" name="topics" value="Malaysia"> Malaysia</label>
           <label><input type="checkbox" name="topics" value="Japan"> Japan</label>
         </div>
-        <div class="checkbox-column">
+        <div>
           <label><input type="checkbox" name="topics" value="USA"> USA</label>
           <label><input type="checkbox" name="topics" value="Mexico"> Mexico</label>
           <label><input type="checkbox" name="topics" value="Canada"> Canada</label>
@@ -145,7 +144,7 @@
           <label><input type="checkbox" name="topics" value="UK"> UK</label>
           <label><input type="checkbox" name="topics" value="Netherlands"> Netherlands</label>
         </div>
-        <div class="checkbox-column">
+        <div>
           <label><input type="checkbox" name="topics" value="UAE"> UAE</label>
           <label><input type="checkbox" name="topics" value="Saudi Arabia"> Saudi Arabia</label>
           <label><input type="checkbox" name="topics" value="South Africa"> South Africa</label>
@@ -159,13 +158,12 @@
     </div>
 
     <div class="checkbox-group">
-      <strong>Want to track global signals or niche topics?</strong><br>
-      <p>
-        Type in up to <strong>1 custom indicator</strong> (Basic), <strong>3</strong> (Pro), or <strong>5</strong> (Elite).<br>
-        Examples: <em>rare earths, EV batteries, UFLPA enforcement, inflation, Red Sea traffic, Apple rumors</em>
-      </p>
+      <strong>Want to track global signals or niche topics?</strong>
+      <p>Type in up to <strong>1 custom indicator</strong> (Basic), <strong>3</strong> (Pro), or <strong>5</strong> (Elite).<br>
+        Examples: <em>rare earths, EV batteries, UFLPA enforcement, inflation, Red Sea traffic, Apple rumors</em></p>
       <input type="text" id="customIndicators" name="customIndicators" placeholder="Enter your custom indicator(s) here">
     </div>
   </div>
 </body>
+
 </html>
