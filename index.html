@@ -1,129 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CLARQ Morning Strike Report</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #f7f7f7;
       margin: 0;
       padding: 0;
+      background-color: #f9f9f9;
       color: #333;
     }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
+    header {
+      text-align: center;
+      padding: 30px 0 10px;
     }
-    .logo {
-      display: block;
-      margin: 0 auto 30px auto;
-      width: 240px; /* Increased logo size significantly */
+    header img {
+      width: 240px;
+    }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 20px;
     }
     h1 {
-      text-align: center;
       font-size: 28px;
-      margin-bottom: 10px;
-      color: #111;
+      margin: 0;
     }
-    .tagline {
-      text-align: center;
-      font-size: 15px;
-      color: #555;
+    p.subtitle {
+      font-size: 14px;
+      color: #666;
+      margin-top: 8px;
       margin-bottom: 30px;
     }
-    .plans {
+    .pricing-options {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 40px;
       gap: 20px;
+      margin-bottom: 40px;
     }
-    .plan {
+    .pricing-option {
       flex: 1;
-      padding: 20px;
-      background-color: white;
+      background: #fff;
       border: 1px solid #ddd;
-      border-radius: 12px;
+      border-radius: 10px;
+      padding: 20px;
       text-align: center;
-      cursor: pointer;
-      transition: border-color 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
-    .plan input {
+    .pricing-option input {
       margin-top: 10px;
-    }
-    .plan:hover {
-      border-color: #000;
     }
     .checkbox-group {
       margin-bottom: 30px;
     }
-    .checkbox-group strong {
+    .checkbox-group label {
       display: block;
-      margin-bottom: 5px;
-      font-size: 16px;
+      margin: 4px 0;
     }
-    .checkbox-group p {
-      font-size: 13px;
-      color: #555;
-      margin-top: 0;
-      margin-bottom: 10px;
-    }
-    .region-columns {
+    .checkbox-columns {
       display: flex;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 30px;
+      gap: 40px;
     }
-    .region-columns div {
-      flex: 1;
-      min-width: 180px;
-    }
-    label {
-      display: block;
-      margin-bottom: 6px;
-    }
-    input[type="text"] {
+    .custom-input {
       width: 100%;
       padding: 10px;
+      margin-top: 10px;
       border-radius: 6px;
       border: 1px solid #ccc;
-      font-size: 14px;
+    }
+    .note {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 10px;
     }
   </style>
 </head>
-
 <body>
-  <div class="container">
-    <img src="/static/CLARQ_new_logo.png" alt="CLARQ Logo" class="logo">
+  <header>
+    <img src="/static/CLARQ_new_logo.png" alt="CLARQ Logo">
+  </header>
+  <main>
     <h1>CLARQ Morning Strike Report</h1>
-    <p class="tagline">A curated intelligence report for operators and decision-makers. We skip the clickbait and summarize each article with real insight — TLDR-style. Prefer the source? Click through to read the full version.</p>
+    <p class="subtitle">A curated intelligence report for operators and decision-makers. We skip the clickbait and summarize each article with real insight — TLDR-style. Prefer the source? Click through to read the full version.</p>
 
-    <div class="plans">
-      <div class="plan">
+    <div class="pricing-options">
+      <div class="pricing-option">
         <strong>Basic</strong><br>
         3 topics · 3 articles · Weekly<br>
-        <input type="radio" name="plan" value="Basic" checked> Choose Basic
+        <input type="radio" name="plan" value="basic" checked>
+        <label>Choose Basic</label>
       </div>
-      <div class="plan">
+      <div class="pricing-option">
         <strong>Pro</strong><br>
         5 topics · 5 articles · Weekdays<br>
-        <input type="radio" name="plan" value="Pro"> Choose Pro
+        <input type="radio" name="plan" value="pro">
+        <label>Choose Pro</label>
       </div>
-      <div class="plan">
+      <div class="pricing-option">
         <strong>Elite</strong><br>
         10 topics · 10 articles · Daily<br>
-        <input type="radio" name="plan" value="Elite"> Choose Elite
+        <input type="radio" name="plan" value="elite">
+        <label>Choose Elite</label>
       </div>
     </div>
 
     <div class="checkbox-group">
       <strong>Which countries or regions are most relevant to your business?</strong>
-      <p>Choose the regions that affect your supply chain most (or that you want to monitor).</p>
-      <div class="region-columns">
+      <p class="note">Choose the regions that affect your supply chain most (or that you want to monitor).</p>
+      <div class="checkbox-columns">
         <div>
           <label><input type="checkbox" name="topics" value="China"> China</label>
           <label><input type="checkbox" name="topics" value="Vietnam"> Vietnam</label>
@@ -139,7 +127,7 @@
           <label><input type="checkbox" name="topics" value="Mexico"> Mexico</label>
           <label><input type="checkbox" name="topics" value="Canada"> Canada</label>
           <label><input type="checkbox" name="topics" value="Brazil"> Brazil</label>
-          <label><input type="checkbox" name="topics" value="Europe"> Europe (General)</label>
+          <label><input type="checkbox" name="topics" value="Europe (General)"> Europe (General)</label>
           <label><input type="checkbox" name="topics" value="Germany"> Germany</label>
           <label><input type="checkbox" name="topics" value="UK"> UK</label>
           <label><input type="checkbox" name="topics" value="Netherlands"> Netherlands</label>
@@ -159,11 +147,37 @@
 
     <div class="checkbox-group">
       <strong>Want to track global signals or niche topics?</strong>
-      <p>Type in up to <strong>1 custom indicator</strong> (Basic), <strong>3</strong> (Pro), or <strong>5</strong> (Elite).<br>
-        Examples: <em>rare earths, EV batteries, UFLPA enforcement, inflation, Red Sea traffic, Apple rumors</em></p>
-      <input type="text" id="customIndicators" name="customIndicators" placeholder="Enter your custom indicator(s) here">
+      <p class="note">
+        Type in up to <strong>1 custom indicator</strong> (Basic), <strong>3</strong> (Pro), or <strong>5</strong> (Elite). Examples: <em>rare earths, EV batteries, UFLPA enforcement, inflation, Red Sea traffic, Apple rumors</em>
+      </p>
+      <input class="custom-input" type="text" id="customIndicators" name="customIndicators" placeholder="Enter your custom indicator(s) here">
     </div>
-  </div>
-</body>
+  </main>
 
+  <script>
+    const planRadios = document.querySelectorAll('input[name="plan"]');
+    const checkboxes = document.querySelectorAll('input[type="checkbox"][name="topics"]');
+    const customInput = document.getElementById('customIndicators');
+
+    function enforceLimit() {
+      let max = 3;
+      const selected = document.querySelector('input[name="plan"]:checked').value;
+      if (selected === 'basic') max = 3;
+      else if (selected === 'pro') max = 5;
+      else if (selected === 'elite') max = 10;
+
+      let checkedCount = 0;
+      checkboxes.forEach(cb => {
+        if (cb.checked) checkedCount++;
+        cb.disabled = !cb.checked && checkedCount >= max;
+      });
+
+      customInput.maxLength = selected === 'basic' ? 200 : selected === 'pro' ? 400 : 800;
+    }
+
+    planRadios.forEach(r => r.addEventListener('change', enforceLimit));
+    checkboxes.forEach(cb => cb.addEventListener('change', enforceLimit));
+    enforceLimit();
+  </script>
+</body>
 </html>
