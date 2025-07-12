@@ -1,220 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CLARQ Morning Strike Report</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      text-align: center;
-      background-color: #f5f7fa;
-    }
-    .logo {
-      margin-top: 30px;
-      width: 220px;
-    }
-    .tagline {
-      margin-top: 10px;
-      font-size: 20px;
-      line-height: 1.4;
+      background-color: #f9f9f9;
       color: #333;
     }
-    .plan-container {
-      display: flex;
-      justify-content: center;
-      margin: 40px 0;
-      gap: 20px;
-      flex-wrap: wrap;
+    header {
+      text-align: center;
+      margin-top: 10px;
     }
-    .plan-box {
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      width: 250px;
+    .logo {
+      margin-top: 20px;
+      width: 190px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
       padding: 20px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
-    .plan-box h3 {
-      margin: 10px 0 5px;
-      font-size: 18px;
+    .description {
+      text-align: center;
+      margin: 20px 0;
     }
-    .plan-box p {
-      margin: 5px 0;
-      font-size: 14px;
+    .plans {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .plan {
+      flex: 1;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .plan input[type="radio"] {
+      margin-bottom: 10px;
     }
     .checkbox-group {
-      text-align: left;
-      max-width: 800px;
-      margin: 0 auto 40px;
+      margin: 30px 0;
     }
-    .checkbox-group strong, .checkbox-group p {
-      display: block;
+    .checkbox-group strong,
+    .checkbox-group p {
       text-align: center;
+      display: block;
     }
     .checkbox-columns {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
+      gap: 30px;
     }
-    .checkbox-column {
-      flex: 1 1 30%;
-      min-width: 220px;
+    .checkbox-columns div {
+      flex: 1 1 200px;
     }
-    .checkbox-column label {
+    .checkbox-columns label {
       display: block;
-      padding: 4px 0;
+      margin-bottom: 6px;
     }
-    #customIndicators, #emailInput {
-      width: 90%;
-      max-width: 600px;
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
       padding: 10px;
-      margin: 10px auto 20px;
-      border-radius: 6px;
+      margin-top: 10px;
       border: 1px solid #ccc;
-      font-size: 14px;
+      border-radius: 4px;
     }
-    #submitButton {
-      background-color: #0a2540;
-      color: white;
-      padding: 12px 30px;
+    button {
+      background-color: #004085;
+      color: #fff;
+      padding: 12px 24px;
       border: none;
       border-radius: 6px;
-      font-size: 16px;
       cursor: pointer;
+      font-size: 16px;
+      display: block;
+      margin: 30px auto;
+    }
+    .limit-warning {
+      color: #b30000;
+      font-size: 13px;
+      text-align: center;
+      margin-top: 10px;
+      display: none;
     }
     footer {
-      margin-top: 50px;
-      font-size: 13px;
-      color: #666;
+      text-align: center;
+      margin-top: 60px;
     }
-    footer a {
-      color: #0a2540;
-      text-decoration: none;
+    footer small {
+      color: #888;
     }
   </style>
 </head>
 <body>
-  <img src="/static/CLARQ_new_logo.png" class="logo" alt="CLARQ Logo">
-  <div class="tagline">
-    <strong>CLARQ Morning Strike Report</strong><br>
-    Get the real intel. No clickbait. No fluff.
-  </div>
+  <header>
+    <img src="/static/CLARQ_new_logo.png" alt="CLARQ Logo" class="logo" />
+    <h1>CLARQ Morning Strike Report</h1>
+    <p class="description">A daily AI-powered summary of global trade, logistics, and risk intel — delivered to your inbox</p>
+  </header>
 
-  <div class="plan-container">
-    <div class="plan-box">
-      <h3><input type="radio" name="plan" value="Basic" checked> Basic</h3>
-      <p><strong>Free</strong></p>
-      <p>3 topics, 3 articles weekly</p>
-    </div>
-    <div class="plan-box">
-      <h3><input type="radio" name="plan" value="Pro"> Pro</h3>
-      <p><strong>$1/month</strong></p>
-      <p>5 topics, 5 articles on weekdays</p>
-    </div>
-    <div class="plan-box">
-      <h3><input type="radio" name="plan" value="Elite"> Elite</h3>
-      <p><strong>$10/month</strong></p>
-      <p>10 topics, 10 articles daily</p>
-    </div>
-  </div>
-
-  <div class="checkbox-group">
-    <strong>Which countries or regions are most relevant to your business?</strong>
-    <p>Choose the regions that affect your supply chain most (or that you want to monitor).</p>
-    <div class="checkbox-columns" id="topicCheckboxes">
-      <div class="checkbox-column">
-        <label><input type="checkbox" name="topics" value="China"> China</label>
-        <label><input type="checkbox" name="topics" value="Vietnam"> Vietnam</label>
-        <label><input type="checkbox" name="topics" value="Thailand"> Thailand</label>
-        <label><input type="checkbox" name="topics" value="India"> India</label>
-        <label><input type="checkbox" name="topics" value="Indonesia"> Indonesia</label>
-        <label><input type="checkbox" name="topics" value="Philippines"> Philippines</label>
-        <label><input type="checkbox" name="topics" value="Malaysia"> Malaysia</label>
-        <label><input type="checkbox" name="topics" value="Japan"> Japan</label>
+  <div class="container">
+    <form id="subscriptionForm">
+      <div class="plans">
+        <label class="plan">
+          <input type="radio" name="plan" value="Basic" checked />
+          <strong>Basic</strong><br />
+          Free — 3 topics, 3 articles weekly
+        </label>
+        <label class="plan">
+          <input type="radio" name="plan" value="Pro" />
+          <strong>Pro</strong><br />
+          $1/month — 5 topics, 5 articles on weekdays
+        </label>
+        <label class="plan">
+          <input type="radio" name="plan" value="Elite" />
+          <strong>Elite</strong><br />
+          $10/month — 10 topics, 10 articles daily
+        </label>
       </div>
-      <div class="checkbox-column">
-        <label><input type="checkbox" name="topics" value="USA"> USA</label>
-        <label><input type="checkbox" name="topics" value="Mexico"> Mexico</label>
-        <label><input type="checkbox" name="topics" value="Canada"> Canada</label>
-        <label><input type="checkbox" name="topics" value="Brazil"> Brazil</label>
-        <label><input type="checkbox" name="topics" value="Europe"> Europe</label>
-        <label><input type="checkbox" name="topics" value="Germany"> Germany</label>
-        <label><input type="checkbox" name="topics" value="UK"> UK</label>
-        <label><input type="checkbox" name="topics" value="Netherlands"> Netherlands</label>
+
+      <div class="checkbox-group">
+        <strong>Which countries or regions are most relevant to your business?</strong>
+        <p style="font-size: 13px; color: #555;">Choose the regions that affect your supply chain most (or that you want to monitor).</p>
+        <div class="checkbox-columns">
+          <div>
+            <label><input type="checkbox" name="topics" value="China" /> China</label>
+            <label><input type="checkbox" name="topics" value="Vietnam" /> Vietnam</label>
+            <label><input type="checkbox" name="topics" value="Thailand" /> Thailand</label>
+            <label><input type="checkbox" name="topics" value="India" /> India</label>
+            <label><input type="checkbox" name="topics" value="Indonesia" /> Indonesia</label>
+            <label><input type="checkbox" name="topics" value="Philippines" /> Philippines</label>
+          </div>
+          <div>
+            <label><input type="checkbox" name="topics" value="USA" /> USA</label>
+            <label><input type="checkbox" name="topics" value="Mexico" /> Mexico</label>
+            <label><input type="checkbox" name="topics" value="Brazil" /> Brazil</label>
+            <label><input type="checkbox" name="topics" value="UK" /> UK</label>
+            <label><input type="checkbox" name="topics" value="Germany" /> Germany</label>
+            <label><input type="checkbox" name="topics" value="Europe" /> Europe (General)</label>
+          </div>
+          <div>
+            <label><input type="checkbox" name="topics" value="Australia" /> Australia</label>
+            <label><input type="checkbox" name="topics" value="Africa" /> Africa (General)</label>
+            <label><input type="checkbox" name="topics" value="UAE" /> UAE</label>
+            <label><input type="checkbox" name="topics" value="Saudi Arabia" /> Saudi Arabia</label>
+            <label><input type="checkbox" name="topics" value="Global" /> Global Supply Chain</label>
+          </div>
+        </div>
       </div>
-      <div class="checkbox-column">
-        <label><input type="checkbox" name="topics" value="UAE"> UAE</label>
-        <label><input type="checkbox" name="topics" value="Saudi Arabia"> Saudi Arabia</label>
-        <label><input type="checkbox" name="topics" value="South Africa"> South Africa</label>
-        <label><input type="checkbox" name="topics" value="Nigeria"> Nigeria</label>
-        <label><input type="checkbox" name="topics" value="Australia"> Australia</label>
-        <label><input type="checkbox" name="topics" value="Africa Supply Chain"> Africa (General)</label>
-        <label><input type="checkbox" name="topics" value="Middle East Trade"> Middle East (General)</label>
-        <label><input type="checkbox" name="topics" value="Global Supply Chain"> Global Supply Chain</label>
+
+      <div class="checkbox-group">
+        <strong>Want to track global signals or niche topics?</strong>
+        <p style="font-size: 13px; color: #555;">Type in up to 1 (Basic), 3 (Pro), or 5 (Elite). Examples: <em>rare earths, EV batteries, UFLPA enforcement, inflation, Apple rumors</em></p>
+        <input type="text" name="customIndicators" placeholder="Enter your custom indicator(s) here" />
       </div>
-    </div>
+
+      <input type="email" name="email" placeholder="Enter your email" required />
+      <button type="submit">Get My Intel</button>
+      <div id="limitWarning" class="limit-warning">You’ve selected more topics than allowed for your plan.</div>
+    </form>
+
+    <footer>
+      <p>Questions? <a href="mailto:support@clarq.ai">Contact us at support@clarq.ai</a></p>
+      <small>CLARQ™ by GWC Company | Global Ops Intel with AI ⚡️</small>
+    </footer>
   </div>
-
-  <div class="checkbox-group">
-    <strong>Want to track global signals or niche topics?</strong>
-    <p>Type up to <strong>1 custom indicator</strong> (Basic), <strong>3</strong> (Pro), or <strong>5</strong> (Elite). Examples: rare earths, Red Sea traffic, Apple rumors</p>
-    <input type="text" id="customIndicators" name="customIndicators" placeholder="Enter your custom indicator(s)...">
-  </div>
-
-  <input type="email" id="emailInput" placeholder="Enter your email address">
-  <br>
-  <button id="submitButton">📨 Get My Intel</button>
-
-  <footer style="text-align: center; margin-top: 60px;">
-  <p>
-    Questions? <a href="mailto:support@clarq.ai">Contact us at support@clarq.ai</a>
-  </p>
-  <small style="color:#888;">
-    CLARQ™ by GWC Company | Global Ops Intel with AI ⚡️
-  </small>
-</footer>
 
   <script>
-    const planLimits = { Basic: 3, Pro: 5, Elite: 10 };
-    const indicatorLimits = { Basic: 1, Pro: 3, Elite: 5 };
-    let selectedPlan = "Basic";
+    const planLimits = {
+      Basic: 3,
+      Pro: 5,
+      Elite: 10
+    };
 
-    document.querySelectorAll('input[name="plan"]').forEach(radio => {
-      radio.addEventListener('change', e => {
-        selectedPlan = e.target.value;
-        enforceTopicLimit();
-        enforceIndicatorLimit();
-      });
-    });
+    const topicCheckboxes = document.querySelectorAll('input[name="topics"]');
+    const limitWarning = document.getElementById('limitWarning');
 
-    function enforceTopicLimit() {
-      const checkboxes = document.querySelectorAll('input[name="topics"]');
-      const limit = planLimits[selectedPlan];
-      let checked = Array.from(checkboxes).filter(cb => cb.checked);
-      if (checked.length > limit) {
-        alert(`You've selected more than ${limit} topics. Please uncheck some to match the ${selectedPlan} plan.`);
-      }
-    }
+    function updateCheckboxLimit() {
+      const selectedPlan = document.querySelector('input[name="plan"]:checked').value;
+      const maxAllowed = planLimits[selectedPlan];
+      const checked = Array.from(topicCheckboxes).filter(cb => cb.checked);
 
-    document.querySelectorAll('input[name="topics"]').forEach(cb => {
-      cb.addEventListener('change', () => {
-        const limit = planLimits[selectedPlan];
-        const checked = document.querySelectorAll('input[name="topics"]:checked');
-        if (checked.length > limit) {
-          cb.checked = false;
-          alert(`You can only select up to ${limit} topics for the ${selectedPlan} plan.`);
+      topicCheckboxes.forEach(cb => {
+        if (!cb.checked) {
+          cb.disabled = checked.length >= maxAllowed;
         }
       });
-    });
 
-    function enforceIndicatorLimit() {
-      const input = document.getElementById('customIndicators');
-      input.maxLength = selectedPlan === "Basic" ? 60 : selectedPlan === "Pro" ? 180 : 300;
+      limitWarning.style.display = checked.length > maxAllowed ? 'block' : 'none';
     }
+
+    topicCheckboxes.forEach(cb => cb.addEventListener('change', updateCheckboxLimit));
+    document.querySelectorAll('input[name="plan"]').forEach(radio => radio.addEventListener('change', () => {
+      topicCheckboxes.forEach(cb => (cb.disabled = false));
+      updateCheckboxLimit();
+    }));
   </script>
 </body>
 </html>
