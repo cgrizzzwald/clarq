@@ -1,166 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CLARQ Morning Strike Report</title>
-  <link rel="stylesheet" href="/static/style.css" />
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f9f9f9;
-      color: #333;
+      background-color: #f7f7f7;
+      color: #222;
       text-align: center;
     }
+
     header {
-      padding: 10px 0 5px 0;
+      padding: 20px 0 5px 0;
     }
+
     header img {
-      max-width: 160px;
-      height: auto;
+      width: 150px;
+      max-width: 80%;
     }
+
     h1 {
-      font-size: 28px;
-      margin: 5px 0 10px;
+      font-size: 26px;
+      margin-bottom: 4px;
     }
+
     .tagline {
-      font-size: 16px;
-      max-width: 700px;
-      margin: 0 auto 20px;
-      color: #555;
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 30px;
     }
-    .tiers {
+
+    .tier-options {
       display: flex;
       justify-content: center;
-      gap: 24px;
+      gap: 20px;
       margin-bottom: 30px;
-      flex-wrap: wrap;
     }
-    .tier-box {
+
+    .tier-option {
       border: 1px solid #ddd;
       border-radius: 10px;
       padding: 20px;
-      width: 220px;
-      background: white;
+      width: 180px;
+      background-color: #fff;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
     }
-    .tier-box strong {
-      font-size: 18px;
-      display: block;
-      margin-bottom: 6px;
-    }
+
     .checkbox-group {
-      max-width: 1000px;
-      margin: 0 auto 30px;
       text-align: center;
+      margin: 30px auto;
+      max-width: 1200px;
     }
-    .checkbox-group label {
-      display: block;
-      margin: 4px 0;
-      font-size: 18px;
-    }
+
     .checkbox-columns {
       display: flex;
       justify-content: center;
       gap: 50px;
-      margin-top: 10px;
-      flex-wrap: wrap;
+      text-align: left;
     }
-    .checkbox-columns > div {
+
+    .checkbox-columns div {
       flex: 1;
-      min-width: 180px;
     }
+
+    input[type="checkbox"] {
+      margin-right: 6px;
+    }
+
     .custom-indicator {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
+      margin-top: 40px;
     }
-    input[type="text"] {
-      width: 100%;
-      padding: 12px;
-      border-radius: 6px;
+
+    .custom-indicator input {
+      width: 80%;
+      max-width: 600px;
+      padding: 10px;
       border: 1px solid #ccc;
+      border-radius: 6px;
       margin-top: 10px;
-      font-size: 16px;
+    }
+
+    .custom-indicator p {
+      font-size: 14px;
+      max-width: 800px;
+      margin: 10px auto;
     }
   </style>
 </head>
+
 <body>
   <header>
-    <img src="/static/CLARQ_new_logo.png" alt="CLARQ Logo" />
+    <img src="/static/CLARQ_new_logo.png" alt="CLARQ logo">
   </header>
-  <h1>CLARQ Morning Strike Report</h1>
-  <p class="tagline">
-    A curated intelligence report for operators and decision-makers. We skip the clickbait and summarize
-    each article with real insight — TLDR-style. Prefer the source? Click through to read the full version.
-  </p>
 
-  <form>
-    <div class="tiers">
-      <div class="tier-box">
-        <strong>Basic</strong>
-        3 topics · 3 articles · Weekly<br />
-        <input type="radio" name="plan" value="Basic" checked /> Choose Basic
+  <main>
+    <h1>CLARQ Morning Strike Report</h1>
+    <p class="tagline">A curated intelligence report for operators and decision-makers. We skip the clickbait and summarize each article with real insight — TLDR-style. Prefer the source? Click through to read the full version.</p>
+
+    <div class="tier-options">
+      <div class="tier-option">
+        <strong>Basic</strong><br>
+        3 topics · 3 articles · Weekly<br>
+        <input type="radio" name="tier" value="basic" checked> Choose Basic
       </div>
-      <div class="tier-box">
-        <strong>Pro</strong>
-        5 topics · 5 articles · Weekdays<br />
-        <input type="radio" name="plan" value="Pro" /> Choose Pro
+      <div class="tier-option">
+        <strong>Pro</strong><br>
+        5 topics · 5 articles · Weekdays<br>
+        <input type="radio" name="tier" value="pro"> Choose Pro
       </div>
-      <div class="tier-box">
-        <strong>Elite</strong>
-        10 topics · 10 articles · Daily<br />
-        <input type="radio" name="plan" value="Elite" /> Choose Elite
+      <div class="tier-option">
+        <strong>Elite</strong><br>
+        10 topics · 10 articles · Daily<br>
+        <input type="radio" name="tier" value="elite"> Choose Elite
       </div>
     </div>
 
     <div class="checkbox-group">
-      <h2>Which countries or regions are most relevant to your business?</h2>
+      <h3>Which countries or regions are most relevant to your business?</h3>
       <p>Choose the regions that affect your supply chain most (or that you want to monitor).</p>
       <div class="checkbox-columns">
         <div>
-          <label><input type="checkbox" name="topics" value="China" /> China</label>
-          <label><input type="checkbox" name="topics" value="Vietnam" /> Vietnam</label>
-          <label><input type="checkbox" name="topics" value="Thailand" /> Thailand</label>
-          <label><input type="checkbox" name="topics" value="India" /> India</label>
-          <label><input type="checkbox" name="topics" value="Indonesia" /> Indonesia</label>
-          <label><input type="checkbox" name="topics" value="Philippines" /> Philippines</label>
-          <label><input type="checkbox" name="topics" value="Malaysia" /> Malaysia</label>
-          <label><input type="checkbox" name="topics" value="Japan" /> Japan</label>
+          <label><input type="checkbox" name="topics" value="China"> China</label><br>
+          <label><input type="checkbox" name="topics" value="Vietnam"> Vietnam</label><br>
+          <label><input type="checkbox" name="topics" value="Thailand"> Thailand</label><br>
+          <label><input type="checkbox" name="topics" value="India"> India</label><br>
+          <label><input type="checkbox" name="topics" value="Indonesia"> Indonesia</label><br>
+          <label><input type="checkbox" name="topics" value="Philippines"> Philippines</label><br>
+          <label><input type="checkbox" name="topics" value="Malaysia"> Malaysia</label><br>
+          <label><input type="checkbox" name="topics" value="Japan"> Japan</label>
         </div>
         <div>
-          <label><input type="checkbox" name="topics" value="USA" /> USA</label>
-          <label><input type="checkbox" name="topics" value="Mexico" /> Mexico</label>
-          <label><input type="checkbox" name="topics" value="Canada" /> Canada</label>
-          <label><input type="checkbox" name="topics" value="Brazil" /> Brazil</label>
-          <label><input type="checkbox" name="topics" value="Europe (General)" /> Europe (General)</label>
-          <label><input type="checkbox" name="topics" value="Germany" /> Germany</label>
-          <label><input type="checkbox" name="topics" value="UK" /> UK</label>
-          <label><input type="checkbox" name="topics" value="Netherlands" /> Netherlands</label>
+          <label><input type="checkbox" name="topics" value="USA"> USA</label><br>
+          <label><input type="checkbox" name="topics" value="Mexico"> Mexico</label><br>
+          <label><input type="checkbox" name="topics" value="Canada"> Canada</label><br>
+          <label><input type="checkbox" name="topics" value="Brazil"> Brazil</label><br>
+          <label><input type="checkbox" name="topics" value="Europe"> Europe (General)</label><br>
+          <label><input type="checkbox" name="topics" value="Germany"> Germany</label><br>
+          <label><input type="checkbox" name="topics" value="UK"> UK</label><br>
+          <label><input type="checkbox" name="topics" value="Netherlands"> Netherlands</label>
         </div>
         <div>
-          <label><input type="checkbox" name="topics" value="UAE" /> UAE</label>
-          <label><input type="checkbox" name="topics" value="Saudi Arabia" /> Saudi Arabia</label>
-          <label><input type="checkbox" name="topics" value="South Africa" /> South Africa</label>
-          <label><input type="checkbox" name="topics" value="Nigeria" /> Nigeria</label>
-          <label><input type="checkbox" name="topics" value="Australia" /> Australia</label>
-          <label><input type="checkbox" name="topics" value="Africa (General)" /> Africa (General)</label>
-          <label><input type="checkbox" name="topics" value="Middle East (General)" /> Middle East (General)</label>
-          <label><input type="checkbox" name="topics" value="Global Supply Chain" /> Global Supply Chain</label>
+          <label><input type="checkbox" name="topics" value="UAE"> UAE</label><br>
+          <label><input type="checkbox" name="topics" value="Saudi Arabia"> Saudi Arabia</label><br>
+          <label><input type="checkbox" name="topics" value="South Africa"> South Africa</label><br>
+          <label><input type="checkbox" name="topics" value="Nigeria"> Nigeria</label><br>
+          <label><input type="checkbox" name="topics" value="Australia"> Australia</label><br>
+          <label><input type="checkbox" name="topics" value="Africa Supply Chain"> Africa (General)</label><br>
+          <label><input type="checkbox" name="topics" value="Middle East Trade"> Middle East (General)</label><br>
+          <label><input type="checkbox" name="topics" value="Global Supply Chain"> Global Supply Chain</label>
         </div>
       </div>
     </div>
 
     <div class="custom-indicator">
-      <h2>Want to track global signals or niche topics?</h2>
-      <p>
-        Type in up to <strong>1 custom indicator</strong> (Basic), <strong>3</strong> (Pro), or <strong>5</strong>
-        (Elite). Examples: <em>rare earths, EV batteries, UFLPA enforcement, inflation, Red Sea traffic, Apple rumors</em>
-      </p>
-      <input type="text" id="customIndicators" name="customIndicators" placeholder="Enter your custom indicator(s) here" />
+      <h3>Want to track global signals or niche topics?</h3>
+      <p>Type in up to <strong>1 custom indicator</strong> (Basic), <strong>3</strong> (Pro), or <strong>5</strong> (Elite). Examples: <em>rare earths, EV batteries, UFLPA enforcement, inflation, Red Sea traffic, Apple rumors</em></p>
+      <input type="text" id="customIndicators" name="customIndicators" placeholder="Enter your custom indicator(s) here">
     </div>
-  </form>
+  </main>
 </body>
+
 </html>
