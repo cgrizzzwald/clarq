@@ -1,169 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CLARQ Morning Strike Report</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Inter', sans-serif;
+      background-color: #f9fbfc;
       margin: 0;
       padding: 0;
-      background-color: #f8f9fa;
-      color: #222;
-    }
-    .form-container {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 20px;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .logo {
-      max-height: 80px;
-      margin-top: 10px;
+      margin-top: 80px;
+      width: 190px;
     }
-    .title {
+    .container {
+      max-width: 860px;
+      margin: 10px auto 40px;
+      padding: 0 20px;
+      text-align: center;
+    }
+    h1 {
       font-size: 28px;
-      font-weight: 700;
-      margin: 10px 0 5px;
+      margin-bottom: 10px;
     }
-    .subtitle {
+    .tagline {
       font-size: 15px;
-      color: #555;
-      margin-bottom: 40px;
+      color: #444;
+      margin-bottom: 30px;
     }
-    .plan-options {
+    .plans {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 16px;
       margin-bottom: 40px;
       flex-wrap: wrap;
     }
     .plan {
-      background: #fff;
+      background-color: white;
+      border: 1px solid #ddd;
       border-radius: 10px;
       padding: 20px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      width: 200px;
+      flex: 1 0 250px;
+      max-width: 280px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     }
-    .plan input {
-      margin-top: 10px;
+    .plan h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .plan p {
+      margin: 4px 0;
+    }
+    .checkbox-group {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      text-align: left;
+      margin-bottom: 40px;
+    }
+    .checkbox-col {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .checkbox-col label {
+      font-size: 16px;
     }
     .section-title {
-      text-align: center;
       font-weight: 700;
       font-size: 18px;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
     .section-subtitle {
-      text-align: center;
-      color: #666;
       font-size: 14px;
+      color: #666;
       margin-bottom: 20px;
     }
-    .checkbox-columns {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      column-gap: 10px;
-      row-gap: 10px;
-      text-align: left;
-      max-width: 800px;
-      margin: 0 auto 40px;
-    }
-    .checkbox-columns label {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 16px;
-    }
-    .custom-input-section {
-      max-width: 700px;
-      margin: 0 auto;
+    .indicator-section {
+      margin-top: 20px;
       text-align: center;
     }
-    .custom-input-section p {
-      font-size: 15px;
-      margin: 10px 0 5px;
-    }
-    .examples {
-      font-style: italic;
-      color: #666;
+    .indicator-section p {
       font-size: 14px;
+      margin: 4px 0;
     }
     input[type="text"] {
-      width: 100%;
-      max-width: 600px;
       padding: 10px;
-      font-size: 16px;
-      margin-top: 10px;
+      font-size: 14px;
       border: 1px solid #ccc;
       border-radius: 6px;
+      width: 100%;
+      max-width: 600px;
+    }
+    .centered {
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <div class="form-container">
-    <img src="/static/CLARQ_new_logo.png" alt="CLARQ Logo" class="logo">
-    <div class="title">CLARQ Morning Strike Report</div>
-    <div class="subtitle">
-      A curated intelligence report for operators and decision-makers. We skip the clickbait and summarize each article with real insight — TLDR-style. Prefer the source? Click through to read the full version.
-    </div>
+  <img src="/static/CLARQ_new_logo.png" alt="CLARQ Logo" class="logo" />
+  <div class="container">
+    <h1>CLARQ Morning Strike Report</h1>
+    <p class="tagline">A curated intelligence report for operators and decision-makers. We skip the clickbait and summarize each article with real insight — TLDR-style. Prefer the source? Click through to read the full version.</p>
 
-    <div class="plan-options">
+    <div class="plans">
       <div class="plan">
-        <strong>Basic</strong><br>
-        3 topics · 3 articles · Weekly<br>
-        <input type="radio" name="plan" value="basic" checked> Choose Basic
+        <h2>Basic</h2>
+        <p>3 topics · 3 articles · Weekly</p>
+        <label><input type="radio" name="plan" value="basic" onclick="setLimits(1, 3)"> Choose Basic</label>
       </div>
       <div class="plan">
-        <strong>Pro</strong><br>
-        5 topics · 5 articles · Weekdays<br>
-        <input type="radio" name="plan" value="pro"> Choose Pro
+        <h2>Pro</h2>
+        <p>5 topics · 5 articles · Weekdays</p>
+        <label><input type="radio" name="plan" value="pro" onclick="setLimits(3, 5)"> Choose Pro</label>
       </div>
       <div class="plan">
-        <strong>Elite</strong><br>
-        10 topics · 10 articles · Daily<br>
-        <input type="radio" name="plan" value="elite"> Choose Elite
+        <h2>Elite</h2>
+        <p>10 topics · 10 articles · Daily</p>
+        <label><input type="radio" name="plan" value="elite" onclick="setLimits(5, 10)"> Choose Elite</label>
       </div>
     </div>
 
-    <div class="section-title">Which countries or regions are most relevant to your business?</div>
-    <div class="section-subtitle">Choose the regions that affect your supply chain most (or that you want to monitor).</div>
-
-    <div class="checkbox-columns">
-      <label><input type="checkbox"> China</label>
-      <label><input type="checkbox"> USA</label>
-      <label><input type="checkbox"> UAE</label>
-      <label><input type="checkbox"> Vietnam</label>
-      <label><input type="checkbox"> Mexico</label>
-      <label><input type="checkbox"> Saudi Arabia</label>
-      <label><input type="checkbox"> Thailand</label>
-      <label><input type="checkbox"> Canada</label>
-      <label><input type="checkbox"> South Africa</label>
-      <label><input type="checkbox"> India</label>
-      <label><input type="checkbox"> Brazil</label>
-      <label><input type="checkbox"> Nigeria</label>
-      <label><input type="checkbox"> Indonesia</label>
-      <label><input type="checkbox"> Europe (General)</label>
-      <label><input type="checkbox"> Australia</label>
-      <label><input type="checkbox"> Philippines</label>
-      <label><input type="checkbox"> Germany</label>
-      <label><input type="checkbox"> Africa (General)</label>
-      <label><input type="checkbox"> Malaysia</label>
-      <label><input type="checkbox"> UK</label>
-      <label><input type="checkbox"> Middle East (General)</label>
-      <label><input type="checkbox"> Japan</label>
-      <label><input type="checkbox"> Netherlands</label>
-      <label><input type="checkbox"> Global Supply Chain</label>
+    <div class="centered">
+      <div class="section-title">Which countries or regions are most relevant to your business?</div>
+      <div class="section-subtitle">Choose the regions that affect your supply chain most (or that you want to monitor).</div>
+    </div>
+    <div class="checkbox-group" id="country-checkboxes">
+      <div class="checkbox-col">
+        <label><input type="checkbox" name="country"> China</label>
+        <label><input type="checkbox" name="country"> Vietnam</label>
+        <label><input type="checkbox" name="country"> Thailand</label>
+        <label><input type="checkbox" name="country"> India</label>
+        <label><input type="checkbox" name="country"> Indonesia</label>
+        <label><input type="checkbox" name="country"> Philippines</label>
+        <label><input type="checkbox" name="country"> Malaysia</label>
+        <label><input type="checkbox" name="country"> Japan</label>
+      </div>
+      <div class="checkbox-col">
+        <label><input type="checkbox" name="country"> USA</label>
+        <label><input type="checkbox" name="country"> Mexico</label>
+        <label><input type="checkbox" name="country"> Canada</label>
+        <label><input type="checkbox" name="country"> Brazil</label>
+        <label><input type="checkbox" name="country"> Europe (General)</label>
+        <label><input type="checkbox" name="country"> Germany</label>
+        <label><input type="checkbox" name="country"> UK</label>
+        <label><input type="checkbox" name="country"> Netherlands</label>
+      </div>
+      <div class="checkbox-col">
+        <label><input type="checkbox" name="country"> UAE</label>
+        <label><input type="checkbox" name="country"> Saudi Arabia</label>
+        <label><input type="checkbox" name="country"> South Africa</label>
+        <label><input type="checkbox" name="country"> Nigeria</label>
+        <label><input type="checkbox" name="country"> Australia</label>
+        <label><input type="checkbox" name="country"> Africa (General)</label>
+        <label><input type="checkbox" name="country"> Middle East (General)</label>
+        <label><input type="checkbox" name="country"> Global Supply Chain</label>
+      </div>
     </div>
 
-    <div class="custom-input-section">
+    <div class="indicator-section">
       <div class="section-title">Want to track global signals or niche topics?</div>
-      <p>Type in up to <strong>1 custom indicator</strong> (Basic), <strong>3</strong> (Pro), or <strong>5</strong> (Elite).</p>
-      <div class="examples">Examples: <em>rare earths, EV batteries, UFLPA enforcement, inflation, Red Sea traffic, Apple rumors</em></div>
-      <input type="text" placeholder="Enter your custom indicator(s) here">
+      <p>Type in up to <strong id="limit-label">1 custom indicator</strong> (Basic), <strong>3</strong> (Pro), or <strong>5</strong> (Elite).</p>
+      <p style="font-style: italic; color: #555;">Examples: <span style="font-style: italic;">rare earths, EV batteries, UFLPA enforcement, inflation, Red Sea traffic, Apple rumors</span></p>
+      <input type="text" id="custom-indicators" placeholder="Enter your custom indicator(s) here">
     </div>
   </div>
+
+  <script>
+    let maxIndicators = 1;
+    function setLimits(indicatorLimit, topicLimit) {
+      maxIndicators = indicatorLimit;
+      document.getElementById("limit-label").innerText = indicatorLimit + (indicatorLimit === 1 ? " custom indicator" : " custom indicators");
+
+      const checkboxes = document.querySelectorAll('input[type="checkbox"][name="country"]');
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+        checkbox.disabled = false;
+      });
+
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener("change", () => {
+          const checked = document.querySelectorAll('input[type="checkbox"][name="country"]:checked');
+          if (checked.length >= topicLimit) {
+            checkboxes.forEach(cb => {
+              if (!cb.checked) cb.disabled = true;
+            });
+          } else {
+            checkboxes.forEach(cb => cb.disabled = false);
+          }
+        });
+      });
+    }
+  </script>
 </body>
 </html>
