@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CLARQ Morning Strike Report</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/forms@0.5.3/dist/forms.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    .selected {
+      background-color: #f0f4f8;
+      border-color: #2563eb;
+    }
+    .error-text {
+      color: #dc2626;
+      font-size: 0.875rem;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="text-center mb-6">
+      <img src="/logo.png" alt="CLARQ Logo" class="mx-auto mb-2 w-16 h-16">
+      <h1 class="text-2xl font-bold">CLARQ Morning Strike Report</h1>
+      <p class="text-gray-600 text-sm leading-snug max-w-xl mx-auto">
+        A curated intelligence report for operators and decision-makers. We skip the clickbait and summarize each article with real insight — TLDR-style. Prefer the source? Click through to read the full version.
+      </p>
+    </div>
+
+    <form id="intel-form" class="space-y-8">
+      <div class="flex flex-col md:flex-row justify-center gap-4">
+        <label class="border p-4 rounded-lg w-full md:w-1/3 text-center cursor-pointer">
+          <input type="radio" name="plan" value="basic" class="sr-only" checked>
+          <div class="font-bold">Basic</div>
+          <div class="text-sm">Free</div>
+          <div class="text-sm">3 topics, 3 articles weekly</div>
+        </label>
+        <label class="border p-4 rounded-lg w-full md:w-1/3 text-center cursor-pointer">
+          <input type="radio" name="plan" value="pro" class="sr-only">
+          <div class="font-bold">Pro</div>
+          <div class="text-sm">$1/month</div>
+          <div class="text-sm">5 topics, 5 articles on weekdays</div>
+        </label>
+        <label class="border p-4 rounded-lg w-full md:w-1/3 text-center cursor-pointer">
+          <input type="radio" name="plan" value="elite" class="sr-only">
+          <div class="font-bold">Elite</div>
+          <div class="text-sm">$10/month</div>
+          <div class="text-sm">10 topics, 10 articles daily</div>
+        </label>
+      </div>
+
+      <div>
+        <h2 class="text-center font-semibold">Which countries or regions are most relevant to your business?</h2>
+        <p class="text-center text-sm text-gray-500 mb-4">Choose the regions that affect your supply chain most (or that you want to monitor).</p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 max-w-3xl mx-auto text-sm" id="topics-section">
+          <!-- Checkboxes will be populated by JS -->
+        </div>
+        <div id="topic-error" class="error-text hidden"></div>
+      </div>
+
+      <div class="text-center">
+        <h2 class="font-semibold">Want to track global signals or niche topics?</h2>
+        <p class="text-sm text-gray-500 mb-2">
+          Type up to <strong>1</strong> custom indicator (Basic), <strong>3</strong> (Pro), or <strong>5</strong> (Elite).
+          Examples: rare earths, Red Sea traffic, Apple rumors
+        </p>
+        <input type="text" id="custom-indicators" name="customIndicators" placeholder="Enter your custom indicator(s)..."
+          class="w-full max-w-xl mx-auto block border rounded p-2">
+        <div id="indicator-error" class="error-text hidden"></div>
+      </div>
+
+      <div class="text-center">
+        <input type="email" name="email" placeholder="Enter your email address"
+          class="w-full max-w-xl mx-auto block border rounded p-2 mb-4">
+        <button type="submit" class="bg-blue-900 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded">
+          📩 Get My Intel
+        </button>
+      </div>
+    </form>
+
+    <footer class="mt-10 text-center text-sm text-gray-500">
+      <p>Contact us at <a href="mailto:support@clarq.ai" class="text-blue-600">support@clarq.ai</a></p>
+      <p>CLARQ™ by GWC Company | Global Ops Intel with AI ⚡️</p>
+    </footer>
+  </div>
+
+  <script>
+    const topics = [
+      'China', 'Vietnam', 'Thailand', 'India', 'Indonesia', 'Philippines', 'Malaysia', 'Japan',
+      'USA', 'Mexico', 'Canada', 'Brazil', 'Europe (General)', 'Germany', 'UK', 'Netherlands',
+      'UAE', 'Saudi Arabia', 'South Africa', 'Nigeria', 'Australia', 'Africa (General)', 'Middle East (General)', 'Global Supply Chain'
+    ];
+
+    const topicContainer = document.getElementById('topics-section');
+    topics.forEach((topic, i) => {
+      const label = document.createElement('label');
+      label.className = 'flex items-center gap-2';
+      label.innerHTML = `<input type="checkbox" name="topics" value="${topic}">${topic}`;
+      topicContainer.appendChild(label);
+    });
+
+    const planLimits = {
+      basic: { topics: 3, indicators: 1 },
+      pro: { topics: 5, indicators: 3 },
+      elite: { topics: 10, indicators: 5 }
+    };
+
+    const form = document.getElementById('intel-form');
+    const topicError = document.getElementById('topic-error');
+    const indicatorError = document.getElementById('indicator-error');
+
+    form.addEventListener('change', () => {
+      const selectedPlan = document.querySelector('input[name="plan"]:checked').value;
+      const topicChecks = [...document.querySelectorAll('input[name="topics"]:checked')];
+      const indicatorCount = document.getElementById('custom-indicators').value
+        .split(',')
+        .map(e => e.trim())
+        .filter(Boolean).length;
+
+      const maxTopics = planLimits[selectedPlan].topics;
+      const maxIndicators = planLimits[selectedPlan].indicators;
+
+      // Show inline error if over limit
+      topicError.classList.toggle('hidden', topicChecks.length <= maxTopics);
+      indicatorError.classList.toggle('hidden', indicatorCount <= maxIndicators);
+
+      if (topicChecks.length > maxTopics) {
+        topicError.textContent = `Too many regions selected. ${selectedPlan.charAt(0).toUpperCase() + selectedPlan.slice(1)} plan allows up to ${maxTopics}.`;
+      }
+
+      if (indicatorCount > maxIndicators) {
+        indicatorError.textContent = `Too many indicators. ${selectedPlan.charAt(0).toUpperCase() + selectedPlan.slice(1)} plan allows ${maxIndicators}.`;
+      }
+    });
+  </script>
+</body>
+</html>
