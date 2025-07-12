@@ -2,220 +2,245 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CLARQ Morning Strike Report</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CLARQ Setup</title>
   <style>
     body {
-      font-family: 'Helvetica Neue', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       background-color: #f5f7fa;
+      color: #333;
       margin: 0;
       padding: 0;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px;
       text-align: center;
-      color: #2e3a59;
     }
 
     .logo {
-      width: 190px;
       margin-top: 40px;
+      width: 190px;
     }
 
-    .header {
-      margin-top: 0;
+    h1 {
       font-size: 28px;
-      font-weight: 700;
+      margin-bottom: 10px;
     }
 
-    .description {
+    p.description {
       font-size: 16px;
-      margin: 0 auto 30px;
-      max-width: 620px;
-      color: #4b5563;
+      color: #555;
+      margin-bottom: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .plan-container {
+    .plans {
       display: flex;
       justify-content: center;
-      gap: 24px;
-      margin: 30px auto;
+      gap: 16px;
       flex-wrap: wrap;
-      max-width: 800px;
+      margin-bottom: 40px;
     }
 
     .plan {
-      background: #ffffff;
-      padding: 20px 24px;
-      border-radius: 12px;
-      border: 1px solid #e2e8f0;
-      width: 220px;
-      box-shadow: 0 1px 5px rgba(0,0,0,0.05);
-      transition: all 0.2s ease;
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      width: 240px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      border: 1px solid #ddd;
     }
 
-    .plan:hover {
-      border-color: #3b82f6;
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+    .plan h2 {
+      margin-bottom: 8px;
+      font-size: 20px;
     }
 
-    .section-header {
-      font-size: 18px;
+    .plan p {
+      margin: 4px 0;
+    }
+
+    .plan input {
+      margin-top: 10px;
+    }
+
+    .question {
+      text-align: center;
+      margin: 40px 0 10px;
       font-weight: 600;
-      margin-top: 40px;
+      font-size: 16px;
     }
 
-    .section-subtext {
+    .subtext {
+      text-align: center;
       font-size: 14px;
+      color: #555;
       margin-bottom: 20px;
-      color: #6b7280;
     }
 
     .checkbox-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      max-width: 700px;
-      margin: 0 auto 30px;
+      gap: 8px 20px;
+      max-width: 800px;
+      margin: 0 auto 40px;
       text-align: left;
-      column-gap: 40px;
     }
 
-    .checkbox-grid label {
-      display: block;
-      padding: 4px 0;
-    }
-
-    .custom-indicator,
-    .email-box {
-      max-width: 600px;
-      margin: 0 auto 20px;
-    }
-
-    input[type="text"], input[type="email"] {
+    input[type="email"],
+    input[type="text"] {
       width: 100%;
-      padding: 12px;
-      border: 1px solid #d1d5db;
-      border-radius: 6px;
+      max-width: 500px;
+      padding: 10px;
       font-size: 14px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
     }
 
-    button[type="submit"] {
+    button {
       padding: 12px 24px;
-      background-color: #2563eb;
-      color: #fff;
       font-size: 16px;
+      background-color: #1f2d3d;
+      color: white;
       border: none;
       border-radius: 6px;
       cursor: pointer;
     }
 
-    .footer {
+    footer {
+      text-align: center;
+      padding: 40px 20px 20px;
       font-size: 14px;
-      color: #6b7280;
-      padding: 30px;
+      color: #777;
     }
 
-    .footer a {
-      color: #2563eb;
-      text-decoration: none;
+    footer a {
+      color: #777;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <img src="/clarq-logo.png" alt="CLARQ Logo" class="logo" />
 
-  <img src="logo.png" alt="CLARQ Logo" class="logo" />
+    <h1>CLARQ Morning Strike Report</h1>
+    <p class="description">A curated intelligence report for operators and decision-makers. We skip the clickbait and summarize each article with real insight — TLDR-style. Prefer the source? Click through to read the full version.</p>
 
-  <h1 class="header">CLARQ Morning Strike Report</h1>
-  <p class="description">
-    A curated intelligence report for operators and decision-makers. We skip the clickbait and summarize each article with real insight — TLDR-style. Prefer the source? Click through to read the full version.
-  </p>
-
-  <form id="clarq-form">
-
-    <div class="plan-container">
-      <div class="plan">
-        <strong>Basic</strong><br>
-        3 topics · 3 articles · Weekly<br>
-        <input type="radio" name="plan" value="basic" checked> Choose Basic
+    <form id="setup-form">
+      <div class="plans">
+        <label class="plan">
+          <h2>Basic</h2>
+          <p><strong>Free</strong></p>
+          <p>3 topics · 3 articles · Weekly</p>
+          <input type="radio" name="plan" value="basic" checked /> Choose Basic
+        </label>
+        <label class="plan">
+          <h2>Pro</h2>
+          <p><strong>$1/month</strong></p>
+          <p>5 topics · 5 articles · Weekdays</p>
+          <input type="radio" name="plan" value="pro" /> Choose Pro
+        </label>
+        <label class="plan">
+          <h2>Elite</h2>
+          <p><strong>$10/month</strong></p>
+          <p>10 topics · 10 articles · Daily</p>
+          <input type="radio" name="plan" value="elite" /> Choose Elite
+        </label>
       </div>
-      <div class="plan">
-        <strong>Pro</strong><br>
-        5 topics · 5 articles · Weekdays<br>
-        <input type="radio" name="plan" value="pro"> Choose Pro
+
+      <div class="question">Which countries or regions are most relevant to your business?</div>
+      <div class="subtext">Choose the regions that affect your supply chain most (or that you want to monitor).</div>
+
+      <div class="checkbox-grid" id="region-checkboxes">
+        <label><input type="checkbox" name="regions" value="China" /> China</label>
+        <label><input type="checkbox" name="regions" value="Vietnam" /> Vietnam</label>
+        <label><input type="checkbox" name="regions" value="Thailand" /> Thailand</label>
+        <label><input type="checkbox" name="regions" value="India" /> India</label>
+        <label><input type="checkbox" name="regions" value="Indonesia" /> Indonesia</label>
+        <label><input type="checkbox" name="regions" value="Philippines" /> Philippines</label>
+        <label><input type="checkbox" name="regions" value="Malaysia" /> Malaysia</label>
+        <label><input type="checkbox" name="regions" value="Japan" /> Japan</label>
+        <label><input type="checkbox" name="regions" value="USA" /> USA</label>
+        <label><input type="checkbox" name="regions" value="Mexico" /> Mexico</label>
+        <label><input type="checkbox" name="regions" value="Canada" /> Canada</label>
+        <label><input type="checkbox" name="regions" value="Brazil" /> Brazil</label>
+        <label><input type="checkbox" name="regions" value="Europe" /> Europe (General)</label>
+        <label><input type="checkbox" name="regions" value="Germany" /> Germany</label>
+        <label><input type="checkbox" name="regions" value="UK" /> UK</label>
+        <label><input type="checkbox" name="regions" value="Netherlands" /> Netherlands</label>
+        <label><input type="checkbox" name="regions" value="UAE" /> UAE</label>
+        <label><input type="checkbox" name="regions" value="Saudi Arabia" /> Saudi Arabia</label>
+        <label><input type="checkbox" name="regions" value="South Africa" /> South Africa</label>
+        <label><input type="checkbox" name="regions" value="Nigeria" /> Nigeria</label>
+        <label><input type="checkbox" name="regions" value="Australia" /> Australia</label>
+        <label><input type="checkbox" name="regions" value="Africa" /> Africa (General)</label>
+        <label><input type="checkbox" name="regions" value="Middle East" /> Middle East (General)</label>
+        <label><input type="checkbox" name="regions" value="Global" /> Global Supply Chain</label>
       </div>
-      <div class="plan">
-        <strong>Elite</strong><br>
-        10 topics · 10 articles · Daily<br>
-        <input type="radio" name="plan" value="elite"> Choose Elite
-      </div>
-    </div>
 
-    <div class="section-header">Which countries or regions are most relevant to your business?</div>
-    <div class="section-subtext">
-      Choose the regions that affect your supply chain most (or that you want to monitor).
-    </div>
+      <div class="question">Want to track global signals or niche topics?</div>
+      <div class="subtext">Type in up to <strong>1 custom indicator</strong> (Basic), <strong>3</strong> (Pro), or <strong>5</strong> (Elite).<br><em>Examples: rare earths, EV batteries, UFLPA enforcement, inflation, Red Sea traffic, Apple rumors</em></div>
+      <input type="text" name="indicators" placeholder="Enter your custom indicator(s) here" />
 
-    <div class="checkbox-grid" id="region-checkboxes">
-      <!-- checkboxes rendered dynamically -->
-    </div>
-
-    <div class="section-header">Want to track global signals or niche topics?</div>
-    <div class="section-subtext">
-      Type in up to <strong>1 custom indicator</strong> (Basic), <strong>3</strong> (Pro), or <strong>5</strong> (Elite).<br>
-      <em>Examples: rare earths, EV batteries, UFLPA enforcement, inflation, Red Sea traffic, Apple rumors</em>
-    </div>
-
-    <div class="custom-indicator">
-      <input type="text" name="indicators" placeholder="Enter your custom indicator(s) here" id="customInput" />
-    </div>
-
-    <div class="email-box">
-      <input type="email" name="email" placeholder="Enter your email" required />
-    </div>
-
-    <button type="submit">Get My Intel</button>
-  </form>
-
-  <div class="footer">
-    Contact us at <a href="mailto:support@clarq.ai">support@clarq.ai</a>
+      <input type="email" name="email" placeholder="Enter your email address" required />
+      <br>
+      <button type="submit">Get My Intel</button>
+    </form>
   </div>
 
+  <footer>
+    Questions? <a href="mailto:support@clarq.ai">Contact us at support@clarq.ai</a>
+  </footer>
+
   <script>
-    const checkboxGrid = document.getElementById('region-checkboxes');
-    const countries = [
-      'China','Vietnam','Thailand','India','Indonesia','Philippines','Malaysia','Japan',
-      'USA','Mexico','Canada','Brazil','Europe (General)','Germany','UK','Netherlands',
-      'UAE','Saudi Arabia','South Africa','Nigeria','Australia','Africa (General)','Middle East (General)','Global Supply Chain'
-    ];
+    const planRadios = document.querySelectorAll('input[name="plan"]');
+    const regionCheckboxes = document.querySelectorAll('input[name="regions"]');
+    const indicatorInput = document.querySelector('input[name="indicators"]');
 
-    countries.forEach(country => {
-      const label = document.createElement('label');
-      label.innerHTML = `<input type="checkbox" name="region" value="${country}"> ${country}`;
-      checkboxGrid.appendChild(label);
+    let regionLimit = 3;
+    let indicatorLimit = 1;
+
+    function updateLimits(plan) {
+      if (plan === 'basic') {
+        regionLimit = 3;
+        indicatorLimit = 1;
+      } else if (plan === 'pro') {
+        regionLimit = 5;
+        indicatorLimit = 3;
+      } else if (plan === 'elite') {
+        regionLimit = 10;
+        indicatorLimit = 5;
+      }
+    }
+
+    planRadios.forEach(radio => {
+      radio.addEventListener('change', e => {
+        updateLimits(e.target.value);
+        enforceLimits();
+      });
     });
 
-    document.getElementById('clarq-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const plan = document.querySelector('input[name="plan"]:checked').value;
-      const selectedRegions = document.querySelectorAll('input[name="region"]:checked');
-      const customIndicators = document.getElementById('customInput').value.split(',').map(x => x.trim()).filter(Boolean);
-
-      const limits = {
-        basic: { regions: 3, indicators: 1 },
-        pro: { regions: 5, indicators: 3 },
-        elite: { regions: 10, indicators: 5 }
-      };
-
-      const limit = limits[plan];
-
-      if (selectedRegions.length > limit.regions) {
-        alert(`Too many regions selected. Your plan allows up to ${limit.regions}.`);
-        return;
-      }
-      if (customIndicators.length > limit.indicators) {
-        alert(`Too many indicators. Your plan allows up to ${limit.indicators}.`);
-        return;
-      }
-
-      alert('Form submitted successfully!');
+    regionCheckboxes.forEach(box => {
+      box.addEventListener('change', enforceLimits);
     });
+
+    function enforceLimits() {
+      const checkedRegions = Array.from(regionCheckboxes).filter(b => b.checked);
+      if (checkedRegions.length > regionLimit) {
+        alert(`You can only select up to ${regionLimit} regions for your current plan.`);
+        checkedRegions[checkedRegions.length - 1].checked = false;
+      }
+    }
+
+    updateLimits(document.querySelector('input[name="plan"]:checked').value);
   </script>
 </body>
 </html>
