@@ -156,7 +156,7 @@
     </div>
 
     <div>
-      <p class="section-title">Want to track global signals or niche topics?</p>
+      <p class="section-title">Want to track global signals or niche topics? <span style="font-weight:normal; color:#6b7280;">(optional)</span></p>
       <p class="subtext">Type up to <strong>1</strong> (Basic), <strong>3</strong> (Pro), or <strong>5</strong> (Elite) custom indicator(s). Examples: rare earths, Red Sea traffic, Apple rumors</p>
       <input type="text" placeholder="Enter your custom indicator(s)..." id="customIndicators">
     </div>
@@ -224,6 +224,12 @@ document.querySelectorAll('input[name="plan"]').forEach(el => {
 const submitBtn = document.querySelector('.submit-btn'); // 🔧 This was missing
 
 submitBtn.addEventListener('click', () => {
+  const email = document.getElementById('email').value.trim();
+  if (!email) {
+    alert("📧 Please enter a valid email address before proceeding.");
+    return;
+  }
+
   const plan = currentPlan;
   const stripeLinks = {
     pro: "https://buy.stripe.com/4gM7sKcd7f6e07T76T4F202",
