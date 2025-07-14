@@ -207,19 +207,37 @@
       checkboxesDiv.appendChild(label);
     });
 
-    document.querySelectorAll('input[name="plan"]').forEach(el => {
-      el.addEventListener('change', () => {
-        currentPlan = el.value;
-        const selected = document.querySelectorAll('#countryCheckboxes input:checked').length;
-        const limit = planLimits[currentPlan];
-        if (selected > limit) {
-          countryWarning.style.display = 'block';
-          countryWarning.innerText = `Too many selected: ${selected} exceeds your ${currentPlan.toUpperCase()} plan limit of ${limit}. Please uncheck some.`;
-        } else {
-          countryWarning.style.display = 'none';
-        }
-      });
-    });
+document.querySelectorAll('input[name="plan"]').forEach(el => {
+  el.addEventListener('change', () => {
+    currentPlan = el.value;
+    const selected = document.querySelectorAll('#countryCheckboxes input:checked').length;
+    const limit = planLimits[currentPlan];
+    if (selected > limit) {
+      countryWarning.style.display = 'block';
+      countryWarning.innerText = `Too many selected: ${selected} exceeds your ${currentPlan.toUpperCase()} plan limit of ${limit}. Please uncheck some.`;
+    } else {
+      countryWarning.style.display = 'none';
+    }
+  });
+});
+
+const submitBtn = document.querySelector('.submit-btn'); // 🔧 This was missing
+
+submitBtn.addEventListener('click', () => {
+  const plan = currentPlan;
+  const stripeLinks = {
+    pro: "https://buy.stripe.com/4gM7sKcd7f6e07T76T4F202",
+    elite: "https://buy.stripe.com/6oUfZg3GB3nw4o9bn94F203"
+  };
+
+  if (plan === 'basic') {
+    alert("✅ You’re signed up for the free tier. Your setup will be processed!");
+  } else if (stripeLinks[plan]) {
+    window.location.href = stripeLinks[plan];
+  } else {
+    alert("Please select a valid plan.");
+  }
+});
   </script>
 </body>
 </html>
