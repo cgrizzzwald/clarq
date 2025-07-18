@@ -245,12 +245,12 @@ submitBtn.addEventListener('click', () => {
   };
 
   if (plan === 'basic') {
-    alert("✅ You’re signed up for the free tier. Your setup will be processed!");
-  } else if (stripeLinks[plan]) {
-    window.location.href = stripeLinks[plan];
-  } else {
-    alert("Please select a valid plan.");
-  }
+  document.querySelector("form").submit();  // ✅ Actually submit the form
+} else if (stripeLinks[plan]) {
+  window.location.href = stripeLinks[plan];  // Go to Stripe
+} else {
+  alert("Please select a valid plan.");
+}
 });
   </script>
 </body>
