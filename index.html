@@ -120,31 +120,35 @@
 </head>
 <body>
   <div class="container">
+  <form action="/submit_selection" method="POST">
     <img class="logo" src="/CLARQ_new_logo.png" alt="CLARQ Logo">
 
     <h1>CLARQ Morning Strike Report</h1>
     <p class="tagline">A curated intelligence report for operators and decision-makers. We skip the clickbait and summarize each article with real insight — TLDR-style. Prefer the source? Click through to read the full version.</p>
 
     <div class="plans">
-      <label class="plan">
-        <input type="radio" name="plan" value="basic" checked> 
-        <h2>Basic</h2>
-        <p><strong>Free</strong></p>
-        <p>3 topics, 3 articles weekly</p>
-      </label>
-      <label class="plan">
-        <input type="radio" name="plan" value="pro">
-        <h2>Pro</h2>
-        <p><strong>$1/month</strong></p>
-        <p>5 topics, 5 articles on weekdays</p>
-      </label>
-      <label class="plan">
-        <input type="radio" name="plan" value="elite">
-        <h2>Elite</h2>
-        <p><strong>$10/month</strong></p>
-        <p>10 topics, 10 articles daily</p>
-      </label>
-    </div>
+  <label class="plan">
+    <input type="radio" name="plan" value="basic" checked> 
+    <h2>Basic</h2>
+    <p><strong>Free</strong></p>
+    <p>3 topics, 3 articles weekly</p>
+  </label>
+  <label class="plan">
+    <input type="radio" name="plan" value="pro">
+    <h2>Pro</h2>
+    <p><strong>$1/month</strong></p>
+    <p>5 topics, 5 articles on weekdays</p>
+  </label>
+  <label class="plan">
+    <input type="radio" name="plan" value="elite">
+    <h2>Elite</h2>
+    <p><strong>$10/month</strong></p>
+    <p>10 topics, 10 articles daily</p>
+  </label>
+</div>
+
+<!-- Add this AFTER the .plans div -->
+<input type="hidden" name="plan" id="selectedPlan">
 
     <div>
       <p class="section-title">Which countries or regions are most relevant to your business?</p>
@@ -158,12 +162,13 @@
     <div>
       <p class="section-title">Want to track global signals or niche topics? <span style="font-weight:normal; color:#6b7280;">(optional)</span></p>
       <p class="subtext">Type up to <strong>1</strong> (Basic), <strong>3</strong> (Pro), or <strong>5</strong> (Elite) custom indicator(s). Examples: rare earths, Red Sea traffic, Apple rumors</p>
-      <input type="text" placeholder="e.g. Country specific tariffs, rare earths, Red Sea traffic, Apple rumors" id="customIndicators">
+      <input type="text" name="signals" id="signals" placeholder="e.g. Country specific tariffs, rare earths, Red Sea traffic, Apple rumors">
     </div>
 
-    <input type="email" placeholder="Enter your email address">
+    <input type="email" placeholder="Enter your email address" name="email" id="email" required>
     <button class="submit-btn">📩 Get My Intel</button>
 
+      </form>
     <p style="margin-top:20px">Contact us: <a href="mailto:support@clarq.ai">support@clarq.ai</a></p>
     <footer class="footer">
       <small>CLARQ™ by GWC Company | Global Ops Intel with AI ⚡️</small>
@@ -190,6 +195,7 @@
       const label = document.createElement('label');
       const input = document.createElement('input');
       input.type = 'checkbox';
+      input.name = 'regions[]';
       input.value = c;
       input.addEventListener('change', () => {
         const selected = document.querySelectorAll('#countryCheckboxes input:checked').length;
@@ -224,6 +230,7 @@ document.querySelectorAll('input[name="plan"]').forEach(el => {
 const submitBtn = document.querySelector('.submit-btn'); // 🔧 This was missing
 
 submitBtn.addEventListener('click', () => {
+  document.getElementById('selectedPlan').value = currentPlan;
   const email = document.getElementById('email').value.trim();
   if (!email) {
     alert("📧 Please enter a valid email address before proceeding.");
