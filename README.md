@@ -1,7 +1,6 @@
 README.md for clarq-static-site (Static Landing Page)
 
 ⸻
-
 CLARQ Static Site
 
 This repository hosts the landing page (index.html) for CLARQ: an AI-powered daily strike report for global operators.
