@@ -1,9 +1,0 @@
-  - type: web
-    name: clarq-api
-    env: python
-    plan: free
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "python test_ai_risk.py"
-    envVars:
-      - key: OPENAI_API_KEY
-        sync: false
