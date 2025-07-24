@@ -148,8 +148,6 @@
   </label>
 </div>
 
-<!-- Add this AFTER the .plans div -->
-<input type="hidden" name="plan" id="selectedPlan">
 
     <div>
       <p class="section-title">Which countries or regions are most relevant to your business?</p>
@@ -231,7 +229,6 @@ document.querySelectorAll('input[name="plan"]').forEach(el => {
 const submitBtn = document.querySelector('.submit-btn'); // 🔧 This was missing
 
 submitBtn.addEventListener('click', () => {
-  document.getElementById('selectedPlan').value = currentPlan;
   const email = document.getElementById('email').value.trim();
   if (!email) {
     alert("📧 Please enter a valid email address before proceeding.");
