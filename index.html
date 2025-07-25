@@ -222,8 +222,7 @@
       const plan = currentPlan;
 
       if (plan === "basic") {
-        form.action = "https://clarq-strike-bot.onrender.com/submit_selection";
-        form.submit();
+        form.submit();  // ✅ No reassignment needed
       } else {
         const res = await fetch("https://clarq-strike-bot.onrender.com/create-checkout-session", {
           method: "POST",
